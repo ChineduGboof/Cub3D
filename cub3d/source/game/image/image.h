@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:50:52 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/23 17:30:01 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 23:04:09 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <mlx.h>
 # include <libft.h>
 
+// unsigned chars inside this struct are treated as normal integers.
 typedef struct s_color
 {
 	unsigned char	red;
@@ -25,8 +26,8 @@ typedef struct s_color
 
 typedef struct	s_pixel
 {
-	unsigned int	x;
-	unsigned int	y;
+	double			x;
+	double			y;
 	t_color			color;
 } t_pixel;
 

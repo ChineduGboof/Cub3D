@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/23 20:32:30 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/23 23:17:55 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	{
 		ft_putstr_fd("Error: wrong number of arguments", STDERR_FILENO);
-		return (1);
+		return (EXIT_FAILURE);
 	}
 	// specifications should be a struct that contains all the information
 	// specifications = parse(argv[1]);
