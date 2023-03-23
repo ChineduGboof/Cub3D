@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/23 15:44:07 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:52:12 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 	}
 	// specifications should be a struct that contains all the information
 	// specifications = parse(argv[1]);
+	// I will create a folder called maps, where all maps will be stored
 	specifications = fake_parse();
 	run_game(specifications);
 	(void)argv;
