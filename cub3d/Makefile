@@ -1,6 +1,7 @@
 CC = gcc
+FLAGS = -Wall -Wextra -Werror
 NAME = cub3d
-C_FILES = 
+C_FILES = source/main.c
 H_FILES = 
 O_FILES = $(subst .c,.o,${C_FILES})
 LIBFT = libraries/libft/libft.a
@@ -10,10 +11,10 @@ STATIC_LIBRARIES = ${LIBFT}
 all: ${NAME}
 
 $(NAME) : $(O_FILES) ${LIBFT} ${MINILIBX}
-	$(CC)  $(O_FILES) ${STATIC_LIBRARIES} -L libraries/minilibx -l mlx -framework OpenGL -framework AppKit -o $(NAME)
+	${CC}  ${FLAGS} ${O_FILES} ${STATIC_LIBRARIES} -L libraries/minilibx -l mlx -framework OpenGL -framework AppKit -o ${NAME}
 
 %.o : %.c ${H_FILES} ${LIBFT} ${MINILIBX}
-	$(CC)  -Wall -Wextra -Werror -c $< -o $@
+	${CC}  -Wall -Wextra -Werror -c $< -o $@
 
 ${MINILIBX}:
 	cd libraries/minilibx && make
