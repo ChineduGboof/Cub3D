@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_game.c                                         :+:      :+:    :+:   */
+/*   create_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 14:56:25 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/23 15:19:58 by oaydemir         ###   ########.fr       */
+/*   Created: 2023/03/23 16:52:21 by oaydemir          #+#    #+#             */
+/*   Updated: 2023/03/23 17:30:19 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "image.h"
 
-void	run_game(t_specifications specifications)
+t_image	*create_image(void *mlx, int width, int height)
 {
-	void	*mlx;
-	// void	*window;
+	t_image	*image;
 
-	mlx = mlx_init();
-	mlx_new_window(mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
-	mlx_loop(mlx);
-	(void)specifications;
+	image = ft_calloc(1, sizeof(t_image));
+	if (!image)
+		return (NULL);
+	image->image = mlx_new_image(mlx, width, height);
+	image->pixels = mlx_get_data_addr(image->image, &image->bits_per_pixel,
+			&image->line_length, &image->endian);
+	image->width = width;
+	image->height = height;
+	return (image);
 }
