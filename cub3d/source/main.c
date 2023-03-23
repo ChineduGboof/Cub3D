@@ -5,12 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 13:57:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/23 14:09:03 by oaydemir         ###   ########.fr       */
+/*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
+/*   Updated: 2023/03/23 14:18:17 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(void)
+#include <mlx.h>
+
+int	main(void)
 {
-    return (0);
+	void	*mlx;
+
+	mlx = mlx_init();
+	mlx_loop(mlx);
 }

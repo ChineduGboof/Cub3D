@@ -14,7 +14,7 @@ $(NAME) : $(O_FILES) ${LIBFT} ${MINILIBX}
 	${CC}  ${FLAGS} ${O_FILES} ${STATIC_LIBRARIES} -L libraries/minilibx -l mlx -framework OpenGL -framework AppKit -o ${NAME}
 
 %.o : %.c ${H_FILES} ${LIBFT} ${MINILIBX}
-	${CC}  -Wall -Wextra -Werror -c $< -o $@
+	${CC}  -I libraries/minilibx -Wall -Wextra -Werror -c $< -o $@
 
 ${MINILIBX}:
 	cd libraries/minilibx && make
