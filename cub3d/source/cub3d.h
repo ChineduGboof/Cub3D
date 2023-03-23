@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/23 14:59:05 by oaydemir         ###   ########.fr       */
+/*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
+/*   Updated: 2023/03/23 15:00:49 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef CUB3D_H
+# define CUB3D_H
 
-int	main(int argc, char **argv)
-{
-	if (argc != 2)
-	{
-		ft_putstr_fd("Error: wrong number of arguments", STDERR_FILENO);
-		return (1);
-	}
-	(void)argv;
-	// specifications should be a struct that contains all the information
-	// specifications = parse(argv[1]);
-	
-	// Future version of the run_game call
-	// run_game(specifications);
-	run_game();
-}
+# include <mlx.h>
+# include <libft.h>
+# include <unistd.h>
+
+// We should adjust the window size 
+// according to the Macs at campus
+# define WINDOW_WIDTH 500
+# define WINDOW_HEIGHT 500
+
+void	run_game(void);
+
+#endif
