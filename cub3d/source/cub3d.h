@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/23 15:20:17 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:35:38 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_specifications
 	char	*east_texture;
 	char	*sprite_texture;
 	int		floor_color;
+	int		ceiling_color;
 }	t_specifications;
 
 void	run_game(t_specifications specifications);
