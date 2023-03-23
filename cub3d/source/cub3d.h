@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/23 17:26:19 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:26:44 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <libft.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include "game/image/image.h" // for t_color
 
 // We should adjust the window size
@@ -37,5 +38,9 @@ typedef struct s_specifications
 }	t_specifications;
 
 void	run_game(t_specifications specifications);
+
+/**************$ error_checks $*******************/
+void	validate_map_file(const char *file);
+void	check_map_file_ext(char *file);
 
 #endif
