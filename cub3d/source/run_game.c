@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:56:25 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/23 15:02:52 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:04:05 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	run_game(void)
 	// void	*window;
 
 	mlx = mlx_init();
-	mlx_new_window(mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Hello world!");
+	mlx_new_window(mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
 	mlx_loop(mlx);
 }
