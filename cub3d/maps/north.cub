@@ -1,7 +1,7 @@
-NO assets/xpm/wall_1.xpm
-SO assets/xpm/wall_2.xpm
-WE assets/xpm/wall_4.xpm
-EA assets/xpm/wall_5.xpm
+NO textures/xpm/wall_1.xpm
+SO textures/xpm/wall_2.xpm
+WE textures/xpm/wall_4.xpm
+EA textures/xpm/wall_5.xpm
 
 F 100,50,20
 C 255,130,0
