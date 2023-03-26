@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 01:02:02 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 00:40:39 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/26 19:34:37 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,9 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 
 /* custom */
 void			ft_cautious_free(void **pointer);
-void			ft_very_cautious_free(void ***pointer);
-void			ft_free_string_array(char ***array);
+void			ft_cautious_free_double_ptr(void ***pointer);
+void			ft_free_2d_array(void ***array, size_t length,
+					bool is_null_terminated);
 
 bool			ft_isnumeric(char c);
 

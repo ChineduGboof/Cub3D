@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 15:05:46 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:05:38 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,27 +78,25 @@ void	fake_fill_game_struct(t_game *game)
 // mlx boilerplate code
 void	run_game(t_specifications specifications)
 {
-	void		*mlx;
-	void		*window;
-	t_image		*image;
 	t_game		game;
 
 	
-	mlx = mlx_init();
-	image = create_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	game.s_mlx.mlx = mlx_init();
+	game.s_mlx.image = create_image(game.s_mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	
-	window = mlx_new_window(mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub1d");
-	if (!image || !window)
+	game.s_mlx.window = mlx_new_window(game.s_mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub1d");
+	if (!game.s_mlx.image || !game.s_mlx.window)
 	{
 		ft_putstr_fd("Error: failed to create window or image", STDERR_FILENO);
 		return ;
 	}
 	// fill_game_struct(&game, specifications);
 	fake_fill_game_struct(&game);
-	// fake_fill_image(image, BLUE);
-	fill_image(image, game);
+	// fake_fill_image(game.s_mlx.image, BLUE);
+	fill_image(game.s_mlx.image, game);
 	
-	mlx_put_image_to_window(mlx, window, image->image, 0, 0);
-	mlx_loop(mlx);
+	mlx_put_image_to_window(game.s_mlx.mlx, game.s_mlx.window, game.s_mlx.image->image, 0, 0);
+	mlx_hook(game.s_mlx.window, ON_KEYDOWN, 0, on_keydown, &game);
+	mlx_loop(game.s_mlx.mlx);
 	(void)specifications;
 }

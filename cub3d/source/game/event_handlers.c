@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cautious_free.c                                 :+:      :+:    :+:   */
+/*   event_handlers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 10:09:37 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 19:34:37 by oaydemir         ###   ########.fr       */
+/*   Created: 2023/03/26 17:57:36 by oaydemir          #+#    #+#             */
+/*   Updated: 2023/03/26 19:42:33 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-void	ft_cautious_free(void **pointer)
+#include "game.h"
+#include <stdio.h> // for debugging
+int		on_keydown(int keycode, t_game *game)
 {
-	free(*pointer);
-	*pointer = NULL;
-}
-
-void	ft_cautious_free_double_ptr(void ***pointer)
-{
-	free(*pointer);
-	*pointer = NULL;
+	if (keycode == KEY_ESCAPE)
+		safely_terminate(game);
+	return (0);
 }

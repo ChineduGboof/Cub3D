@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cautious_free.c                                 :+:      :+:    :+:   */
+/*   ft_free_2d_array.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 10:09:37 by oaydemir          #+#    #+#             */
+/*   Created: 2023/03/26 19:20:57 by oaydemir          #+#    #+#             */
 /*   Updated: 2023/03/26 19:34:37 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	ft_cautious_free(void **pointer)
+// Free 2D Array type-agnostically
+void	ft_free_2d_array(void ***array, size_t length, bool is_null_terminated)
 {
-	free(*pointer);
-	*pointer = NULL;
-}
+	size_t index;
 
-void	ft_cautious_free_double_ptr(void ***pointer)
-{
-	free(*pointer);
-	*pointer = NULL;
+	if (!array || !(*array))
+		return ;
+	index = 0;
+	if (is_null_terminated)
+	{
+		while ((*array)[index])
+		{
+			ft_cautious_free(&((*array)[index]));
+			index++;
+		}
+	}
+	else
+	{
+		while (index < length)
+		{
+			ft_cautious_free(&((*array)[index]));
+			index++;
+		}
+	}
+	ft_cautious_free_double_ptr(array);
 }
