@@ -6,7 +6,7 @@
 /*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 02:50:53 by gboof             #+#    #+#             */
-/*   Updated: 2023/03/26 02:52:10 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/26 05:31:52 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ static void	check_identifier(char *line, char **ids)
 void	check_identifiers(int fd)
 {
 	char	**ids;
-	int		i;
+	// int		i;
 	int		map_started;
 	char	*line;
 
-	i = 0;
+	// i = 0;
 	map_started = 0;
 	ids = ft_split(VALID_IDS, ' ');
 	while (get_next_line(fd))
@@ -82,7 +82,7 @@ void	check_range(char **rgb)
 	i = -1;
 	while (++i < 3)
 	{
-		if (!ft_isnumeric(rgb[i]))
+		if (!ft_isnumeric(*rgb[i]))
 		{
 			ft_putstr_fd("Error: Non-numeric color value\n", 2);
 			exit(EXIT_FAILURE);

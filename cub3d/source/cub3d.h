@@ -6,7 +6,7 @@
 /*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 04:01:35 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/26 05:34:16 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "game/image/image.h" // for t_color
+# include <stdio.h> //for debugging
 
 // We should adjust the window size
 // according to the Macs at campus
@@ -46,5 +47,6 @@ void	free_2d_array(char **array);
 void	error_exit(char	*message);
 void	validate_map(char *cub_file);
 void	check_range(char **rgb);
+void	check_identifiers(int fd);
 
 #endif
