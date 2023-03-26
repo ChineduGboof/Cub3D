@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 19:47:57 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:04:45 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	run_game(t_specifications specifications)
 {
 	t_game		game;
 
-	
+	game.specifications = specifications;
 	game.s_mlx.mlx = mlx_init();
 	game.s_mlx.image = create_image(game.s_mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	
