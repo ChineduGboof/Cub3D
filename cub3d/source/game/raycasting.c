@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:33:28 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 15:01:10 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:40:18 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,8 @@ void	fill_image(t_image *image, t_game game)
 		else if (wall_hit_direction == WEST)
 			color = ORANGE;
 		else if (wall_hit_direction == NONE)
-			color = WHITE;
+			color = WHITE; // should never happen
+
 		// draw the pixels of the stripe as a vertical line
 		draw_vertical_line(image, x, draw_start, draw_end, color);
 		x++;
