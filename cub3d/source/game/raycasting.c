@@ -6,14 +6,14 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:33:28 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 20:40:18 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/26 21:47:02 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-// // Fill the image with a color
-void	fake_fill_image(t_image *image, t_color color)
+// Fill the image with a color
+void	paint_image(t_image *image, t_color color)
 {
 	int		i;
 	int		j;

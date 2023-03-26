@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 20:04:45 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/26 21:47:02 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	run_game(t_specifications specifications)
 	}
 	// fill_game_struct(&game, specifications);
 	fake_fill_game_struct(&game);
-	// fake_fill_image(game.s_mlx.image, BLUE);
+	// paint_image(game.s_mlx.image, BLUE);
 	fill_image(game.s_mlx.image, game);
 	
 	mlx_put_image_to_window(game.s_mlx.mlx, game.s_mlx.window, game.s_mlx.image->image, 0, 0);
