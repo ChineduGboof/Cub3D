@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 01:02:02 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/23 13:34:22 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/26 00:40:39 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stddef.h>
 # include "get_next_line/get_next_line.h"
+# include <stdbool.h>
 
 typedef struct s_list
 {
@@ -84,6 +85,11 @@ void			ft_cautious_free(void **pointer);
 void			ft_very_cautious_free(void ***pointer);
 void			ft_free_string_array(char ***array);
 
+bool			ft_isnumeric(char c);
+
+long			ft_atol(const char *str);
+
+int				ft_countwords(const char *str, char delim);
 int				ft_strrncmp(const char *s1, const char *s2, size_t n);
 
 char			**ft_split_charset(char *str, char *charset);

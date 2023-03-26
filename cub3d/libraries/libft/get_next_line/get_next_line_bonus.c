@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 22:38:52 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/13 19:52:12 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/26 00:44:25 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ char	*increase_str_alloc_and_cat(char **string,
 	}
 	temporary = gnl_ft_strdup(*string);
 	free(*string);
-	*string = gnl_custom_calloc((*current_s_size) + increase_amount, sizeof(char));
+	*string = gnl_custom_calloc((*current_s_size)
+			+ increase_amount, sizeof(char));
 	if (*string == NULL)
 		return (NULL);
 	(*current_s_size) += increase_amount;

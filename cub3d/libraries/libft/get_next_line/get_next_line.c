@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:46:17 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/13 19:55:44 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/26 00:44:51 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ char	*increase_str_alloc_and_cat(char **string,
 	if (!(*string))
 	{
 		current_size = 1;
-		*string = gnl_custom_calloc(current_size + increase_amount, sizeof(char));
+		*string = gnl_custom_calloc(current_size
+				+ increase_amount, sizeof(char));
 		if (*string == NULL)
 			return (NULL);
 		current_size += increase_amount;

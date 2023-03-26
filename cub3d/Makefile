@@ -2,8 +2,8 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 NAME = cub3d
 C_FILES = source/main.c source/game/run_game.c source/game/image/create_image.c source/game/image/put_pixel_into_image.c \
-			source/parsing/error_checks.c
-H_FILES = source/cub3d.h source/game/image/image.h
+			source/parsing/error_checks.c source/parsing/parsing_utils.c source/parsing/validate_map.c source/parsing/validate_map2.c
+H_FILES = source/cub3d.h source/game/image/image.h \
 O_FILES = $(subst .c,.o,${C_FILES})
 LIBFT = libraries/libft/libft.a
 MINILIBX = libraries/minilibx/libmlx.a

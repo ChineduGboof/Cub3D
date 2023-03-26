@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/24 13:09:03 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/26 04:01:35 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 // according to the Macs at campus
 # define WINDOW_WIDTH 500
 # define WINDOW_HEIGHT 500
+# define VALID_IDS "NO SO WE EA F C"
 
 // The struct that the parser should return
 typedef struct s_specifications
@@ -41,5 +42,9 @@ void	run_game(t_specifications specifications);
 /**************$ error_checks $*******************/
 void	validate_map_file(const char *file);
 void	check_map_file_ext(char *file);
+void	free_2d_array(char **array);
+void	error_exit(char	*message);
+void	validate_map(char *cub_file);
+void	check_range(char **rgb);
 
 #endif

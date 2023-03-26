@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/03 11:35:40 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 00:21:45 by gboof            ###   ########.fr       */
+/*   Created: 2023/03/26 02:45:00 by gboof             #+#    #+#             */
+/*   Updated: 2023/03/26 03:01:45 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "../cub3d.h"
+
+void	free_2d_array(char **array)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
+void	error_exit(char	*message)
+{
+	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd(message, 2);
+	ft_putstr_fd("\n", 2);
+	exit(EXIT_FAILURE);
 }
