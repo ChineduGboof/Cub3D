@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:33:28 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 14:17:45 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/26 14:44:06 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	draw_vertical_line(t_image *image, int x, int draw_start, int draw_end, t_c
 // The raycasting happens here
 void	fill_image(t_image *image, t_game game)
 {
-	size_t		x;
+	int			x;
 	double		offset_from_center;
 	t_ray		ray;
 	double		distance_to_nearest_x_boundary;
@@ -172,8 +172,11 @@ void	fill_image(t_image *image, t_game game)
 			color = BLUE;
 		else if (wall_hit_direction == WEST)
 			color = ORANGE;
+		else if (wall_hit_direction == NONE)
+			color = WHITE;
+		// draw the pixels of the stripe as a vertical line
+		draw_vertical_line(image, x, draw_start, draw_end, color);
+		x++;
 	}
-	
-	// draw the pixels of the stripe as a vertical line
-	draw_vertical_line(image, x, draw_start, draw_end, color);
+
 }
