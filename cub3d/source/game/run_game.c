@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 19:05:38 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:47:57 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	run_game(t_specifications specifications)
 	
 	mlx_put_image_to_window(game.s_mlx.mlx, game.s_mlx.window, game.s_mlx.image->image, 0, 0);
 	mlx_hook(game.s_mlx.window, ON_KEYDOWN, 0, on_keydown, &game);
+	mlx_hook(game.s_mlx.window, ON_DESTROY, 0, on_destroy, &game);
 	mlx_loop(game.s_mlx.mlx);
 	(void)specifications;
 }

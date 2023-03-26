@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:34:31 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 19:41:56 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:49:23 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ enum {
 void	fake_fill_image(t_image *image, t_color color);
 void	fill_image(t_image *image, t_game game);
 
+/**************$ event_handlers $*******************/
 int		on_keydown(int keycode, t_game *game);
+int		on_destroy(t_game *game);
+/**************$ end of: event_handlers $*******************/
 
 # endif
