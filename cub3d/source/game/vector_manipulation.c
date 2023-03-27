@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cautious_free.c                                 :+:      :+:    :+:   */
+/*   vector_manipulation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 10:09:37 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 20:05:16 by oaydemir         ###   ########.fr       */
+/*   Created: 2023/03/26 21:49:36 by oaydemir          #+#    #+#             */
+/*   Updated: 2023/03/26 21:54:51 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-void	ft_cautious_free(void **pointer)
-{
-	if (!pointer || !(*pointer))
-		return ;
-	free(*pointer);
-	*pointer = NULL;
-}
+#include "game.h"
 
-void	ft_cautious_free_double_ptr(void ***pointer)
+void	rotate_vector(t_vector *vector, double angle)
 {
-	if (!pointer || !(*pointer))
-		return ;
-	free(*pointer);
-	*pointer = NULL;
+	t_vector old_vector;
+
+	old_vector = *vector;
+	vector->x = old_vector.x * cos(angle) - old_vector.y * sin(angle);
+	vector->y = old_vector.x * sin(angle) + old_vector.y * cos(angle);
 }

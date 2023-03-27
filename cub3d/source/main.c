@@ -6,7 +6,7 @@
 /*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 05:46:21 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/27 13:25:58 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	validate_map(argv[1]);
 	// specifications = fake_parse();
 	// init_struct(&specifications);
-	// run_game(specifications);
-	// (void)argv;
+	run_game(specifications);
+	// (void)argv; (void)argc;
 	return (0);
 }
