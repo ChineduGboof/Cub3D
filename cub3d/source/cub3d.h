@@ -6,7 +6,7 @@
 /*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 05:34:16 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/26 21:50:27 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 // according to the Macs at campus
 # define WINDOW_WIDTH 500
 # define WINDOW_HEIGHT 500
-# define VALID_IDS "NO SO WE EA F C"
+# define VALID_IDS "NO #SO #WE #EA #F #C #"
 
 // The struct that the parser should return
 typedef struct s_specifications
@@ -47,6 +47,8 @@ void	free_2d_array(char **array);
 void	error_exit(char	*message);
 void	validate_map(char *cub_file);
 void	check_range(char **rgb);
-void	check_identifiers(int fd);
+void	check_identifiers(char *cub_file);
+void	validate_texture_file_path(char *cub_file);
+void	validate_color(char *cub_file);
 
 #endif

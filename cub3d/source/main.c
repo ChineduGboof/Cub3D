@@ -6,24 +6,24 @@
 /*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 05:40:28 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/26 05:46:21 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_specifications	fake_parse()
-{
-	t_specifications	specifications = { 0 };
+// t_specifications	fake_parse()
+// {
+// 	t_specifications	specifications = { 0 };
 	
-	return (specifications);
-}
+// 	return (specifications);
+// }
 	
 // void init_str
 // run main with ./cub3D ./maps/north.cub
 int	main(int argc, char **argv)
 {
-	t_specifications	specifications;
+	// t_specifications	specifications;
 	
 	if (argc != 2)
 	{
@@ -36,10 +36,10 @@ int	main(int argc, char **argv)
 	validate_map_file(argv[1]);
 	// check_map_file_ext checks for valid file extension
 	check_map_file_ext(argv[1]);
-	// validate_map(argv[1]);
-	specifications = fake_parse();
+	validate_map(argv[1]);
+	// specifications = fake_parse();
 	// init_struct(&specifications);
-	run_game(specifications);
+	// run_game(specifications);
 	// (void)argv;
 	return (0);
 }

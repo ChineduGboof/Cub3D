@@ -1,0 +1,4 @@
+1. check when a user modifies the file by
+adding a false identifier with the true ones preseent
+2. Check if its a valid file
+
