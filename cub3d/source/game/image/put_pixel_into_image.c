@@ -6,13 +6,13 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:08:43 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/23 21:55:04 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:43:58 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "image.h"
 
-static	int	get_pixel_index(t_image *image, t_pixel pixel)
+int		get_pixel_index(t_image *image, t_pixel pixel)
 {
 	short	chars_per_pixel;
 
@@ -28,4 +28,5 @@ void	put_pixel_into_image(t_image *image, t_pixel pixel)
 	((unsigned char *)destination)[0] = pixel.color.blue;
 	((unsigned char *)destination)[1] = pixel.color.green;
 	((unsigned char *)destination)[2] = pixel.color.red;
+	((unsigned char *)destination)[3] = pixel.color.transparency;
 }

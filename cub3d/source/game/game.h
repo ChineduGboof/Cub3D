@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:34:31 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 21:52:59 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:46:50 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,9 @@ int		on_destroy(t_game *game);
 /**************$ vector manipulation $*******************/
 void	rotate_vector(t_vector *vector, double angle);
 /**************$ end of: vector manipulation $*******************/
+
+/**************$ textures $*******************/
+bool	load_textures(void *mlx, struct s_textures *s_textures, t_specifications specifications);
+/**************$ end of: textures $*******************/
 
 # endif
