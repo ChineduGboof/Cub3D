@@ -6,7 +6,7 @@
 /*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 00:19:49 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/28 00:23:38 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 // # define VALID_IDS "NO #SO #WE #EA #F #C #"
-# define NORTH "NO "
-# define SOUTH "SO "
-# define WEST "WE "
-# define EAST "EA "
-# define FLOOR "F "
-# define CEILING "C "
+# define NO "NO "
+# define SO "SO "
+# define WE "WE "
+# define EA "EA "
+# define F "F "
+# define C "C "
 
 // The struct that the parser should return
 typedef struct s_specifications
