@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:33:28 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 21:47:02 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/27 19:04:04 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ void	fill_image(t_image *image, t_game game)
 	t_step		step;
 	bool		wall_hit;
 	t_direction	wall_hit_direction;
+	double		wall_hit_location;
+	t_image		*current_texture;
+	t_pixel		pixel;
+	t_point		texture_point;
+	double		texture_point_y_double;
+	double		texture_point_y_addend;
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
@@ -79,6 +85,7 @@ void	fill_image(t_image *image, t_game game)
 		ray.direction.x = game.player.direction.x + game.player.plane.x * offset_from_center;
 		ray.direction.y = game.player.direction.y + game.player.plane.y * offset_from_center;
 		
+		// rounding the player position as per the guide slows down the code extremely
 		ray.position.x = game.player.position.x;
 		ray.position.y = game.player.position.y;
 		
@@ -142,11 +149,6 @@ void	fill_image(t_image *image, t_game game)
 			if (game.map[(int)ray.position.y][(int)ray.position.x] > 0)
 				wall_hit = true;
 		}
-		// if (wall_hit_direction == EAST || wall_hit_direction == WEST)
-		// 	distance_to_wall = (ray.position.x - game.player.position.x + (1 - step.x) / 2) / ray.direction.x;
-		// else
-		// 	distance_to_wall = (ray.position.y - game.player.position.y + (1 - step.y) / 2) / ray.direction.y;
-		
 		// calculate the distance projected on the camera direction (Euclidean distance will give fisheye effect!)
 		if (wall_hit_direction == EAST || wall_hit_direction == WEST)
 			distance_to_wall = (distance_to_nearest_x_boundary - distance_between_x_grids);
@@ -163,20 +165,55 @@ void	fill_image(t_image *image, t_game game)
 		if (draw_end >= WINDOW_HEIGHT)
 			draw_end = WINDOW_HEIGHT - 1;
 		
-		// choose wall color
+		if (wall_hit_direction == EAST || wall_hit_direction == WEST)
+			wall_hit_location = game.player.position.y + (distance_to_wall * ray.direction.y);
+		else
+			wall_hit_location = game.player.position.x + (distance_to_wall * ray.direction.x);
+		wall_hit_location -= floor(wall_hit_location);
+		
 		if (wall_hit_direction == NORTH)
-			color = RED;
+			current_texture = game.s_textures.north_wall;
 		else if (wall_hit_direction == SOUTH)
-			color = GREEN;
+			current_texture = game.s_textures.south_wall;
 		else if (wall_hit_direction == EAST)
-			color = BLUE;
+			current_texture = game.s_textures.east_wall;
 		else if (wall_hit_direction == WEST)
-			color = ORANGE;
-		else if (wall_hit_direction == NONE)
-			color = WHITE; // should never happen
+			current_texture = game.s_textures.west_wall;
+
+		texture_point.x = wall_hit_location * ((double)(current_texture->width));
+		if (((wall_hit_direction == EAST || wall_hit_direction == WEST) && ray.direction.x > 0)
+			|| ((wall_hit_direction == NORTH || wall_hit_direction == SOUTH) && ray.direction.y < 0))
+			texture_point.x = current_texture->width - texture_point.x - 1;
+
+		texture_point_y_addend = 1.0 * current_texture->height / line_height;
+		texture_point_y_double = (draw_start - WINDOW_HEIGHT / 2 + line_height / 2) * texture_point_y_addend;
+		int y = draw_start;
+		while (y < draw_end)
+		{
+			texture_point.y = ((int)texture_point_y_double) & (current_texture->height - 1);
+			texture_point_y_double += texture_point_y_addend;
+			pixel.x = x;
+			pixel.y = y;
+			pixel.color = unsigned_int_to_color(*((unsigned int *)&(current_texture->pixels[get_pixel_index(current_texture, (t_pixel){.x = texture_point.x, .y = texture_point.y})])));
+			// printf("%d %d %d %d\n", pixel.color.transparency, pixel.color.blue, pixel.color.green, pixel.color.red);
+			// printf("drawing to coordinates")
+			put_pixel_into_image(image, pixel);
+			y++;
+		}
+		// // choose wall color
+		// if (wall_hit_direction == NORTH)
+		// 	color = RED;
+		// else if (wall_hit_direction == SOUTH)
+		// 	color = GREEN;
+		// else if (wall_hit_direction == EAST)
+		// 	color = BLUE;
+		// else if (wall_hit_direction == WEST)
+		// 	color = ORANGE;
+		// else if (wall_hit_direction == NONE)
+		// 	color = WHITE; // should never happen
 
 		// draw the pixels of the stripe as a vertical line
-		draw_vertical_line(image, x, draw_start, draw_end, color);
+		// draw_vertical_line(image, x, draw_start, draw_end, color);
 		x++;
 	}
 

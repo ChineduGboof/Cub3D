@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/27 13:25:36 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/27 19:04:45 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 // We should adjust the window size
 // according to the Macs at campus
-# define WINDOW_WIDTH 750
-# define WINDOW_HEIGHT 500
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
 # define VALID_IDS "NO #SO #WE #EA #F #C #"
 
 // The struct that the parser should return
@@ -51,6 +51,12 @@ typedef struct s_step
 	int y;
 } t_step;
 
+typedef struct s_point
+{
+	int x;
+	int y;
+} t_point;
+
 typedef struct s_ray
 {
 	t_vector	position;
@@ -73,8 +79,16 @@ typedef struct s_player
 	t_vector plane; // the 2d raycaster version of camera plane
 } t_player;
 
-// I didn't typedef it because I want it to
+// I didn't typedef these because I want it to
 // be obvious that it's a struct
+struct s_textures
+{
+	t_image	*east_wall;
+	t_image	*west_wall;
+	t_image	*south_wall;
+	t_image	*north_wall;
+};
+
 struct s_mlx
 {
 	void	*mlx;
@@ -88,6 +102,7 @@ struct s_mlx
 typedef struct s_game
 {
 	t_player			player;
+	struct s_textures	s_textures;
 	t_specifications	specifications;
 	struct s_mlx		s_mlx;
 	int					**map; // temporary	

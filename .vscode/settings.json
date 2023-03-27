@@ -4,6 +4,7 @@
 		"cub3d.h": "c",
 		"game.h": "c",
 		"unistd.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"stdio.h": "c"
 	}
 }
