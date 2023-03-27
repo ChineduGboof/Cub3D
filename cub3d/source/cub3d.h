@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/27 19:04:45 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 00:19:49 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,13 @@
 // according to the Macs at campus
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
-# define VALID_IDS "NO #SO #WE #EA #F #C #"
+// # define VALID_IDS "NO #SO #WE #EA #F #C #"
+# define NORTH "NO "
+# define SOUTH "SO "
+# define WEST "WE "
+# define EAST "EA "
+# define FLOOR "F "
+# define CEILING "C "
 
 // The struct that the parser should return
 typedef struct s_specifications
@@ -115,12 +121,5 @@ void	safely_terminate(t_game *game);
 /**************$ error_checks $*******************/
 void	validate_map_file(const char *file);
 void	check_map_file_ext(char *file);
-void	free_2d_array(char **array);
-void	error_exit(char	*message);
-void	validate_map(char *cub_file);
-void	check_range(char **rgb);
-void	check_identifiers(char *cub_file);
-void	validate_texture_file_path(char *cub_file);
-void	validate_color(char *cub_file);
 
 #endif
