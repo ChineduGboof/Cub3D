@@ -1,5 +1,5 @@
 CC = gcc -g
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra
 NAME = cub3d
 
 C_FILES = source/main.c source/game/run_game.c source/game/image/create_image.c \

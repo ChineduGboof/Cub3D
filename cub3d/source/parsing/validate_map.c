@@ -6,7 +6,7 @@
 /*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 01:14:57 by gboof             #+#    #+#             */
-/*   Updated: 2023/03/27 13:12:16 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/27 20:19:00 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,23 +89,23 @@ static void	validate_line(char *line)
 validate_map_content() validates the content of the map by 
 checking each line using validate_line()
 */
-static void	validate_map_content(int fd)
-{
-	char	*line;
-	int		i;
+// static void	validate_map_content(int fd)
+// {
+// 	char	*line;
+// 	int		i;
 
-	i = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		validate_line(line);
-		free(line);
-		i++;
-		line = get_next_line(fd);
-	}
-	if (i < 3)
-		error_exit("Map is too small.");
-}
+// 	i = 0;
+// 	line = get_next_line(fd);
+// 	while (line)
+// 	{
+// 		validate_line(line);
+// 		free(line);
+// 		i++;
+// 		line = get_next_line(fd);
+// 	}
+// 	if (i < 3)
+// 		error_exit("Map is too small.");
+// }
 
 void	validate_map(char *cub_file)
 {
