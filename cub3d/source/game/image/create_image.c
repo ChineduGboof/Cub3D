@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:52:21 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/27 18:19:12 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 01:36:47 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_image	*import_image(void *mlx_ptr, char *relative_path)
 {
 	t_image	*image;
 
-	printf("%s\n", relative_path);
 	image = ft_calloc(1, sizeof(t_image));
 	if (!image)
 		return (NULL);

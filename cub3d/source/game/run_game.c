@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/27 18:58:24 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 01:53:48 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	fake_fill_game_struct(t_game *game)
 {
 	game->map = debug_create_map(worldMap);
 	game->player = (t_player){
-		.position = {22.0, 11.5},
+		.position = {10.0, 9.0},
 		.direction = {-1.0, 0.0},
 		.plane = {0.0, 0.66}
 	};
