@@ -17,16 +17,17 @@ split the identifier and its file name using spaces
 check the identifier if it matches the original else end
 loop from back and check the filename if it ends with .xpm else end
 
-
-
 colors:
 split the identifier and others using 
 check the identifier if it matches the main one
 The integers must be between 0 and 255, inclusive.
-
 
 map:
 copy all the contents of the map
 any text without the identifer should be stored in the map
 check thru the map and any character not the usual should exit the program
 
+Issues
+.. parse_colors doesnt detect duplicates
+.. parse_textures detects the colors as invalid
+there has to be a way for them to communicate

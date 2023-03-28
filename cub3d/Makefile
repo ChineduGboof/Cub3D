@@ -7,7 +7,7 @@ source/game/image/put_pixel_into_image.c source/game/raycasting.c \
 source/game/vector_manipulation.c source/game/event_handlers.c \
 source/game/textures.c source/game/image/color.c source/safe_termination.c \
 source/parsing/error_checks.c source/parsing/parsing_utils.c \
-source/parsing/validate_colors.c source/parsing/validate_map2.c
+source/parsing/parse_colors.c source/parsing/parse_textures.c
 
 H_FILES = source/cub3d.h source/game/image/image.h source/game/game.h
 

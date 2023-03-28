@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 09:21:34 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/28 16:01:06 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,5 @@ void	parse_specifications(int fd, t_specifications *specifications);
 void	ft_exit_error(char *message);
 void	init_specifications(t_specifications *specifications);
 int		ft_isvalidint(const char *str);
-
+void 	parse_map_file(const char *map_file_path, t_specifications *specifications);
 #endif

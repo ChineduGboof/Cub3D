@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_colors.c                                  :+:      :+:    :+:   */
+/*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 07:19:39 by gboof             #+#    #+#             */
-/*   Updated: 2023/03/28 09:27:22 by gboof            ###   ########.fr       */
+/*   Created: 2023/03/28 15:52:28 by cegbulef          #+#    #+#             */
+/*   Updated: 2023/03/28 17:30:48 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,26 @@ void	parse_specifications(int fd, t_specifications *specifications)
 {
 	char	*line;
 	int		read_result;
+	int		index;
 
+	
 	while (1)
 	{
 		read_result = get_line(fd, &line);
 		if (read_result <= 0)
 			break;
 		if (*line == '\0')
-			continue ;
-		else if (ft_strnstr(line, F, ft_strlen(F)))
-			ft_parse_color(line, &specifications->floor_color);
-		else if (ft_strnstr(line, C, ft_strlen(C)))
-			ft_parse_color(line, &specifications->ceiling_color);
+		{
+			ft_cautious_free((void **)&line);
+			continue;
+		}
+		index = 0;
+		while (ft_isspace(line[index]))
+			index++;
+		if (ft_strnstr(line + index, F, ft_strlen(F)))
+			ft_parse_color(line + index, &specifications->floor_color);
+		else if (ft_strnstr(line + index, C, ft_strlen(C)))
+			ft_parse_color(line + index, &specifications->ceiling_color);
 		// else
 		// 	ft_exit_error("Invalid line format");
 		ft_cautious_free((void **)&line);

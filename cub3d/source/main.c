@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 12:06:45 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:31:46 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ int	main(int argc, char **argv)
 		ft_exit_error("Could not open file");
 	init_specifications(&specifications);
 	parse_specifications(fd, &specifications);
+	parse_map_file(argv[1], &specifications);
+
+	//prints the colors
 	printf("Floor color: R:%d, G:%d, B:%d\n", \
 		specifications.floor_color.red, \
 		specifications.floor_color.green, \
