@@ -6,7 +6,7 @@
 /*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 09:23:06 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/28 09:28:52 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_specifications	fake_parse()
 // run main with ./cub3D ./maps/north.cub
 int	main(int argc, char **argv)
 {
+	int	fd;
 	t_specifications	specifications;
 	
 	if (argc != 2)
@@ -37,7 +38,7 @@ int	main(int argc, char **argv)
 	check_map_file_ext(argv[1]);
 
 	// start from here
-	int fd = open(argv[1], O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		ft_exit_error("Could not open file");
 	init_specifications(&specifications);
