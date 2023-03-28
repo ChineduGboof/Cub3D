@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 01:53:48 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:03:46 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void	fake_fill_game_struct(t_game *game)
 	game->specifications.west_texture = ft_strdup("./textures/xpm/RedwallL.xpm");
 	game->specifications.north_texture = ft_strdup("./textures/xpm/SteelwallswitchonD.xpm");
 	game->specifications.south_texture = ft_strdup("./textures/xpm/WoodbrickD.xpm");
+	game->specifications.floor_color = WHITE;
+	game->specifications.ceiling_color = CYAN;
 }
 
 // mlx boilerplate code
@@ -120,7 +122,7 @@ void	run_game(t_specifications specifications)
 	game.s_mlx.window = mlx_new_window(game.s_mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub1d");
 	if (!game.s_mlx.image || !game.s_mlx.window)
 	{
-		ft_putstr_fd("Error: failed to create window or image", STDERR_FILENO);
+		ft_putstr_fd("Error: failed to create window or image\n", STDERR_FILENO);
 		safely_terminate(&game);
 	}
 	// fill_game_struct(&game, specifications);
@@ -128,10 +130,11 @@ void	run_game(t_specifications specifications)
 	status = load_textures(game.s_mlx.mlx, &(game.s_textures), game.specifications);
 	if (status == false)
 	{
-		ft_putstr_fd("Error: failed to load textures", STDERR_FILENO);
+		ft_putstr_fd("Error: failed to load textures\n", STDERR_FILENO);
 		safely_terminate(&game);
 	}
-	// paint_image(game.s_mlx.image, BLUE);
+	paint_image(game.s_mlx.image, game.specifications.ceiling_color, 0, WINDOW_HEIGHT / 2);
+	paint_image(game.s_mlx.image, game.specifications.floor_color, WINDOW_HEIGHT / 2, WINDOW_HEIGHT);
 	fill_image(game.s_mlx.image, game);
 	
 	mlx_put_image_to_window(game.s_mlx.mlx, game.s_mlx.window, game.s_mlx.image->image, 0, 0);

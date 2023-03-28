@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:34:31 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/27 16:46:50 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:03:46 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ enum {
     KEY_RIGHT = 124,
 };
 
-void	paint_image(t_image *image, t_color color);
+void	paint_image(t_image *image, t_color color, int y_start, int y_end);
 void	fill_image(t_image *image, t_game game);
 
 /**************$ event_handlers $*******************/

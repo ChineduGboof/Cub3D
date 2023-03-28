@@ -6,21 +6,22 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:33:28 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/27 19:04:04 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:03:46 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
 // Fill the image with a color
-void	paint_image(t_image *image, t_color color)
+// Paint specified row range of the image
+void	paint_image(t_image *image, t_color color, int y_start, int y_end)
 {
 	int		i;
 	int		j;
 	t_pixel	pixel;
 
-	i = 0;
-	while (i < image->height)
+	i = y_start;
+	while (i < y_end)
 	{
 		j = 0;
 		while (j < image->width)
