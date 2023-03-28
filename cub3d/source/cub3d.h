@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 16:01:06 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:13:43 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,32 +51,11 @@ typedef struct s_vector
 	double y;
 } t_vector;
 
-typedef struct s_step
-{
-	int x;
-	int y;
-} t_step;
-
-typedef struct s_point
-{
-	int x;
-	int y;
-} t_point;
-
 typedef struct s_ray
 {
 	t_vector	position;
 	t_vector	direction;
 } t_ray;
-
-typedef enum e_direction
-{
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST,
-	NONE
-} t_direction;
 
 typedef struct s_player
 {

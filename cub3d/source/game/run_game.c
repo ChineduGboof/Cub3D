@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 12:03:46 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:55:42 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	fake_fill_game_struct(t_game *game)
 	game->specifications.west_texture = ft_strdup("./textures/xpm/RedwallL.xpm");
 	game->specifications.north_texture = ft_strdup("./textures/xpm/SteelwallswitchonD.xpm");
 	game->specifications.south_texture = ft_strdup("./textures/xpm/WoodbrickD.xpm");
-	game->specifications.floor_color = WHITE;
+	game->specifications.floor_color = GRAY;
 	game->specifications.ceiling_color = CYAN;
 }
 

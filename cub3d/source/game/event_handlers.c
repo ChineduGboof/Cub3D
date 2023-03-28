@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 17:57:36 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 12:03:46 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:33:41 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int on_keydown(int keycode, t_game *game)
 	{
 		game->player.position.x += game->player.direction.x * 0.1;
 		game->player.position.y += game->player.direction.y * 0.1;
-
 		
 		paint_image(game->s_mlx.image, game->specifications.ceiling_color, 0, WINDOW_HEIGHT / 2);
 		paint_image(game->s_mlx.image, game->specifications.floor_color, WINDOW_HEIGHT / 2, WINDOW_HEIGHT);
