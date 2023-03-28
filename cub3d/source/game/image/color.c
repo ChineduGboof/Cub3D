@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:55:05 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/27 18:53:38 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:35:37 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,4 @@ t_color	unsigned_int_to_color(unsigned int source_color)
 
     return color;
 }
+

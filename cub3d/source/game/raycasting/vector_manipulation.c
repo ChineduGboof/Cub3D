@@ -6,11 +6,11 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 21:49:36 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 21:54:51 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:17:56 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../game.h"
 
 void	rotate_vector(t_vector *vector, double angle)
 {

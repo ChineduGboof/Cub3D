@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 09:21:34 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/28 17:10:31 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,32 +51,11 @@ typedef struct s_vector
 	double y;
 } t_vector;
 
-typedef struct s_step
-{
-	int x;
-	int y;
-} t_step;
-
-typedef struct s_point
-{
-	int x;
-	int y;
-} t_point;
-
 typedef struct s_ray
 {
 	t_vector	position;
 	t_vector	direction;
 } t_ray;
-
-typedef enum e_direction
-{
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST,
-	NONE
-} t_direction;
 
 typedef struct s_player
 {

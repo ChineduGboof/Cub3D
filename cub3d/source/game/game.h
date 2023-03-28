@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:34:31 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 12:03:46 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:27:12 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,16 @@
 # include "../cub3d.h"
 # include "image/image.h"
  
-# define RED (t_color) {255, 0, 0}
-# define GREEN (t_color) {0, 255, 0}
-# define BLUE (t_color) {0, 0, 255}
-# define WHITE (t_color) {255, 255, 255}
-# define BLACK (t_color) {0, 0, 0}
-# define YELLOW (t_color) {255, 255, 0}
-# define PURPLE (t_color) {255, 0, 255}
-# define CYAN (t_color) {0, 255, 255}
-# define ORANGE (t_color) {255, 165, 0}
+# define RED (t_color) {255, 0, 0, 0}
+# define GREEN (t_color) {0, 255, 0, 0}
+# define BLUE (t_color) {0, 0, 255, 0}
+# define WHITE (t_color) {255, 255, 255, 0}
+# define BLACK (t_color) {0, 0, 0, 0}
+# define GRAY (t_color) {128, 128, 128, 0}
+# define YELLOW (t_color) {255, 255, 0, 0}
+# define PURPLE (t_color) {255, 0, 255, 0}
+# define CYAN (t_color) {0, 255, 255, 0}
+# define ORANGE (t_color) {255, 165, 0, 0}
 
 // events for mlx hooks
 enum {
