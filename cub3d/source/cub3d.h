@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 01:36:19 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 09:21:34 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,11 @@ void	safely_terminate(t_game *game);
 /**************$ error_checks $*******************/
 void	validate_map_file(const char *file);
 void	check_map_file_ext(char *file);
+size_t 	ft_arrlen(char **arr);
+int		get_line(int fd, char **line);
+void	parse_specifications(int fd, t_specifications *specifications);
+void	ft_exit_error(char *message);
+void	init_specifications(t_specifications *specifications);
+int		ft_isvalidint(const char *str);
 
 #endif
