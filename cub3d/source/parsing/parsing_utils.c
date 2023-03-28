@@ -6,29 +6,91 @@
 /*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 02:45:00 by gboof             #+#    #+#             */
-/*   Updated: 2023/03/26 03:01:45 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/28 09:16:20 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	free_2d_array(char **array)
+void	ft_exit_error(char *message)
+{
+	ft_putstr_fd("Error: ", STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
+	ft_putchar_fd('\n', STDERR_FILENO);
+	exit(EXIT_FAILURE);
+}
+
+size_t ft_arrlen(char **arr)
+{
+    size_t len = 0;
+    while (arr[len] != NULL)
+        len++;
+    return len;
+}
+
+int	ft_isvalidint(const char *str)
 {
 	int	i;
 
 	i = 0;
-	while (array[i])
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
 	{
-		free(array[i]);
+		if (!ft_isdigit(str[i]))
+			return (0);
 		i++;
 	}
-	free(array);
+	return (1);
 }
 
-void	error_exit(char	*message)
+char	*get_new_line(char **remainder)
 {
-	ft_putstr_fd("Error: ", 2);
-	ft_putstr_fd(message, 2);
-	ft_putstr_fd("\n", 2);
-	exit(EXIT_FAILURE);
+	char	*line;
+	char	*temp;
+	int		len;
+
+	len = 0;
+	while ((*remainder)[len] != '\n' && (*remainder)[len] != '\0')
+		len++;
+	if ((*remainder)[len] == '\0')
+	{
+		*remainder = NULL;
+		return (NULL);
+	}
+	line = ft_substr(*remainder, 0, len);
+	temp = ft_strdup(&((*remainder)[len + 1]));
+	free(*remainder);
+	*remainder = temp;
+	return (line);
 }
+
+int	get_line(int fd, char **line)
+{
+	static char	*remainder;
+	char		*buffer;
+	int			bytes_read;
+
+	if (fd < 0 || !line || BUFFER_SIZE <= 0)
+		return (-1);
+	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return (-1);
+	bytes_read = read(fd, buffer, BUFFER_SIZE);
+	while (bytes_read > 0)
+	{
+		buffer[bytes_read] = '\0';
+		remainder = ft_strjoin(remainder, buffer);
+		if (ft_strchr(buffer, '\n'))
+			break ;
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+	}
+	free(buffer);
+	if (bytes_read < 0)
+		return (-1);
+	*line = get_new_line(&remainder);
+	if (!*line && !remainder)
+		return (0);
+	return (1);
+}
+

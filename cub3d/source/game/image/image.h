@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 04:21:33 by gboof             #+#    #+#             */
-/*   Updated: 2023/03/27 18:54:42 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/28 08:40:20 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@
 # include <libft.h>
 
 // unsigned chars inside this struct are treated as normal integers.
+// temporarily changed the unsigned chars to int so that I can initialize
+// the values to a -1 or 256, and use that to check if that color was allocated
+// we are not given the transparency in the map so i dont think its needed
 typedef struct s_color
 {
-	unsigned char	red;
-	unsigned char	green;
-	unsigned char	blue;
-	unsigned char	transparency;
+	int	red;
+	int	green;
+	int	blue;
+	int	transparency;
 }	t_color;
 
 typedef struct	s_pixel
