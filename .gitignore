@@ -53,3 +53,5 @@ dkms.conf
 
 # Other
 **/.DS_Store
+depot/cub3d.h
+Documents/f_c
