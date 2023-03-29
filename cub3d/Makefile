@@ -9,7 +9,8 @@ source/game/raycasting/ray_direction_calculations.c source/game/raycasting/textu
 source/game/raycasting/wall_detection.c source/game/raycasting/vector_manipulation.c \
 source/game/event_handlers.c source/game/textures.c source/game/image/color.c \
 source/game/image/paint.c source/safe_termination.c source/parsing/error_checks.c \
-source/parsing/parsing_utils.c source/parsing/parse_colors.c source/parsing/parse_textures.c
+source/parsing/parsing_utils.c source/parsing/parse_colors.c source/parsing/parse_textures.c \
+source/parsing/parse_map.c
 
 H_FILES = source/cub3d.h source/game/image/image.h source/game/game.h source/game/raycasting/raycasting_local.h
 

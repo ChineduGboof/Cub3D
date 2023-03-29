@@ -28,22 +28,15 @@ any text without the identifer should be stored in the map
 check thru the map and any character not the usual should exit the program
 
 Issues
-i havent handled for if the texture paths really are valid
+1. i havent handled for if the texture paths really are valid
 do the file paths really open when the open function is called
 if it fails, throw an error message
 
+2. Parsing the map
 
+3. free properly
 
-
-
-Undefined symbols for architecture x86_64:
-  "_create_image", referenced from:
-      _run_game in run_game.o
-  "_import_image", referenced from:
-      _load_textures in textures.o
-  "_paint_image", referenced from:
-      _run_game in run_game.o
-      _on_keydown in event_handlers.o
+4. Norminette friendly functions
 
 
 

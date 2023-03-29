@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:51:46 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/29 15:27:17 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:22:21 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,7 @@ void parse_identifier_line(const char *line, t_specifications *specifications)
 		fprintf(stderr, "Error: invalid identifier: %s\n", identifier);
 		exit(EXIT_FAILURE);
 	}
-
-	free(identifier);
+	ft_cautious_free((void **)&identifier);
 }
 
 void print_specifications(const t_specifications *specifications)
@@ -141,13 +140,13 @@ void print_specifications(const t_specifications *specifications)
 		exit(EXIT_FAILURE);
 	}
 
-	printf("North texture: %s\n", specifications->north_texture);
-	printf("South texture: %s\n", specifications->south_texture);
-	printf("West texture: %s\n", specifications->west_texture);
-	printf("East texture: %s\n", specifications->east_texture);
+	// printf("North texture: %s\n", specifications->north_texture);
+	// printf("South texture: %s\n", specifications->south_texture);
+	// printf("West texture: %s\n", specifications->west_texture);
+	// printf("East texture: %s\n", specifications->east_texture);
 }
 
-void parse_map_file(const char *map_file_path, t_specifications *specifications)
+void parse_textures(const char *map_file_path, t_specifications *specifications)
 {
 	int		fd;
 	int		read_result;
@@ -190,8 +189,8 @@ void parse_map_file(const char *map_file_path, t_specifications *specifications)
 	print_specifications(specifications);
 
 	// free specifications
-	free(specifications->north_texture);
-	free(specifications->south_texture);
-	free(specifications->west_texture);
-	free(specifications->east_texture);
+	ft_cautious_free((void **)&specifications->north_texture);
+	ft_cautious_free((void **)&specifications->south_texture);
+	ft_cautious_free((void **)&specifications->west_texture);
+	ft_cautious_free((void **)&specifications->east_texture);
 }

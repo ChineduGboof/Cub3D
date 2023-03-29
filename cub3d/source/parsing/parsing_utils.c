@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:13 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/28 15:52:18 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/29 20:51:59 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,3 +94,27 @@ int	get_line(int fd, char **line)
 	return (1);
 }
 
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
+{
+	void	*new_ptr;
+
+	if (!ptr)
+		return (malloc(new_size));
+	if (new_size == 0)
+	{
+		if (ptr)
+			free(ptr);
+		return (NULL);
+	}
+	if (new_size <= old_size)
+		return (ptr);
+	new_ptr = malloc(new_size);
+	if (!new_ptr)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	ft_memcpy(new_ptr, ptr, new_size);
+	free(ptr);
+	return (new_ptr);
+}

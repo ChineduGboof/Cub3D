@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 20:13:43 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/29 19:57:45 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,17 @@ void	run_game(t_specifications specifications);
 void	safely_terminate(t_game *game);
 
 /**************$ error_checks $*******************/
-void	validate_map_file(const char *file);
-void	check_map_file_ext(char *file);
-size_t 	ft_arrlen(char **arr);
-int		get_line(int fd, char **line);
-void	parse_specifications(int fd, t_specifications *specifications);
-void	ft_exit_error(char *message);
 void	init_specifications(t_specifications *specifications);
+void	check_map_file_ext(char *file);
+void	validate_map_file(const char *file);
+void	parse_colors(char **map_filepath, t_specifications *specifications);
+void	parse_textures(const char *map_file_path, t_specifications *specifications);
+void 	parse_map(const char *map_file_path, t_specifications *specifications);
+
+/**************$ parsing utils $*******************/
 int		ft_isvalidint(const char *str);
-void 	parse_map_file(const char *map_file_path, t_specifications *specifications);
+int		get_line(int fd, char **line);
+void	ft_exit_error(char *message);
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+size_t 	ft_arrlen(char **arr);
 #endif

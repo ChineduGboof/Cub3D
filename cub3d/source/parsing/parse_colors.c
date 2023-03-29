@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:28 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/29 15:11:18 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/29 19:46:14 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,20 @@ void	ft_parse_color(char *line, t_color *color)
 	ft_free_2d_array((void ***)&colors, ft_arrlen(colors), 0);
 }
 
-void	parse_specifications(int fd, t_specifications *specifications)
+void	parse_colors(char **map_filepath, t_specifications *specifications)
 {
 	char	*line;
 	int		read_result;
 	int		index;
 	bool	counter_floor;
 	bool	counter_ceiling;
+	int		fd;
 
 	counter_floor = false;
 	counter_ceiling = false;
+	fd = open(map_filepath, O_RDONLY);
+	if (fd < 0)
+		ft_exit_error("Could not open file");
 	while (1)
 	{
 		read_result = get_line(fd, &line);
