@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:13 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/29 20:51:59 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:26:30 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,3 +118,67 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 	free(ptr);
 	return (new_ptr);
 }
+
+// void	ft_strdel(char **as)
+// {
+// 	if (as != NULL && *as != NULL)
+// 	{
+// 		free(*as);
+// 		*as = NULL;
+// 	}
+// }
+
+
+// char	*ft_strjoin_free(char *s1, char *s2, int to_free)
+// {
+// 	char	*str;
+
+// 	if (!s1 || !s2)
+// 		return (NULL);
+// 	str = ft_strjoin(s1, s2);
+// 	if (!str)
+// 		return (NULL);
+// 	if (to_free == 1 || to_free == 3)
+// 		ft_strdel(&s1);
+// 	if (to_free == 2 || to_free == 3)
+// 		ft_strdel(&s2);
+// 	return (str);
+// }
+
+// char	*ft_strreplace(const char *str, const char *old, const char *new)
+// {
+// 	size_t	old_len;
+// 	size_t	new_len;
+// 	char	*result;
+// 	char	*pos;
+// 	char	*temp;
+
+// 	old_len = ft_strlen(old);
+// 	new_len = ft_strlen(new);
+// 	result = ft_strdup(str);
+// 	if (!result)
+// 		return (NULL);
+// 	pos = result;
+// 	while ((pos = ft_strstr(pos, old)) != NULL)
+// 	{
+// 		temp = ft_strdup(pos + old_len);
+// 		if (!temp)
+// 		{
+// 			free(result);
+// 			return (NULL);
+// 		}
+// 		*pos = '\0';
+// 		result = ft_strjoin_free(result, new);
+// 		if (!result)
+// 		{
+// 			free(temp);
+// 			return (NULL);
+// 		}
+// 		result = ft_strjoin_free(result, temp);
+// 		if (!result)
+// 			return (NULL);
+// 		pos += new_len;
+// 		free(temp);
+// 	}
+// 	return (result);
+// }

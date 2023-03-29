@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/29 19:57:45 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:26:36 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,5 @@ int		get_line(int fd, char **line);
 void	ft_exit_error(char *message);
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 size_t 	ft_arrlen(char **arr);
+// char	*ft_strreplace(const char *str, const char *old, const char *new);
 #endif

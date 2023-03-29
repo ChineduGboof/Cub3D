@@ -44,3 +44,117 @@ in the parse_map_file function, anything not a valid identifier,
 should be sent to the map file
 in the is_valid_identifier, also check for the floor and ceiling colors
 just so that it doesnt get parsed to the map
+
+
+void	*ft_realloctabs(char *str, int tab_nbr)
+{
+	int		len;
+	char	*temp;
+
+	len = ft_strlen(str) + (tab_nbr * 3);
+	temp = malloc(sizeof(char) * len + 1);
+	if (!temp)
+		return (0);
+	ft_replacetabs(&temp, &str, len);
+	return (temp);
+}
+/* As I mention in the Readme file one thing that we need to do is to replace tabs for spaces.
+To realloc tabs I multiply by 3 because we add 4 spaces and delete a tab */
+int		ft_tabtospace(t_parse *parse)
+{
+	int		i;
+	int		tab_nbr;
+
+	i = 0;
+	while (parse->text[i])
+	{
+		if (ft_strchr(parse->text[i], '\t'))
+		{
+			tab_nbr = ft_countchr(parse->text[i], '\t');
+			parse->text[i] = ft_realloctabs(parse->text[i], tab_nbr);
+			if (!parse->text[i])
+			{
+				ft_free_to_str(&parse->text, i - 1);
+				return (0);
+			}
+		}
+		i++;
+	}
+	return (1);
+}
+
+using this function as a sample, adjust this one below to replace all tabs with 4 spaces
+void	free_map(t_specifications *specifications, int status)
+{
+	if (specifications->map)
+		ft_free_2d_array((void ***)&specifications->map, -1, true);
+	exit(status);
+}
+
+void	parse_map(const char *map_file_path, t_specifications *specifications)
+{
+	int     fd;
+	int     res;
+	char    *line;
+	int     map_size = 4096; // initial size of specifications->map array
+	int     map_index = 0; // current index to insert line in specifications->map
+
+	line = NULL;
+	fd = open(map_file_path, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Error: could not open map file");
+		exit(EXIT_FAILURE);
+	}
+
+	// allocate initial specifications->map array
+	specifications->map = (char **)malloc(sizeof(char *) * map_size);
+	if (specifications->map == NULL)
+		free_map(specifications, EXIT_FAILURE);
+
+	while ((res = get_line(fd, &line)) > 0)
+	{
+		if (*line == '\0')
+			continue;
+		else if (ft_strnstr(line, NO, 3) == line ||
+					ft_strnstr(line, SO, 3) == line ||
+					ft_strnstr(line, WE, 3) == line ||
+					ft_strnstr(line, EA, 3) == line ||
+					ft_strnstr(line, F, 2) == line ||
+					ft_strnstr(line, C, 2) == line)
+		{
+			ft_cautious_free((void **)&line);
+			continue;
+		}
+		else
+		{
+			// expand specifications->map if necessary
+			if (map_index >= map_size) {
+				specifications->map = (char **)ft_realloc(specifications->map,
+					map_size * sizeof(char *),
+					(map_size + 4096) * sizeof(char *));
+				if (specifications->map == NULL)
+					free_map(specifications, EXIT_FAILURE);
+				map_size += 4096;
+			}
+			// duplicate line into specifications->map
+			specifications->map[map_index] = ft_strdup(line);
+			if (specifications->map[map_index] == NULL)
+				free_map(specifications, EXIT_FAILURE);
+			map_index++;
+		}
+	}
+
+	if (res == -1)
+		free_map(specifications, EXIT_FAILURE);
+	close(fd);
+
+	// print content of map
+	int k = 0;
+	while (specifications->map[k])
+	{
+		printf("%s\n", specifications->map[k]);
+		k++;
+	}
+	// free_map(specifications, EXIT_SUCCESS);
+}
