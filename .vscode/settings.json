@@ -5,6 +5,7 @@
 		"game.h": "c",
 		"unistd.h": "c",
 		"libft.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"raycasting_local.h": "c"
 	}
 }

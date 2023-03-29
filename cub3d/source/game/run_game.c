@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 13:55:42 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:41:47 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	fake_fill_game_struct(t_game *game)
 {
 	game->map = debug_create_map(worldMap);
 	game->player = (t_player){
-		.position = {10.0, 9.0},
+		.position = {10.5, 9.5},
 		.direction = {-1.0, 0.0},
 		.plane = {0.0, 0.66}
 	};
@@ -119,7 +119,7 @@ void	run_game(t_specifications specifications)
 	game.s_mlx.mlx = mlx_init();
 	
 	game.s_mlx.image = create_image(game.s_mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	game.s_mlx.window = mlx_new_window(game.s_mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub1d");
+	game.s_mlx.window = mlx_new_window(game.s_mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
 	if (!game.s_mlx.image || !game.s_mlx.window)
 	{
 		ft_putstr_fd("Error: failed to create window or image\n", STDERR_FILENO);

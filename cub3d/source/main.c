@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 20:14:03 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:13:12 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ int	main(int argc, char **argv)
 	check_map_file_ext(argv[1]);
 
 	// start from here
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		ft_exit_error("Could not open file");
-	init_specifications(&specifications);
-	parse_specifications(fd, &specifications);
-	parse_map_file(argv[1], &specifications);
+	// fd = open(argv[1], O_RDONLY);
+	// if (fd < 0)
+	// 	ft_exit_error("Could not open file");
+	// init_specifications(&specifications);
+	// parse_specifications(fd, &specifications);
+	// parse_map_file(argv[1], &specifications);
 
 	//prints the colors
 	printf("Floor color: R:%d, G:%d, B:%d\n", \
