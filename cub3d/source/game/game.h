@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:34:31 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 17:27:12 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:03:35 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,19 @@ enum {
 	KEY_ESCAPE = 53,
     KEY_LEFT = 123,
     KEY_RIGHT = 124,
+};
+
+enum  {
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	NO_DIRECTION
+};
+
+enum {
+	LEFT,
+	RIGHT
 };
 
 void	paint_image(t_image *image, t_color color, int y_start, int y_end);

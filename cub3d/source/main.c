@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/29 21:22:28 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:14:14 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 	// 	specifications.ceiling_color.green, \
 	// 	specifications.ceiling_color.blue);
 
-	specifications = fake_parse();
+	// specifications = fake_parse();
 	// init_struct(&specifications);
 	// run_game(specifications);
 	// (void)argv; (void)argc;

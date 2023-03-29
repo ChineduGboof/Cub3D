@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 04:21:33 by gboof             #+#    #+#             */
-/*   Updated: 2023/03/28 08:40:20 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/29 23:12:48 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ typedef struct s_color
 	int	transparency;
 }	t_color;
 
-typedef struct	s_pixel
+typedef struct s_pixel
 {
 	double			x;
 	double			y;
 	t_color			color;
-} t_pixel;
+}	t_pixel;
 
-typedef struct	s_image
+typedef struct s_image
 {
 	void	*image;
 	char	*pixels;
@@ -44,8 +44,7 @@ typedef struct	s_image
 	int		endian;
 	int		width;
 	int		height;
-} t_image;
-
+}	t_image;
 
 t_image			*create_image(void *mlx, int width, int height);
 t_image			*import_image(void *mlx_ptr, char *relative_path);

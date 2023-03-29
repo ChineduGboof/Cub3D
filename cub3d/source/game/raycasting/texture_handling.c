@@ -6,14 +6,14 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 13:47:40 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/29 13:48:59 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:01:01 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game.h"
 #include "raycasting_local.h"
 
-t_image	*choose_texture(t_game game, t_wall_hit_direction wall_hit_direction)
+t_image	*choose_texture(t_game game, int wall_hit_direction)
 {
 	if (wall_hit_direction == NORTH)
 		return (game.s_textures.north_wall);

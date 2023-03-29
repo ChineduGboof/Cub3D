@@ -6,13 +6,13 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:08:43 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/27 18:43:58 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:13:15 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "image.h"
 
-int		get_pixel_index(t_image *image, t_pixel pixel)
+int	get_pixel_index(t_image *image, t_pixel pixel)
 {
 	short	chars_per_pixel;
 
