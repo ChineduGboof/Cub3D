@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:28 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/28 17:30:48 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:11:18 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ void	parse_specifications(int fd, t_specifications *specifications)
 	char	*line;
 	int		read_result;
 	int		index;
+	bool	counter_floor;
+	bool	counter_ceiling;
 
-	
+	counter_floor = false;
+	counter_ceiling = false;
 	while (1)
 	{
 		read_result = get_line(fd, &line);
@@ -63,11 +66,25 @@ void	parse_specifications(int fd, t_specifications *specifications)
 		while (ft_isspace(line[index]))
 			index++;
 		if (ft_strnstr(line + index, F, ft_strlen(F)))
+		{
+			if (counter_floor)
+			{
+				ft_cautious_free((void **)&line);
+				ft_exit_error("Duplicate color Identifier");
+			}
 			ft_parse_color(line + index, &specifications->floor_color);
+			counter_floor = true;
+		}
 		else if (ft_strnstr(line + index, C, ft_strlen(C)))
+		{
+			if (counter_ceiling)
+			{
+				ft_cautious_free((void **)&line);
+				ft_exit_error("Duplicate color Identifier");
+			}
 			ft_parse_color(line + index, &specifications->ceiling_color);
-		// else
-		// 	ft_exit_error("Invalid line format");
+			counter_ceiling = true;
+		}
 		ft_cautious_free((void **)&line);
 	}
 	if (read_result < 0)
@@ -83,4 +100,8 @@ void	init_specifications(t_specifications *specifications)
 	ft_memset(specifications, 0, sizeof(t_specifications));
 	specifications->floor_color.red = 256;
 	specifications->ceiling_color.red = 256;
+	specifications->floor_color.green = 256;
+	specifications->ceiling_color.green = 256;
+	specifications->floor_color.blue = 256;
+	specifications->ceiling_color.blue = 256;
 }

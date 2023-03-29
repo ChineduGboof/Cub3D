@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/29 16:13:12 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:14:24 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 
 	specifications = fake_parse();
 	// init_struct(&specifications);
-	run_game(specifications);
+	// run_game(specifications);
 	// (void)argv; (void)argc;
 	return (0);
 }

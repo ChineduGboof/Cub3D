@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/29 13:41:47 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:14:34 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,8 @@ void	run_game(t_specifications specifications)
 		ft_putstr_fd("Error: failed to load textures\n", STDERR_FILENO);
 		safely_terminate(&game);
 	}
-	paint_image(game.s_mlx.image, game.specifications.ceiling_color, 0, WINDOW_HEIGHT / 2);
-	paint_image(game.s_mlx.image, game.specifications.floor_color, WINDOW_HEIGHT / 2, WINDOW_HEIGHT);
+	// paint_image(game.s_mlx.image, game.specifications.ceiling_color, 0, WINDOW_HEIGHT / 2);
+	// paint_image(game.s_mlx.image, game.specifications.floor_color, WINDOW_HEIGHT / 2, WINDOW_HEIGHT);
 	fill_image(game.s_mlx.image, game);
 	
 	mlx_put_image_to_window(game.s_mlx.mlx, game.s_mlx.window, game.s_mlx.image->image, 0, 0);
