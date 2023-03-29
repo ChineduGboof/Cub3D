@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 20:14:03 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:26:42 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 
 	specifications = fake_parse();
 	// init_struct(&specifications);
-	run_game(specifications);
+	// run_game(specifications);
 	// (void)argv; (void)argc;
 	return (0);
 }

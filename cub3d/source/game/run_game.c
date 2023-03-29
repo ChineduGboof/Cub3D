@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 13:55:42 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:49:44 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	run_game(t_specifications specifications)
 	game.specifications = specifications;
 	game.s_mlx.mlx = mlx_init();
 	
-	game.s_mlx.image = create_image(game.s_mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	// game.s_mlx.image = create_image(game.s_mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	game.s_mlx.window = mlx_new_window(game.s_mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub1d");
 	if (!game.s_mlx.image || !game.s_mlx.window)
 	{
@@ -133,8 +133,8 @@ void	run_game(t_specifications specifications)
 		ft_putstr_fd("Error: failed to load textures\n", STDERR_FILENO);
 		safely_terminate(&game);
 	}
-	paint_image(game.s_mlx.image, game.specifications.ceiling_color, 0, WINDOW_HEIGHT / 2);
-	paint_image(game.s_mlx.image, game.specifications.floor_color, WINDOW_HEIGHT / 2, WINDOW_HEIGHT);
+	// paint_image(game.s_mlx.image, game.specifications.ceiling_color, 0, WINDOW_HEIGHT / 2);
+	// paint_image(game.s_mlx.image, game.specifications.floor_color, WINDOW_HEIGHT / 2, WINDOW_HEIGHT);
 	fill_image(game.s_mlx.image, game);
 	
 	mlx_put_image_to_window(game.s_mlx.mlx, game.s_mlx.window, game.s_mlx.image->image, 0, 0);

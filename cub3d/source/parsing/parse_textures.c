@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:51:46 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/28 20:10:49 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:27:17 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ bool is_valid_identifier(const char *str)
 		ft_strnstr(str, EA, ft_strlen(EA)))
 	{
 		const char *path = str + 3;
-		printf("path %s\n", path);
 		path_len = ft_strlen(path);
 		if (ft_strncmp(path + path_len - 4, ".xpm", 4) != 0)
 			return false;
@@ -178,9 +177,10 @@ void parse_map_file(const char *map_file_path, t_specifications *specifications)
 			parse_identifier_line(line + index, specifications);
 		else
 		{
-			printf("detecting colors here\n");
-			fprintf(stderr, "Error: invalid identifier line: %s\n", line);
-			exit(EXIT_FAILURE);
+			//anything not valid identifier should be saved to the map file
+			// printf("detecting colors here\n");
+			// fprintf(stderr, "Error: invalid identifier line: %s\n", line);
+			// exit(EXIT_FAILURE);	
 		}
 		ft_cautious_free((void **)&line);
 	}

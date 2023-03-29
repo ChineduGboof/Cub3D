@@ -28,6 +28,26 @@ any text without the identifer should be stored in the map
 check thru the map and any character not the usual should exit the program
 
 Issues
-.. parse_colors doesnt detect duplicates
-.. parse_textures detects the colors as invalid
-there has to be a way for them to communicate
+i havent handled for if the texture paths really are valid
+do the file paths really open when the open function is called
+if it fails, throw an error message
+
+
+
+
+
+Undefined symbols for architecture x86_64:
+  "_create_image", referenced from:
+      _run_game in run_game.o
+  "_import_image", referenced from:
+      _load_textures in textures.o
+  "_paint_image", referenced from:
+      _run_game in run_game.o
+      _on_keydown in event_handlers.o
+
+
+
+in the parse_map_file function, anything not a valid identifier,
+should be sent to the map file
+in the is_valid_identifier, also check for the floor and ceiling colors
+just so that it doesnt get parsed to the map
