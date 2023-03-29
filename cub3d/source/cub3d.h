@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/29 22:26:36 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:05:39 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # define EA "EA "
 # define F "F "
 # define C "C "
+# define ERR_EXIT 1
+# define ERR_CONT 2
+# define ERR_NONE 0
 
 // The struct that the parser should return
 typedef struct s_specifications
@@ -104,6 +107,7 @@ void	validate_map_file(const char *file);
 void	parse_colors(char **map_filepath, t_specifications *specifications);
 void	parse_textures(const char *map_file_path, t_specifications *specifications);
 void 	parse_map(const char *map_file_path, t_specifications *specifications);
+void	check_map_errors(char **map);
 
 /**************$ parsing utils $*******************/
 int		ft_isvalidint(const char *str);
