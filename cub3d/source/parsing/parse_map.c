@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:52 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/29 22:31:19 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:03:30 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void parse_map(const char *map_file_path, t_specifications *specifications)
     if (res == -1)
         free_map(specifications, EXIT_FAILURE);
     close(fd);
-
+    check_map_errors(specifications->map);
     // print content of map
     int k = 0;
     while (specifications->map[k])
