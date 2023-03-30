@@ -3,148 +3,156 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 23:02:07 by gboof             #+#    #+#             */
-/*   Updated: 2023/03/30 10:20:59 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/30 17:30:40 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int is_wall(char *str)
-{
-	size_t i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] != '1' && str[i] != ' ' && str[i] != '\t')
-			return 0;
-		i++;
-	}
-	return 1;
-}
+// "Error: Map is not surrounded by walls.\n"
+// "Error: Map is not closed.\n"
+// "Error: Player not found in the map.\n"
 
-int     is_valid_player(char *str)
-{
-	static bool is_player_found = false;
+/*
+	flag[0] => right
+	flag[1] => left
+	flag[2] => top
+	flag[3] => bottom
+*/
+// bool	is_walled(int i, int j, char **map)
+// {
+// 	bool flag[4];
+// 	int len;
 
-	if (ft_strchr(str, 'N') != NULL || ft_strchr(str, 'S') != NULL ||
-		ft_strchr(str, 'E') != NULL || ft_strchr(str, 'W') != NULL)
-	{
-		if (is_player_found)
-		{
-			printf("Error: Duplicate players in the map.\n");
-			exit(EXIT_FAILURE);
-		}
-		is_player_found = true;
-	}
-	return (0);
-}
-
-int     check_all_sides(char **strs, int j)
-{
-	if (ft_isspace(strs[-1][j - 1]) || !strs[-1][j - 1])
-		return (0);
-	if (ft_isspace(strs[-1][j]) || !strs[-1][j])
-		return (0);
-	if (ft_isspace(strs[-1][j + 1]) || !strs[-1][j + 1])
-		return (0);
-	if (ft_isspace(strs[0][j - 1]) || !strs[0][j - 1])
-		return (0);
-	if (ft_isspace(strs[0][j + 1]) || !strs[0][j + 1])
-		return (0);
-	if (ft_isspace(strs[1][j - 1]) || !strs[1][j - 1])
-		return (0);
-	if (ft_isspace(strs[1][j]) || !strs[1][j])
-		return (0);
-	if (ft_isspace(strs[1][j + 1]) || !strs[1][j + 1])
-		return (0);
-	return (1);
-}
-
-void    exit_error(char *str, int err)
-{
-	printf("%s\n", str);
-	exit(err);
+// 	ft_bzero(flag, sizeof(bool) * 4);
+// 	len = ft_strlen(map[i]) - 1;
+// 	while(map[i])
+// 	{
+// 		while(map[i][j])
+// 		{
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+	
+// }
+bool is_walled(int i, int j, char **map) {
+    bool left_vertical = false;
+    bool right_vertical = false;
+    bool left_horizontal = false;
+    bool right_horizontal = false;
+    
+    // Check for walls on the left and right of the 0
+    int x = j - 1;
+    while (x >= 0) {
+        if (map[i][x] == '1') {
+            left_horizontal = true;
+            break;
+        }
+        x--;
+    }
+    
+    x = j + 1;
+    while (map[i][x]) {
+        if (map[i][x] == '1') {
+            right_horizontal = true;
+            break;
+        }
+        x++;
+    }
+    
+    // Check for walls above and below the 0
+    int y = i - 1;
+    while (y >= 0) {
+        if (map[y][j] == '1') {
+            left_vertical = true;
+            break;
+        }
+        y--;
+    }
+    
+    y = i + 1;
+    while (map[y]) {
+        if (map[y][j] == '1') {
+            right_vertical = true;
+            break;
+        }
+        y++;
+    }
+    
+    return left_vertical && right_vertical && left_horizontal && right_horizontal;
 }
 
 void check_map_errors(char **map)
 {
-	size_t  i;
-	size_t  j;
-	int     err_code;
-	int     is_closed_map;
-	bool    is_wall_valid;
-	bool    is_player_found;
-	char    **tmp;
+	int	player_count;
+	size_t	i;
+	size_t	j;
+	int map_len;
+	
 
+	map_len = ft_arrlen(map) - 1;
+	player_count  = 0;
 	i = 0;
-	is_closed_map = 1;
-	is_wall_valid = false;
-	is_player_found = false;
-	tmp = (char **) malloc(sizeof(char *) * 3);
-	  
-	  // print content of map
-	// int k = 0;
-	// while (map[k])
-	// {
-	// 	printf("%s\n", map[k]);
-	// 	k++;
-	// }
-	while (map[i] != NULL)
+	j = 0;
+	while(map[i])
 	{
 		j = 0;
-		//returns true if the wall contains only 1's and spaces, meaning its a wall
-		if (is_wall(map[i]))
+		while(map[i][j])
 		{
-			if (i == 0 || i == (ft_arrlen(map) - 1))
+			// checks if the only valid characters are in the map
+			if(map[i][j] != '0' || map[i][j] != '1' || map[i][j] != ' ' || map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
 			{
-				printf("i %zu is wall\n", i);
-				is_wall_valid = true;
-			}
-		}
-		printf("in here 1\n");
-		while (map[i][j] != '\0')
-		{
-			if (map[i][j] != '1' && map[i][j] != ' ')
-			{
-				if (i == 0 || j == 0 || map[i + 1] == NULL || map[i][j + 1] == '\0')
+				//checks for duplicate players
+				if((map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W'))
 				{
-					exit_error("Error: Map is not surrounded by walls.\n", ERR_EXIT);
-				}
-				if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
-				{
-					if (is_player_found)
+					player_count++;
+					if (player_count > 1 || i == 0 || j == 0 || j == ft_strlen(map[i]) - 1 || map[i+1] == NULL)
 					{
-						exit_error("Error: Duplicate players in the map.\n", ERR_EXIT);
-					}
-					is_player_found = true;
-				}
-				else if (map[i][j] != '1' && map[i][j] != ' ' && !is_closed_map)
-				{
-					exit_error("Error: Map is not closed.\n", ERR_EXIT);
-				}
-				else if (map[i][j] != '1' && map[i][j] != ' ')
-				{
-					tmp[0] = map[i - 1] + j - 1;
-					tmp[1] = map[i] + j - 1;
-					tmp[2] = map[i + 1] + j - 1;
-					if (!check_all_sides(tmp, 1))
-					{
-						exit_error("Error: Map is not valid.\n", ERR_EXIT);
+							printf("Error: Duplicate or muliple players in the map\n");
+							exit(0);
 					}
 				}
+				//start here
+				//1. loop thru 1st and last row and check if its only 1s or spaces
+				if ((map[0][j] && map[0][j] != '1' && map[0][j] != ' '))
+				{
+					printf("Error: Map is not closed1.\n");
+					exit(0);
+				}
+				if (map[map_len][j] && (map[map_len][j] != '1' && map[map_len][j] != ' '))
+				{
+					printf("Error: Map is not closed1.\n");
+					exit(0);
+				}
+				//2. check the first and last of every string. space can begin but not end
+				if ((map[i][0] != '1' && map[i][0] != ' ') || map[i][ft_strlen(map[i]) - 1] != '1')
+				{
+					printf("Error: Map is not closed2.\n");
+					exit(0);
+				}
+				//3. check each zero if it has a one on the left or right
+				//set each of the flags to true
+				// if all the flags are true good. if any is false then bad
+				if (map[i][j] == '0')
+				{
+					if(!is_walled(i, j, map))
+					{
+						printf("Error: Map is not walled.\n");
+						exit(0);
+					}
+				}
+				j++; 
 			}
-			j++;
+			else
+				printf("Error: Map is not valid.\n");
 		}
 		i++;
 	}
-	if (!is_wall_valid)
-	{
-		exit_error("Error: Map is not valid.\n", ERR_EXIT);
-	}
-	if (!is_player_found)
-	{
-		exit_error("Error: Player not found in the map.\n", ERR_EXIT);
-	}
+	if(player_count == 0)
+		printf("Error: NO PLAYER.\n");
+	
 }

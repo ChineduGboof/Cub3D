@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:13 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/30 10:11:42 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/30 12:34:44 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ char *ft_strdup_replace_tabs_with_space(char *src)
             num_tabs++;
         len++;
     }
-    char *new = malloc((len + num_tabs * 7 + 1) * sizeof(char));
+    char *new = malloc((len + num_tabs * 3 + 1) * sizeof(char));
     if (new == NULL)
     {
         errno = ENOMEM;
@@ -143,7 +143,7 @@ char *ft_strdup_replace_tabs_with_space(char *src)
         if (src[i] == '\t')
         {
             int k = 0;
-            while (k < 8) {
+            while (k < 4) {
                 new[j++] = ' ';
                 k++;
             }

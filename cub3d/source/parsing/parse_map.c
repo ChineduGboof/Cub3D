@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:52 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/30 10:06:11 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/30 13:18:55 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void parse_map(const char *map_file_path, t_specifications *specifications)
         else
         {
             char *new_line = ft_strdup_replace_tabs_with_space(line);
-            printf("%s\n", new_line);
             if (new_line == NULL)
                 free_map(specifications, EXIT_FAILURE);
             // expand specifications->map if necessary
