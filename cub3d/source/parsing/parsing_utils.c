@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:13 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/30 12:34:44 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/30 20:49:35 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ void	ft_exit_error(char *message)
 
 size_t ft_arrlen(char **arr)
 {
-    size_t len = 0;
-    while (arr[len] != NULL)
-        len++;
-    return len;
+	size_t	len;
+
+	len = 0;
+	while (arr[len] != NULL)
+		len++;
+	return len;
 }
 
 int	ft_isvalidint(const char *str)

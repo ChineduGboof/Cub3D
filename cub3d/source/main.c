@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/30 17:08:14 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/30 20:45:55 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 	parse_textures(argv[1], &specifications);
 	parse_map(argv[1], &specifications);
 
-	//prints the colors
+	// prints the colors
 	// printf("Floor color: R:%d, G:%d, B:%d\n", \
 	// 	specifications.floor_color.red, \
 	// 	specifications.floor_color.green, \

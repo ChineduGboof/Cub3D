@@ -6,20 +6,40 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:28 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/29 19:46:14 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:12:30 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include "../game/image/image.h"
 
+int	too_many_commas(const char *str)
+{
+	int	count;
+	int	i;
+
+	count = 0;
+	i = 0;
+	while(str[i] != '\0')
+	{
+		if (str[i] == ',')
+			count++;
+		i++;
+	}
+	if (count > 2)
+		return (1);
+	return (0);
+}
 void	ft_parse_color(char *line, t_color *color)
 {
 	char	**colors;
 	char	*trimmed;
 	int		i;
+	size_t arr_len;
 
 	i = -1;
+	if (too_many_commas(line))
+		ft_exit_error("Too many comma's present");
 	colors = ft_split(line + 2, ',');
 	if (!colors || ft_arrlen(colors) != 3)
 		ft_exit_error("Wrong number of color values");
