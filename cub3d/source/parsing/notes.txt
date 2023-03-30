@@ -32,23 +32,3 @@ commas  dont throw error.. check the split using commas and check if the total c
 
 refactor the code for maps and extract the checks for 1st and last row to another function
 if possible get the length of each string and check using the lenght
-
-
-//start here
-				//1. loop thru 1st and last row and check if its only 1s or spaces
-				if ((map[0][j] && map[0][j] != '1' && map[0][j] != ' '))
-				{
-					printf("Error: Map is not closed1.\n");
-					exit(0);
-				}
-				if (map[map_len][j] && map[map_len][j] != '\n' && (map[map_len][j] != '1' && map[map_len][j] != ' '))
-				{
-					printf("Error: Map is not closed2.\n");
-					exit(0);
-				}
-				//2. check the first and last of every string. space can begin but not end
-				if ((map[i][0] != '1' && map[i][0] != ' ') || map[i][ft_strlen(map[i]) - 1] != '1')
-				{
-					printf("Error: Map is not closed3.\n");
-					exit(0);
-				}
