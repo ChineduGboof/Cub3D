@@ -6,7 +6,7 @@
 /*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:13 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/30 07:47:35 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/30 10:11:42 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,3 +119,41 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 	free(ptr);
 	return (new_ptr);
 }
+
+char *ft_strdup_replace_tabs_with_space(char *src)
+{
+    if (src == NULL)
+        return (NULL);
+    size_t len = 0, num_tabs = 0;
+    while (src[len])
+    {
+        if (src[len] == '\t')
+            num_tabs++;
+        len++;
+    }
+    char *new = malloc((len + num_tabs * 7 + 1) * sizeof(char));
+    if (new == NULL)
+    {
+        errno = ENOMEM;
+        return (NULL);
+    }
+    size_t i = 0, j = 0;
+    while (src[i])
+    {
+        if (src[i] == '\t')
+        {
+            int k = 0;
+            while (k < 8) {
+                new[j++] = ' ';
+                k++;
+            }
+        }
+        else
+            new[j++] = src[i];
+        i++;
+    }
+    new[j] = '\0';
+    return (new);
+}
+
+

@@ -6,7 +6,7 @@
 /*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/30 07:47:55 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/30 09:10:04 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,5 @@ int		get_line(int fd, char **line);
 void	ft_exit_error(char *message);
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 size_t 	ft_arrlen(char **arr);
-
+char	*ft_strdup_replace_tabs_with_space(char *src);
 #endif
