@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   orchestra_conductor.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:05:39 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/29 13:57:33 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:00:38 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ void	fill_image(t_image *image, t_game game)
 		determine_step(&(ray_info.step), ray_info.ray.direction);
 		determine_nearest_boundary_distances(&(ray_info.nearest_boundary_distances), ray_info.ray, ray_info.grid_spacings);
 		
-		ray_info.wall_hit_direction = send_ray(&(ray_info.ray), &(ray_info.nearest_boundary_distances), &(ray_info.grid_spacings), &(ray_info.step), game.map);
+		ray_info.wall_hit_direction = send_ray(&ray_info, game.map);
 		determine_distance_to_wall(&(drawing_info.distance_to_wall), ray_info.wall_hit_direction, ray_info.nearest_boundary_distances, ray_info.grid_spacings);
 		
 		// calculate height of line to draw on screen
 		drawing_info.line_height = (int)(WINDOW_HEIGHT / drawing_info.distance_to_wall);
 		determine_drawing_range(&drawing_info.drawing_range, drawing_info.line_height);
-		determine_wall_hit_location(&ray_info.wall_hit_location, ray_info.wall_hit_direction, game.player.position, ray_info.ray.direction, drawing_info.distance_to_wall);
+		determine_wall_hit_location(&ray_info, game.player.position, drawing_info.distance_to_wall);
 		
 		drawing_info.current_texture = choose_texture(game, ray_info.wall_hit_direction);
-		draw_vertical_line(ray_info.wall_hit_location, ray_info.wall_hit_direction, drawing_info.drawing_range, image, drawing_info.current_texture, ray_info.ray.direction, drawing_info.line_height, x_index);
+		draw_vertical_line(drawing_info, ray_info, image, x_index);
 		x_index++;
 	}
 }

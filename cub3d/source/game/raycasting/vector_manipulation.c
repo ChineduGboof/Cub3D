@@ -6,12 +6,13 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 21:49:36 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/28 12:17:56 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:48:35 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game.h"
 
+// for turning around
 void	rotate_vector(t_vector *vector, double angle)
 {
 	t_vector old_vector;
