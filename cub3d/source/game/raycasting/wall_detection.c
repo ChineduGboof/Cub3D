@@ -6,16 +6,16 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 13:49:49 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/29 23:01:01 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:58:31 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game.h"
 #include "raycasting_local.h"
 
+// calculate the distance projected on the camera direction (Euclidean distance will give fisheye effect)
 void	determine_distance_to_wall(double *distance_to_wall, int wall_hit_direction, t_nearest_boundary_distances nearest_boundary_distances, t_grid_spacings grid_spacings)
 {
-	// calculate the distance projected on the camera direction (Euclidean distance will give fisheye effect!)
 	if (wall_hit_direction == EAST || wall_hit_direction == WEST)
 		*distance_to_wall = (nearest_boundary_distances.x - grid_spacings.x);
 	else
@@ -23,42 +23,42 @@ void	determine_distance_to_wall(double *distance_to_wall, int wall_hit_direction
 }
 
 
-void	determine_wall_hit_location(double *wall_hit_location, int wall_hit_direction, t_vector player_position, t_vector ray_direction, double distance_to_wall)
+void	determine_wall_hit_location(t_ray_info *ray_info, t_vector player_position, double distance_to_wall)
 {
-	if (wall_hit_direction == EAST || wall_hit_direction == WEST)
-		*wall_hit_location = player_position.y + (distance_to_wall * ray_direction.y);
+	if (ray_info->wall_hit_direction == EAST || ray_info->wall_hit_direction == WEST)
+		ray_info->wall_hit_location = player_position.y + (distance_to_wall * ray_info->ray.direction.y);
 	else
-		*wall_hit_location = player_position.x + (distance_to_wall * ray_direction.x);
-	*wall_hit_location -= floor(*wall_hit_location);
+		ray_info->wall_hit_location = player_position.x + (distance_to_wall * ray_info->ray.direction.x);
+	ray_info->wall_hit_location -= floor(ray_info->wall_hit_location);
 }
 
-int	send_ray(t_ray *ray, t_nearest_boundary_distances *nearest_boundary_distances, t_grid_spacings *grid_spacings, t_step *step, int **map)
+int	send_ray(t_ray_info *ray_info, int **map)
 {
-	bool			wall_hit;
+	bool	wall_hit;
 	int		wall_hit_direction;
 
 	wall_hit = false;
 	while (!wall_hit)
 	{
-		if (nearest_boundary_distances->x < nearest_boundary_distances->y)
+		if (ray_info->nearest_boundary_distances.x < ray_info->nearest_boundary_distances.y)
 		{
-			nearest_boundary_distances->x += grid_spacings->x;
-			ray->position.x += step->x;
-			if (step->x < 0)
+			ray_info->nearest_boundary_distances.x += ray_info->grid_spacings.x;
+			ray_info->ray.position.x += ray_info->step.x;
+			if (ray_info->step.x < 0)
 				wall_hit_direction = EAST;
 			else
 				wall_hit_direction = WEST;
 		}
 		else
 		{
-			nearest_boundary_distances->y += grid_spacings->y;
-			ray->position.y += step->y;
-			if (step->y < 0)
+			ray_info->nearest_boundary_distances.y += ray_info->grid_spacings.y;
+			ray_info->ray.position.y += ray_info->step.y;
+			if (ray_info->step.y < 0)
 				wall_hit_direction = SOUTH;
 			else
 				wall_hit_direction = NORTH;
 		}
-		if (map[(int)ray->position.y][(int)ray->position.x] > 0)
+		if (map[(int)ray_info->ray.position.y][(int)ray_info->ray.position.x] > 0)
 			wall_hit = true;
 	}
 	return (wall_hit_direction);
