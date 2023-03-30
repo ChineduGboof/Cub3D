@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:52 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/30 13:18:55 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:06:52 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void parse_map(const char *map_file_path, t_specifications *specifications)
 {
     int fd;
     int res;
+    int		index;
     char *line;
     int map_size = 4096;
     int map_index = 0;
@@ -46,12 +47,15 @@ void parse_map(const char *map_file_path, t_specifications *specifications)
 			break;
         if (*line == '\0')
             continue;
-        else if (ft_strnstr(line, NO, 3) == line ||
-                 ft_strnstr(line, SO, 3) == line ||
-                 ft_strnstr(line, WE, 3) == line ||
-                 ft_strnstr(line, EA, 3) == line ||
-                 ft_strnstr(line, F, 2) == line ||
-                 ft_strnstr(line, C, 2) == line)
+        index = 0;
+		while (ft_isspace(line[index]))
+			index++;
+        if (ft_strnstr(line + index, NO, 3) ||
+                 ft_strnstr(line + index, SO, 3) ||
+                 ft_strnstr(line + index, WE, 3) ||
+                 ft_strnstr(line + index, EA, 3) ||
+                 ft_strnstr(line + index, F, 2) ||
+                 ft_strnstr(line + index, C, 2))
         {
             ft_cautious_free((void **)&line);
             continue;

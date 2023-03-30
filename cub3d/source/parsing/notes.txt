@@ -28,66 +28,27 @@ any text without the identifer should be stored in the map
 check thru the map and any character not the usual should exit the program
 
 Issues
-1. i havent handled for if the texture paths really are valid
-do the file paths really open when the open function is called
-if it fails, throw an error message
+commas  dont throw error.. check the split using commas and check if the total color array are 3 or more
 
-2. Parsing the map
-
-3. free properly
-
-4. Norminette friendly functions
+refactor the code for maps and extract the checks for 1st and last row to another function
+if possible get the length of each string and check using the lenght
 
 
-
-in the parse_map_file function, anything not a valid identifier,
-should be sent to the map file
-in the is_valid_identifier, also check for the floor and ceiling colors
-just so that it doesnt get parsed to the map
-
-is_wall(char *str): This function takes a string and checks if it 
-contains only '1' and ' ' (space) characters. It returns 1 if the 
-string is a valid wall and 0 otherwise.
-
-is_valid_player(char *str): This function takes a string and 
-checks if it contains any of the characters 'N', 'S', 'E', or 'W'. 
-It also checks if there is already a player in the map, and if so, 
-it prints an error message and exits the program. 
-This function returns 0.
-
-check_all_sides(char **strs, int j): This function takes a 2D array 
-of strings and an integer index j. It checks if the characters 
-in the strings at the specified index and adjacent indices are 
-all spaces or if they are NULL. If any of them are not spaces or
- are NULL, it returns 0. Otherwise, it returns 1.
-
-exit_error(char *str, int err): This function takes a string 
-and an error code and prints the string as an error message 
-and exits the program with the specified error code.
-
-check_map_errors(char **map): This is the main function that 
-checks for errors in the 2D map. It loops through each string 
-in the array and checks if it is a valid wall using the is_wall() 
-function. If the string is a valid wall and it is the first or 
-last string in the array, it sets a flag is_wall_valid to true. 
-It then loops through each character in the string and checks if 
-it is a player, a wall, or a space. If it is a player, it checks 
-if there is already a player in the map using the is_valid_player() 
-function. If it is a wall, it checks if the map is closed using 
-the is_closed_map flag. If it is a space, it sets the is_closed_map 
-flag to false. If the is_closed_map flag is false and a non-wall 
-or space character is encountered, it prints an error message and
- exits the program using the exit_error() function. 
- If the character is not a player or a space, it calls the 
- check_all_sides() function to check if the adjacent characters 
- are all spaces or NULL. If they are not, it prints an error 
- message and exits the program using the exit_error() function. 
- Finally, it checks if a valid wall was found using the is_wall_valid 
- flag and if a player was found using the is_player_found flag. 
- If either flag is false, it prints an error message and exits 
- the program using the exit_error() function.
-
-
-
-
-Regenerate response
+//start here
+				//1. loop thru 1st and last row and check if its only 1s or spaces
+				if ((map[0][j] && map[0][j] != '1' && map[0][j] != ' '))
+				{
+					printf("Error: Map is not closed1.\n");
+					exit(0);
+				}
+				if (map[map_len][j] && map[map_len][j] != '\n' && (map[map_len][j] != '1' && map[map_len][j] != ' '))
+				{
+					printf("Error: Map is not closed2.\n");
+					exit(0);
+				}
+				//2. check the first and last of every string. space can begin but not end
+				if ((map[i][0] != '1' && map[i][0] != ' ') || map[i][ft_strlen(map[i]) - 1] != '1')
+				{
+					printf("Error: Map is not closed3.\n");
+					exit(0);
+				}
