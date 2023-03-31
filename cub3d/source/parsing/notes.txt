@@ -11,7 +11,7 @@ Norminette:
 
 Unresolved Issues:
 
-1. Allocates zero when a space is passed as a string
+1. it Allocates zero when a space is passed as a color value instead of quiting
 arg: F 120, ,90 
 output: R: 120, G: 0, B: 90
 
