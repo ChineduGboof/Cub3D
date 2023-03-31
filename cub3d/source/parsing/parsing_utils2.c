@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:43:28 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/31 10:52:33 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/31 17:55:32 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static char	*get_new_line(char **remainder)
 	int		len;
 
 	len = 0;
-	while ((*remainder)[len] != '\n' && (*remainder)[len] != '\0')
+	while (*remainder && (*remainder)[len] != '\n' && (*remainder)[len] != '\0')
 		len++;
-	if ((*remainder)[len] == '\0')
+	if (*remainder && (*remainder)[len] == '\0')
 	{
 		*remainder = NULL;
 		return (NULL);

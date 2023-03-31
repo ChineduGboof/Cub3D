@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:41 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/31 10:39:24 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:53:35 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	check_map_file_ext(char *file)
 	if (!ext || ft_strncmp(ext, ".cub", 4) != 0 || ft_strlen(ext) != 4)
 	{
 		ft_putstr_fd("Error: Invalid Map Extension\n", 2);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 }
 

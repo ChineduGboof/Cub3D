@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/31 13:18:10 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:13:52 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	parsing(char *argv, t_specifications *specifications);
 void	init_specifications(t_specifications *specifications);
 void	validate_argument(char *map_file_path);
 void	parse_colors(char *map_filepath, t_specifications *specifications);
+void	ft_parse_color(char *line, t_color *color, int fd);
 void	parse_textures(const char *map_file_path, t_specifications *specifications);
 void 	parse_map(const char *map_file_path, t_specifications *specifications);
 void	check_map_errors(char **map);

@@ -6,64 +6,72 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:51:46 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/31 13:10:25 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/31 17:17:03 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-bool is_valid_identifier(const char *str)
+bool	is_valid_identifier(const char *str)
 {
-	size_t	len;
-	size_t	path_len;
+	size_t		len;
+	size_t		path_len;
+	const char	*path;
 
 	len = ft_strlen(str);
 	if (len < 8)
-		return false;
-	if (ft_strnstr(str, NO, ft_strlen(NO)) ||
-		ft_strnstr(str, SO, ft_strlen(SO)) ||
-		ft_strnstr(str, WE, ft_strlen(WE)) ||
-		ft_strnstr(str, EA, ft_strlen(EA)))
+		return (false);
+	if (ft_strnstr(str, NO, ft_strlen(NO)) || ft_strnstr(str, SO, ft_strlen(SO))
+		|| ft_strnstr(str, WE, ft_strlen(WE))
+		|| ft_strnstr(str, EA, ft_strlen(EA)))
 	{
-		const char *path = str + 3;
+		path = str + 3;
 		path_len = ft_strlen(path);
 		if (ft_strncmp(path + path_len - 4, ".xpm", 4) != 0)
-			return false;
-		return true;
+			return (false);
+		return (true);
 	}
-	return false;
+	return (false);
 }
 
-	// if identifier is valid, extract it and the
-void extract_identifier_and_path(const char *str, char **identifier, char **path, int fd)
+	// if identifier is valid, extract it and the path
+void	extract_identifier_and_path(const char *str, char **identifier,
+		char **path, int fd)
 {
 	char	*trimmed_str;
-	char	*space_ptr;
+	char 	*space_ptr;
 
 	trimmed_str = ft_strtrim(str, " ");
 	if (!trimmed_str)
 		ft_exit_error("could not allocate memory", fd);
-
 	space_ptr = ft_strchr(trimmed_str, ' ');
 	if (!space_ptr)
+	{
+		ft_cautious_free((void **)&trimmed_str);
 		ft_exit_error("invalid identifier line", fd);
+	}
 	*space_ptr = '\0';
-
-	// if identifier is valid, extract it and the path
 	*identifier = ft_strdup(trimmed_str);
 	*path = ft_strdup(space_ptr + 1);
+
 	if (!(*identifier) || !(*path))
+	{
+		ft_cautious_free((void **)&trimmed_str);
+		ft_cautious_free((void **)identifier);
+		ft_cautious_free((void **)path);
 		ft_exit_error("could not allocate memory", fd);
-	free(trimmed_str);
+	}
+	ft_cautious_free((void **)&trimmed_str);
 }
 
-void parse_identifier_line(const char *line, t_specifications *specifications, int fd)
+
+void	parse_identifier_line(const char *line,
+		t_specifications *specifications, int fd)
 {
-	char *identifier;
-	char *path;
+	char	*identifier;
+	char	*path;
 
 	extract_identifier_and_path(line, &identifier, &path, fd);
-
 	if (ft_strncmp(identifier, NO, 2) == 0)
 	{
 		if (specifications->north_texture != NULL)
@@ -93,24 +101,24 @@ void parse_identifier_line(const char *line, t_specifications *specifications, i
 	ft_cautious_free((void **)&identifier);
 }
 
-void print_specifications(const t_specifications *specifications, int fd)
+void	print_specifications(const t_specifications *specifications)
 {
 	if (specifications->north_texture == NULL)
-		ft_exit_error("missing north texture specification", fd);
+		ft_exit_msg("missing north texture specification");
 	if (specifications->south_texture == NULL)
-		ft_exit_error("missing south texture specification", fd);
+		ft_exit_msg("missing south texture specification");
 	if (specifications->west_texture == NULL)
-		ft_exit_error("missing west texture specification", fd);
+		ft_exit_msg("missing west texture specification");
 	if (specifications->east_texture == NULL)
-		ft_exit_error("missing east texture specification", fd);
-
+		ft_exit_msg("missing east texture specification");
 	printf("North texture: %s\n", specifications->north_texture);
 	printf("South texture: %s\n", specifications->south_texture);
 	printf("West texture: %s\n", specifications->west_texture);
 	printf("East texture: %s\n", specifications->east_texture);
 }
 
-void parse_textures(const char *map_file_path, t_specifications *specifications)
+void	parse_textures(const char *map_file_path,
+		t_specifications *specifications)
 {
 	int		fd;
 	int		read_result;
@@ -124,11 +132,11 @@ void parse_textures(const char *map_file_path, t_specifications *specifications)
 	{
 		read_result = get_line(fd, &line);
 		if (read_result <= 0)
-			break;
+			break ;
 		if (*line == '\0')
 		{
 			ft_cautious_free((void **)&line);
-			continue;
+			continue ;
 		}
 		index = 0;
 		while (ft_isspace(line[index]))
@@ -137,12 +145,8 @@ void parse_textures(const char *map_file_path, t_specifications *specifications)
 			parse_identifier_line(line + index, specifications, fd);
 		ft_cautious_free((void **)&line);
 	}
-	print_specifications(specifications, fd);
 	close(fd);
-
-	// print specifications
-
-	// free specifications
+	print_specifications(specifications);
 	ft_cautious_free((void **)&specifications->north_texture);
 	ft_cautious_free((void **)&specifications->south_texture);
 	ft_cautious_free((void **)&specifications->west_texture);
