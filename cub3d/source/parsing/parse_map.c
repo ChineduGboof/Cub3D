@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:52 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/30 18:06:52 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/31 13:12:25 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ void parse_map(const char *map_file_path, t_specifications *specifications)
     line = NULL;
     fd = open(map_file_path, O_RDONLY);
     if (fd == -1)
-    {
-        perror("Error: could not open map file");
-        exit(EXIT_FAILURE);
-    }
+        ft_exit_error("Could not open map file", fd);
     specifications->map = (char **)malloc(sizeof(char *) * map_size);
     if (specifications->map == NULL)
         free_map(specifications, EXIT_FAILURE);

@@ -1,34 +1,6 @@
-1. check when a user modifies the file by
-adding a false identifier with the true ones preseent
-2. Check if its a valid file
+Issues:
 
-Strategy:
-Read the map using get_next_line
-store the contents in the various strings meant for them
-define the identifier in the header seperately
-# define North NO
-idnetifier => NO SO EA WE F C
-map => all others should go here
+Norminette
+Optimize the open function
+Optimize the get_next_line function
 
-Identifier:
-use their identifier names to store them (NO ) *note the space
-count the words and if more than 2, exit
-split the identifier and its file name using spaces
-check the identifier if it matches the original else end
-loop from back and check the filename if it ends with .xpm else end
-
-colors:
-split the identifier and others using 
-check the identifier if it matches the main one
-The integers must be between 0 and 255, inclusive.
-
-map:
-copy all the contents of the map
-any text without the identifer should be stored in the map
-check thru the map and any character not the usual should exit the program
-
-Issues
-commas  dont throw error.. check the split using commas and check if the total color array are 3 or more
-
-refactor the code for maps and extract the checks for 1st and last row to another function
-if possible get the length of each string and check using the lenght

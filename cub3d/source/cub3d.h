@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/30 09:10:04 by gboof            ###   ########.fr       */
+/*   Updated: 2023/03/31 13:18:10 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,20 @@
 # include <fcntl.h>
 # include "game/image/image.h" // for t_color
 # include <stdio.h> //for debugging
+# include <errno.h>
 
 // We should adjust the window size
 // according to the Macs at campus
 # define WINDOW_WIDTH 1366
 # define WINDOW_HEIGHT 768
-// # define VALID_IDS "NO #SO #WE #EA #F #C #"
+
 # define NO "NO "
 # define SO "SO "
 # define WE "WE "
 # define EA "EA "
 # define F "F "
 # define C "C "
-# define ERR_EXIT 1
-# define ERR_CONT 2
-# define ERR_NONE 0
+
 
 // The struct that the parser should return
 typedef struct s_specifications
@@ -101,10 +100,10 @@ void	run_game(t_specifications specifications);
 void	safely_terminate(t_game *game);
 
 /**************$ error_checks $*******************/
+void	parsing(char *argv, t_specifications *specifications);
 void	init_specifications(t_specifications *specifications);
-void	check_map_file_ext(char *file);
-void	validate_map_file(const char *file);
-void	parse_colors(char **map_filepath, t_specifications *specifications);
+void	validate_argument(char *map_file_path);
+void	parse_colors(char *map_filepath, t_specifications *specifications);
 void	parse_textures(const char *map_file_path, t_specifications *specifications);
 void 	parse_map(const char *map_file_path, t_specifications *specifications);
 void	check_map_errors(char **map);
@@ -112,8 +111,9 @@ void	check_map_errors(char **map);
 /**************$ parsing utils $*******************/
 int		ft_isvalidint(const char *str);
 int		get_line(int fd, char **line);
-void	ft_exit_error(char *message);
+char	*ft_strdup_replace_tabs_with_space(char *src);
+void	ft_exit_error(char *message, int fd);
+void	ft_exit_msg(char *message);
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 size_t 	ft_arrlen(char **arr);
-char	*ft_strdup_replace_tabs_with_space(char *src);
 #endif

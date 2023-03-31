@@ -6,14 +6,13 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:41 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/23 20:29:43 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/31 10:39:24 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-/* This function checks if the map file is actually a file 
-	and handles cases where a directory is passed for a file */
+/* Is the map an actual file or directory ? */
 void	validate_map_file(const char *file)
 {
 	int	fd;
@@ -35,7 +34,7 @@ void	validate_map_file(const char *file)
 	close(fd);
 }
 
-/* This function checks if the given file has a valid file extension */
+/* Does the map have a valid file extension ? */
 void	check_map_file_ext(char *file)
 {
 	char	*ext;
@@ -46,4 +45,11 @@ void	check_map_file_ext(char *file)
 		ft_putstr_fd("Error: Invalid Map Extension\n", 2);
 		exit(1);
 	}
+}
+
+/* Does the map file-path need validation ? */
+void	validate_argument(char *map_file_path)
+{
+	validate_map_file(map_file_path);
+	check_map_file_ext(map_file_path);
 }
