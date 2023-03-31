@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:13 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/31 13:18:00 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/31 22:16:06 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	ft_exit_error(char *message, int fd)
-{
-	ft_putstr_fd("Error: ", STDERR_FILENO);
-	ft_putstr_fd(message, STDERR_FILENO);
-	ft_putchar_fd('\n', STDERR_FILENO);
-	close(fd);
-	exit(EXIT_FAILURE);
-}
-
-void	ft_exit_msg(char *message)
-{
-	ft_putstr_fd("Error: ", STDERR_FILENO);
-	ft_putstr_fd(message, STDERR_FILENO);
-	ft_putchar_fd('\n', STDERR_FILENO);
-	exit(EXIT_FAILURE);
-}
 
 /*	Gets the number of elements in a 2D array */
 size_t	ft_arrlen(char **arr)

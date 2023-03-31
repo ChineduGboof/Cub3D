@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:43:28 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/31 17:55:32 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/03/31 22:16:21 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,21 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 	ft_memcpy(new_ptr, ptr, new_size);
 	free(ptr);
 	return (new_ptr);
+}
+
+void	ft_exit_error(char *message, int fd)
+{
+	ft_putstr_fd("Error: ", STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
+	ft_putchar_fd('\n', STDERR_FILENO);
+	close(fd);
+	exit(EXIT_FAILURE);
+}
+
+void	ft_exit_msg(char *message)
+{
+	ft_putstr_fd("Error: ", STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
+	ft_putchar_fd('\n', STDERR_FILENO);
+	exit(EXIT_FAILURE);
 }
