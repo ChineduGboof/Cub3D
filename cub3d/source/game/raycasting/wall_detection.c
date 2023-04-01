@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 13:49:49 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 22:29:17 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/02 01:47:19 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	take_horizontal_step(t_ray_info *ray_info, int *wall_hit_direction)
 		+= ray_info->grid_spacings.x;
 	ray_info->ray.position.x += ray_info->step.x;
 	if (ray_info->step.x < 0)
-		*wall_hit_direction = EAST;
-	else
 		*wall_hit_direction = WEST;
+	else
+		*wall_hit_direction = EAST;
 }
 
 void	take_vertical_step(t_ray_info *ray_info, int *wall_hit_direction)
