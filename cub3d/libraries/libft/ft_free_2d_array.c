@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:20:57 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/26 19:54:27 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/02 01:22:13 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Free 2D Array type-agnostically
 void	ft_free_2d_array(void ***array, size_t length, bool is_null_terminated)
 {
-	size_t index;
+	size_t	index;
 
 	if (!array || !(*array))
 		return ;

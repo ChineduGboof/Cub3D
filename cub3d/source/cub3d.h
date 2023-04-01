@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/02 00:36:53 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/02 01:14:38 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "game/image/image.h" // for t_color
-# include <stdio.h> //for debugging
 # include <errno.h>
 
 // We should adjust the window size
@@ -40,7 +39,6 @@ typedef struct s_specifications
 	char	*south_texture;
 	char	*west_texture;
 	char	*east_texture;
-	char	*sprite_texture;
 	t_color	floor_color;
 	t_color	ceiling_color;
 }	t_specifications;
@@ -116,6 +114,7 @@ void	free_map(t_specifications *specifications, int status);
 char	*get_first_row(char **map);
 bool	is_valid_fence(char *row);
 bool	is_walled(int i, int j, char **map);
+void	free_map_assured(char **map, char *message, int status);
 
 /**************$ parsing utils $*******************/
 int		ft_isvalidint(const char *str);

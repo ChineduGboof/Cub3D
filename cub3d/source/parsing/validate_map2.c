@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 00:25:55 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/02 00:30:25 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/02 01:21:43 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,18 @@ void	check_row(char **map, size_t *i, size_t *j, int *player_count)
 			(*player_count)++;
 			if (*player_count > 1 || *i == 0 || *j == 0
 				|| *j == ft_strlen(map[*i]) - 1 || map[(*i) + 1] == NULL)
-				ft_exit_msg("Duplicate or muliple players in the map.");
+				free_map_assured(map,
+					"Duplicate or muliple players in the map.", 1);
 		}
 		if (map[*i][*j] == '0')
 		{
 			if (!is_walled(*i, *j, map))
-				ft_exit_msg("Map is not walled.");
+				free_map_assured(map, "Map is not walled.", 1);
 		}
 		(*j)++;
 	}
 	else
-		ft_exit_msg("Map is not valid.");
+		free_map_assured(map, "Map is not valid.", 1);
 }
 
 void	check_map_errors(char **map)
@@ -101,7 +102,7 @@ void	check_map_errors(char **map)
 	i = -1;
 	j = 0;
 	if (!is_fenced(map))
-		ft_exit_msg("Map is not fenced.");
+		free_map_assured(map, "Map is not fenced.", 1);
 	while (map[++i])
 	{
 		j = 0;
@@ -111,5 +112,5 @@ void	check_map_errors(char **map)
 		}
 	}
 	if (player_count == 0)
-		ft_exit_msg("NO PLAYER.");
+		free_map_assured(map, "No player.", 1);
 }

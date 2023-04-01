@@ -6,12 +6,11 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 17:57:36 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 23:22:36 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/02 00:39:06 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
-#include <stdio.h> // for debugging
 
 int	on_keydown(int keycode, t_game *game)
 {

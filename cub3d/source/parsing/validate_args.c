@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 18:48:18 by gboof             #+#    #+#             */
-/*   Updated: 2023/04/01 19:50:05 by gboof            ###   ########.fr       */
+/*   Updated: 2023/04/02 00:58:41 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ bool	check_for_one(int fd)
 	{
 		if (ft_strncmp(line, "1", 1) == 0)
 		{
-			free(line);
+			ft_cautious_free((void **) &line);
 			return (true);
 		}
-		free(line);
+		ft_cautious_free((void **) &line);
 	}
 	return (false);
 }
@@ -72,7 +72,7 @@ bool	check_for_missing_specification(int fd, char *specs[])
 				ft_cautious_free((void **)&line);
 				break ;
 			}
-			free(line);
+			ft_cautious_free((void **) &line);
 		}
 		if (!found_spec)
 			return (true);
