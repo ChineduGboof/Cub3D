@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 23:02:07 by gboof             #+#    #+#             */
-/*   Updated: 2023/04/01 23:54:35 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/02 00:07:09 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ char	*get_next_row(char ***map_ptr, char *last_row)
 	current_row = **map_ptr;
 	if (current_row != NULL && current_row != last_row)
 	{
-		if (is_valid_fence(current_row) && current_row[0] == '1' && current_row[ft_strlen(current_row)-1] == '1')
+		if (is_valid_fence(current_row) && current_row[0] == '1'
+			&& current_row[ft_strlen(current_row) - 1] == '1')
 		{
 			*map_ptr += 1;
 			return (current_row);
@@ -103,7 +104,7 @@ char	*get_next_row(char ***map_ptr, char *last_row)
 	return (NULL);
 }
 
-bool is_fenced(char **map)
+bool	is_fenced(char **map)
 {
 	char	*first_row;
 	char	*last_row;
@@ -113,7 +114,7 @@ bool is_fenced(char **map)
 	first_row = get_first_row(map);
 	last_row = get_last_row(map);
 	if (!first_row || !last_row)
-		return false;
+		return (false);
 	map_ptr = map + 1;
 	current_row = get_next_row(&map_ptr, last_row);
 	while (current_row != NULL)
@@ -122,7 +123,6 @@ bool is_fenced(char **map)
 	}
 	return (true);
 }
-
 
 void	check_map_errors(char **map)
 {
