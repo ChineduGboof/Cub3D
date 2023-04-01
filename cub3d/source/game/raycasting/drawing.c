@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 13:50:44 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 11:17:58 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 21:54:56 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	draw_vertical_line(t_drawing_info drawing_info, t_ray_info ray_info,
 
 	determine_texture_point_x(&texture_point.x, ray_info,
 		drawing_info.current_texture->width);
-	texture_point_y_addend = 1.0
-		* drawing_info.current_texture->height / drawing_info.line_height;
+	texture_point_y_addend = 1.0 * drawing_info.current_texture->height
+		/ drawing_info.line_height;
 	texture_point_y_double = (drawing_info.drawing_range.start
 			- WINDOW_HEIGHT / 2 + drawing_info.line_height / 2)
 		* texture_point_y_addend;

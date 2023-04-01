@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:34:31 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 18:03:58 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 21:53:48 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,23 @@ enum {
 	RIGHT
 };
 
+// paint
 void	paint_image(t_image *image, t_color color, int y_start, int y_end);
 void	fill_image(t_image *image, t_game game);
 
-/**************$ event_handlers $*******************/
+// event handlers
 int		on_keydown(int keycode, t_game *game);
 int		on_destroy(t_game *game);
-/**************$ end of: event_handlers $*******************/
 
-/**************$ vector manipulation $*******************/
+
+// vector manipulation
 void	rotate_vector(t_vector *vector, double angle);
-/**************$ end of: vector manipulation $*******************/
 
-/**************$ textures $*******************/
-bool	load_textures(void *mlx, struct s_textures *s_textures, t_specifications specifications);
-/**************$ end of: textures $*******************/
+
+// textures
+bool	load_textures(void *mlx, struct s_textures *s_textures,
+	t_specifications specifications);
+
 
 void	refresh_display(t_game *game);
 
