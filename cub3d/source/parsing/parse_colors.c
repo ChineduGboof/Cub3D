@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:28 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/01 19:51:42 by gboof            ###   ########.fr       */
+/*   Updated: 2023/04/02 03:47:27 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	check_color_values(char **colors, char *line, int fd)
 			|| (ft_strlen(trimmed) > 1
 				&& *trimmed == '0' && !ft_isspace(*(trimmed + 1)))
 			|| ft_strchr(trimmed, ' ') || ft_atoi(trimmed) > 255
-			|| ft_atoi(trimmed) < 0)
+			|| ft_atoi(trimmed) < 0 || ft_strlen(trimmed) > 3)
 		{
 			ft_cautious_free((void **)&line);
 			ft_exit_error("Invalid color value", fd);

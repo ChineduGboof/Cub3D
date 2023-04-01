@@ -3,7 +3,7 @@ SO ./textures/xpm/RedwallL.xpm
 WE ./textures/xpm/SteelwallD.xpm
 EA ./textures/xpm/WoodbrickD.xpm
 
-F 120,60,90
+F 120,60,0
 C 255,20,0
 
 		1111111111111111111111111

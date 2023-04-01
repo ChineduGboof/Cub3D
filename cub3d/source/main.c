@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/02 03:20:43 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/02 03:43:39 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	validate_argument(argv[1]);
-	// if (is_empty_file(argv[1]) || has_missing_specification(argv[1]))
+	// if (is_empty_file(argv[1]))
 	// {
-	// 	ft_putstr_fd("Error: map has missing specification(s)\n", STDERR_FILENO);
+	// 	ft_putstr_fd("Error: map is empty\n", STDERR_FILENO);
 	// 	return (EXIT_FAILURE);
 	// }
 	parsing(argv[1], &specifications);
