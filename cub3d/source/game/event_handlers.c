@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 17:57:36 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/29 23:07:06 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 10:30:59 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	rotate_player(t_game *game, int rotation_direction)
 	fill_image(game->s_mlx.image, *game);
 	mlx_put_image_to_window(game->s_mlx.mlx, game->s_mlx.window, game->s_mlx.image->image, 0, 0);
 }
+
 
 int on_keydown(int keycode, t_game *game)
 {

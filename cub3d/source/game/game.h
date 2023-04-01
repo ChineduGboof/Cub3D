@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:34:31 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/29 23:03:35 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 09:13:50 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ enum {
 };
 
 enum  {
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST,
-	NO_DIRECTION
+	NORTH = 10,
+	SOUTH = 11,
+	EAST = 12,
+	WEST = 13,
+	NO_DIRECTION = 14
 };
 
 enum {

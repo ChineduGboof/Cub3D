@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:51:46 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/31 17:17:03 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/01 10:25:57 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,8 @@ void	parse_textures(const char *map_file_path,
 	}
 	close(fd);
 	print_specifications(specifications);
-	ft_cautious_free((void **)&specifications->north_texture);
-	ft_cautious_free((void **)&specifications->south_texture);
-	ft_cautious_free((void **)&specifications->west_texture);
-	ft_cautious_free((void **)&specifications->east_texture);
+	// ft_cautious_free((void **)&specifications->north_texture);
+	// ft_cautious_free((void **)&specifications->south_texture);
+	// ft_cautious_free((void **)&specifications->west_texture);
+	// ft_cautious_free((void **)&specifications->east_texture);
 }

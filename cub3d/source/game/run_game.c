@@ -6,86 +6,132 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/29 22:50:38 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 10:27:37 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-#define mapWidth 24
-#define mapHeight 24
-
-int worldMap[mapWidth][mapHeight]=
+size_t	get_map_height(char **map)
 {
-  {4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7},
-  {4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,7},
-  {4,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7},
-  {4,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7},
-  {4,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,7},
-  {4,0,4,0,0,0,0,5,5,5,5,5,5,5,5,5,7,7,0,7,7,7,7,7},
-  {4,0,5,0,0,0,0,5,0,5,0,5,0,5,0,5,7,0,0,0,7,7,7,1},
-  {4,0,6,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,0,0,0,8},
-  {4,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,1},
-  {4,0,8,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,0,0,0,8},
-  {4,0,0,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,7,7,7,1},
-  {4,0,0,0,0,0,0,5,5,5,5,0,5,5,5,5,7,7,7,7,7,7,7,1},
-  {6,6,6,6,6,6,6,6,6,6,6,0,6,6,6,6,6,6,6,6,6,6,6,6},
-  {8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
-  {6,6,6,6,6,6,0,6,6,6,6,0,6,6,6,6,6,6,6,6,6,6,6,6},
-  {4,4,4,4,4,4,0,4,4,4,6,0,6,2,2,2,2,2,2,2,3,3,3,3},
-  {4,0,0,0,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,0,0,0,2},
-  {4,0,0,0,0,0,0,0,0,0,0,0,6,2,0,0,5,0,0,2,0,0,0,2},
-  {4,0,0,0,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,2,0,2,2},
-  {4,0,6,0,6,0,0,0,0,4,6,0,0,0,0,0,5,0,0,0,0,0,0,2},
-  {4,0,0,5,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,2,0,2,2},
-  {4,0,6,0,6,0,0,0,0,4,6,0,6,2,0,0,5,0,0,2,0,0,0,2},
-  {4,0,0,0,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,0,0,0,2},
-  {4,4,4,4,4,4,4,4,4,4,1,1,1,2,2,2,2,2,2,3,3,3,3,3}
-};
+	size_t	i;
 
-// int worldMap[mapWidth][mapHeight]=
-// {
-//   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-//   {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-//   {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-// };
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
 
-int		**debug_create_map(int map[mapWidth][mapHeight])
+size_t	get_map_row_width(char *row)
+{
+	size_t	i;
+
+	i = 0;
+	while (row[i])
+		i++;
+	return (i);
+}
+
+t_vector	get_player_position(char **map)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'N' || map[i][j] == 'S'
+				|| map[i][j] == 'W' || map[i][j] == 'E')
+				return ((t_vector){j + 0.5, i + 0.5});
+			j++;
+		}
+		i++;
+	}
+	return ((t_vector){0, 0});
+}
+
+t_vector	get_player_direction(char **map)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'N')
+				return ((t_vector){0, -1});
+			else if (map[i][j] == 'S')
+				return ((t_vector){0, 1});
+			else if (map[i][j] == 'E')
+				return ((t_vector){-1, 0});
+			else if (map[i][j] == 'W')
+				return ((t_vector){1, 0});
+			j++;
+		}
+		i++;
+	}
+	return ((t_vector){0, 0});
+}
+
+t_vector	determine_plane(char **map)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'N')
+				return ((t_vector){-0.66, 0});
+			else if (map[i][j] == 'S')
+				return ((t_vector){0.66, 0});
+			else if (map[i][j] == 'E')
+				return ((t_vector){0, 0.66});
+			else if (map[i][j] == 'W')
+				return ((t_vector){0, -0.66});
+			j++;
+		}
+		i++;
+	}
+	return ((t_vector){0, 0});
+}
+
+
+int		**debug_create_map(char **map)
 {
 	int		**result;
 	int		i;
 	int		j;
 
-	result = malloc(sizeof(int *) * mapHeight);
+	result = ft_calloc(get_map_height(map), sizeof(int *));
 	i = 0;
-	while (i < mapHeight)
+	while (map[i])
 	{
-		result[i] = malloc(sizeof(int) * mapWidth);
+		result[i] = ft_calloc(get_map_row_width(map[i]), sizeof(int));
 		j = 0;
-		while (j < mapWidth)
+		while (map[i][j])
 		{
-			result[i][j] = map[i][j];
+			if (map[i][j] == ' ')
+				result[i][j] = 0;
+			else if (map[i][j] == 'N')
+				result[i][j] = 0;
+			else if (map[i][j] == 'S')
+				result[i][j] = 0;
+			else if (map[i][j] == 'E')
+				result[i][j] = 0;
+			else if (map[i][j] == 'W')
+				result[i][j] = 0;
+			else
+				result[i][j] = map[i][j] - '0';
 			j++;
 		}
 		i++;
@@ -93,20 +139,14 @@ int		**debug_create_map(int map[mapWidth][mapHeight])
 	return (result);
 }
 
-void	fake_fill_game_struct(t_game *game)
+void	fill_game_struct(t_game *game, t_specifications specifications)
 {
-	game->map = debug_create_map(worldMap);
+	game->map = debug_create_map(specifications.map);
 	game->player = (t_player){
-		.position = {10.5, 9.5},
-		.direction = {-1.0, 0.0},
-		.plane = {0.0, 0.66}
+		.position = get_player_position(specifications.map),
+		.direction = get_player_direction(specifications.map),
+		.plane = determine_plane(specifications.map),
 	};
-	game->specifications.east_texture = ft_strdup("./textures/xpm/BookshelfD.xpm");
-	game->specifications.west_texture = ft_strdup("./textures/xpm/RedwallL.xpm");
-	game->specifications.north_texture = ft_strdup("./textures/xpm/SteelwallswitchonD.xpm");
-	game->specifications.south_texture = ft_strdup("./textures/xpm/WoodbrickD.xpm");
-	game->specifications.floor_color = GRAY;
-	game->specifications.ceiling_color = CYAN;
 }
 
 // mlx boilerplate code
@@ -125,8 +165,7 @@ void	run_game(t_specifications specifications)
 		ft_putstr_fd("Error: failed to create window or image\n", STDERR_FILENO);
 		safely_terminate(&game);
 	}
-	// fill_game_struct(&game, specifications);
-	fake_fill_game_struct(&game);
+	fill_game_struct(&game, specifications);
 	status = load_textures(game.s_mlx.mlx, &(game.s_textures), game.specifications);
 	if (status == false)
 	{
