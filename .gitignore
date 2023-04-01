@@ -56,3 +56,4 @@ dkms.conf
 depot/cub3d.h
 Documents/f_c
 depot/old_raycasting.c
+depot/run_game.c

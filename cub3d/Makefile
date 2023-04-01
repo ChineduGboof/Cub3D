@@ -1,5 +1,6 @@
 CC = gcc -g
 FLAGS = -Wall -Wextra
+# -fsanitize=address
 NAME = cub3d
 
 C_FILES = source/main.c source/game/run_game.c source/game/image/image_factory.c \
@@ -8,9 +9,12 @@ source/game/raycasting/drawing.c source/game/raycasting/grid_step_calculations.c
 source/game/raycasting/ray_direction_calculations.c source/game/raycasting/texture_handling.c \
 source/game/raycasting/wall_detection.c source/game/raycasting/vector_manipulation.c \
 source/game/event_handlers.c source/game/textures.c source/game/image/color.c \
-source/game/image/paint.c source/safe_termination.c source/parsing/error_checks.c \
+source/game/image/paint.c source/game/safe_termination.c source/game/map_utilities/convert_map.c \
+source/game/map_utilities/map_interpretation.c source/game/display.c source/parsing/error_checks.c \
 source/parsing/parsing_utils.c source/parsing/parse_colors.c source/parsing/parse_textures.c \
-source/parsing/parse_map.c source/parsing/validate_map.c
+source/parsing/parse_map.c source/parsing/validate_map.c source/parsing/parsing_utils2.c \
+source/parsing/parsing.c source/parsing/parse_colors2.c source/parsing/validate_args.c \
+source/parsing/parse_textures2.c
 
 H_FILES = source/cub3d.h source/game/image/image.h source/game/game.h source/game/raycasting/raycasting_local.h
 

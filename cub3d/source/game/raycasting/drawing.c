@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 13:50:44 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/30 17:17:47 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 21:54:56 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	determine_drawing_range(t_drawing_range *drawing_range, int line_height)
 		drawing_range->end = WINDOW_HEIGHT - 1;
 }
 
-void	determine_texture_point_x(int *texture_point_x, t_ray_info ray_info,
-			int current_texture_width)
+void	determine_texture_point_x(int *texture_point_x,
+			t_ray_info ray_info, int current_texture_width)
 {
 	*texture_point_x = ray_info.wall_hit_location
 		* ((double)(current_texture_width));
@@ -61,10 +61,10 @@ void	draw_vertical_line(t_drawing_info drawing_info, t_ray_info ray_info,
 		texture_point_y_double += texture_point_y_addend;
 		pixel.x = x_index;
 		pixel.y = y_index;
-		pixel.color = unsigned_int_to_color(*((unsigned int *)&(drawing_info. \
-			current_texture->pixels[get_pixel_index(drawing_info. \
-			current_texture, (t_pixel){.x = texture_point.x,
-							.y = texture_point.y})])));
+		pixel.color = unsigned_int_to_color(*((unsigned int *)&(
+						drawing_info.current_texture->pixels[get_pixel_index(
+							drawing_info.current_texture, (t_pixel){
+							.x = texture_point.x, .y = texture_point.y})])));
 		put_pixel_into_image(image, pixel);
 		y_index++;
 	}

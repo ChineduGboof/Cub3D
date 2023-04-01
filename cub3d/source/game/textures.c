@@ -6,14 +6,14 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:25:30 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/29 22:50:13 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 18:08:04 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
-#include <stdio.h> // for debug
 
-bool	load_textures(void *mlx, struct s_textures *s_textures, t_specifications specifications)
+bool	load_textures(void *mlx, struct s_textures *s_textures,
+			t_specifications specifications)
 {
 	s_textures->east_wall = import_image(mlx, specifications.east_texture);
 	s_textures->west_wall = import_image(mlx, specifications.west_texture);

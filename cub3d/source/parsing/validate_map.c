@@ -6,145 +6,142 @@
 /*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 23:02:07 by gboof             #+#    #+#             */
-/*   Updated: 2023/03/30 10:20:59 by gboof            ###   ########.fr       */
+/*   Updated: 2023/04/01 19:58:02 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int is_wall(char *str)
+bool is_walled(int i, int j, char **map)
 {
-	size_t i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] != '1' && str[i] != ' ' && str[i] != '\t')
-			return 0;
+	bool left_vertical = false;
+	bool right_vertical = false;
+	bool left_horizontal = false;
+	bool right_horizontal = false;
+	
+	// Check for walls on the left and right of the 0
+	int x = j - 1;
+	while (x >= 0) {
+		if (map[i][x] == '1') {
+			left_horizontal = true;
+			break;
+		}
+		x--;
+	}
+	x = j + 1;
+	while (map[i][x]) {
+		if (map[i][x] == '1') {
+			right_horizontal = true;
+			break;
+		}
+		x++;
+	}
+	// Check for walls above and below the 0
+	int y = i - 1;
+	while (y >= 0) {
+		if (map[y][j] == '1') {
+			left_vertical = true;
+			break;
+		}
+		y--;
+	}
+	y = i + 1;
+	while (map[y]) {
+		if (map[y][j] == '1') {
+			right_vertical = true;
+			break;
+		}
+		y++;
+	}
+	return left_vertical && right_vertical && left_horizontal && right_horizontal;
+}
+
+bool is_fenced(char **map) {
+	// Check the first row
+	char *first_row = map[0];
+	if (!first_row) {
+		return false;
+	}
+	int i = 0;
+	while (first_row[i] != '\0') {
+		if (first_row[i] != '1' && first_row[i] != ' ') {
+			return false;
+		}
 		i++;
 	}
-	return 1;
-}
-
-int     is_valid_player(char *str)
-{
-	static bool is_player_found = false;
-
-	if (ft_strchr(str, 'N') != NULL || ft_strchr(str, 'S') != NULL ||
-		ft_strchr(str, 'E') != NULL || ft_strchr(str, 'W') != NULL)
-	{
-		if (is_player_found)
-		{
-			printf("Error: Duplicate players in the map.\n");
-			exit(EXIT_FAILURE);
-		}
-		is_player_found = true;
+	
+	// Check the last row
+	char *last_row = map[0];
+	int num_rows = 0;
+	while (map[num_rows] != NULL) {
+		last_row = map[num_rows];
+		num_rows++;
 	}
-	return (0);
+	i = 0;
+	while (last_row[i] != '\0') {
+		if (last_row[i] != '1' && last_row[i] != ' ') {
+			return false;
+		}
+		i++;
+	}
+	
+	// Check the other rows
+	char *current_row = map[1];
+	while (current_row != NULL && current_row != last_row) {
+		if (current_row[0] != '1' && current_row[0] != ' ') {
+			return false;
+		}
+		int len = ft_strlen(current_row);
+		if (current_row[len-1] != '1') {
+			return false;
+		}
+		current_row = *(++map);
+	}
+	
+	return true;
 }
 
-int     check_all_sides(char **strs, int j)
-{
-	if (ft_isspace(strs[-1][j - 1]) || !strs[-1][j - 1])
-		return (0);
-	if (ft_isspace(strs[-1][j]) || !strs[-1][j])
-		return (0);
-	if (ft_isspace(strs[-1][j + 1]) || !strs[-1][j + 1])
-		return (0);
-	if (ft_isspace(strs[0][j - 1]) || !strs[0][j - 1])
-		return (0);
-	if (ft_isspace(strs[0][j + 1]) || !strs[0][j + 1])
-		return (0);
-	if (ft_isspace(strs[1][j - 1]) || !strs[1][j - 1])
-		return (0);
-	if (ft_isspace(strs[1][j]) || !strs[1][j])
-		return (0);
-	if (ft_isspace(strs[1][j + 1]) || !strs[1][j + 1])
-		return (0);
-	return (1);
-}
-
-void    exit_error(char *str, int err)
-{
-	printf("%s\n", str);
-	exit(err);
-}
 
 void check_map_errors(char **map)
 {
-	size_t  i;
-	size_t  j;
-	int     err_code;
-	int     is_closed_map;
-	bool    is_wall_valid;
-	bool    is_player_found;
-	char    **tmp;
+	int	player_count;
+	size_t	i;
+	size_t	j;
 
+	player_count  = 0;
 	i = 0;
-	is_closed_map = 1;
-	is_wall_valid = false;
-	is_player_found = false;
-	tmp = (char **) malloc(sizeof(char *) * 3);
-	  
-	  // print content of map
-	// int k = 0;
-	// while (map[k])
-	// {
-	// 	printf("%s\n", map[k]);
-	// 	k++;
-	// }
-	while (map[i] != NULL)
+	j = 0;
+	if (!is_fenced(map))
+		ft_exit_msg("Map is not fenced.");
+	while(map[i])
 	{
 		j = 0;
-		//returns true if the wall contains only 1's and spaces, meaning its a wall
-		if (is_wall(map[i]))
+		while(map[i][j] != '\0')
 		{
-			if (i == 0 || i == (ft_arrlen(map) - 1))
+			// checks if the only valid characters are in the map
+			if(map[i][j] != '0' || map[i][j] != '1' || map[i][j] != ' ' || map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
 			{
-				printf("i %zu is wall\n", i);
-				is_wall_valid = true;
+				//checks for duplicate players
+				if((map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W'))
+				{
+					player_count++;
+					if (player_count > 1 || i == 0 || j == 0 || j == ft_strlen(map[i]) - 1 || map[i+1] == NULL)
+							ft_exit_msg("Duplicate or muliple players in the map.");
+				}
+				
+				//3. check each zero if it has a one on the left or right
+				if (map[i][j] == '0')
+				{
+					if(!is_walled(i, j, map))
+						ft_exit_msg("Map is not walled.");
+				}
+				j++; 
 			}
-		}
-		printf("in here 1\n");
-		while (map[i][j] != '\0')
-		{
-			if (map[i][j] != '1' && map[i][j] != ' ')
-			{
-				if (i == 0 || j == 0 || map[i + 1] == NULL || map[i][j + 1] == '\0')
-				{
-					exit_error("Error: Map is not surrounded by walls.\n", ERR_EXIT);
-				}
-				if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
-				{
-					if (is_player_found)
-					{
-						exit_error("Error: Duplicate players in the map.\n", ERR_EXIT);
-					}
-					is_player_found = true;
-				}
-				else if (map[i][j] != '1' && map[i][j] != ' ' && !is_closed_map)
-				{
-					exit_error("Error: Map is not closed.\n", ERR_EXIT);
-				}
-				else if (map[i][j] != '1' && map[i][j] != ' ')
-				{
-					tmp[0] = map[i - 1] + j - 1;
-					tmp[1] = map[i] + j - 1;
-					tmp[2] = map[i + 1] + j - 1;
-					if (!check_all_sides(tmp, 1))
-					{
-						exit_error("Error: Map is not valid.\n", ERR_EXIT);
-					}
-				}
-			}
-			j++;
+			else
+				ft_exit_msg("Map is not valid.");
 		}
 		i++;
 	}
-	if (!is_wall_valid)
-	{
-		exit_error("Error: Map is not valid.\n", ERR_EXIT);
-	}
-	if (!is_player_found)
-	{
-		exit_error("Error: Player not found in the map.\n", ERR_EXIT);
-	}
+	if(player_count == 0)
+		ft_exit_msg("NO PLAYER.");
 }

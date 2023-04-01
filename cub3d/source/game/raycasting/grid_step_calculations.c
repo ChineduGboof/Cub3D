@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 13:56:47 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/30 17:19:26 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 21:55:18 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	determine_step(t_step *step, t_vector ray_direction)
 }
 
 void	determine_nearest_boundary_distances(
-	t_nearest_boundary_distances *nearest_boundary_distances,
-	t_ray ray,
-	t_grid_spacings grid_spacings)
+			t_nearest_boundary_distances *nearest_boundary_distances,
+			t_ray ray,
+			t_grid_spacings grid_spacings)
 {
 	if (ray.direction.x < 0)
 	{

@@ -3,109 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:28 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/29 19:46:14 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/01 19:51:42 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include "../game/image/image.h"
 
-void	ft_parse_color(char *line, t_color *color)
+static int	too_many_commas(const char *str)
 {
-	char	**colors;
-	char	*trimmed;
+	int	count;
+	int	i;
+
+	count = 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == ',')
+			count++;
+		i++;
+	}
+	if (count > 2)
+		return (1);
+	return (0);
+}
+
+/*	Are the color numbers valid ? Are they within the 0 to 255 range ? */
+void	check_color_values(char **colors, char *line, int fd)
+{
 	int		i;
+	char	*trimmed;
 
 	i = -1;
-	colors = ft_split(line + 2, ',');
-	if (!colors || ft_arrlen(colors) != 3)
-		ft_exit_error("Wrong number of color values");
 	while (colors[++i])
 	{
 		trimmed = ft_strtrim(colors[i], " ");
-		if (!trimmed || !ft_isvalidint(trimmed) || (ft_strlen(trimmed) > 1
+		if (!trimmed || !trimmed[0] || !ft_isvalidint(trimmed)
+			|| (ft_strlen(trimmed) > 1
 				&& *trimmed == '0' && !ft_isspace(*(trimmed + 1)))
 			|| ft_strchr(trimmed, ' ') || ft_atoi(trimmed) > 255
 			|| ft_atoi(trimmed) < 0)
-			ft_exit_error("Invalid color value");
-		if (i == 0)
-			color->red = ft_atoi(trimmed);
-		else if (i == 1)
-			color->green = ft_atoi(trimmed);
-		else
-			color->blue = ft_atoi(trimmed);
+		{
+			ft_cautious_free((void **)&line);
+			ft_exit_error("Invalid color value", fd);
+		}
 		ft_cautious_free((void **)&trimmed);
 	}
+}
+
+/*	We need to aasign the color values to the struct */
+void	parse_color_values(char **colors, t_color *color, char *line, int fd)
+{
+	if (!colors || ft_arrlen(colors) != 3)
+	{
+		ft_cautious_free((void **)&line);
+		ft_exit_error("Wrong number of color values", fd);
+	}
+	color->red = ft_atoi(colors[0]);
+	color->green = ft_atoi(colors[1]);
+	color->blue = ft_atoi(colors[2]);
 	ft_free_2d_array((void ***)&colors, ft_arrlen(colors), 0);
 }
 
-void	parse_colors(char **map_filepath, t_specifications *specifications)
+/*	We need to split the color string and get the individual values */
+void	ft_parse_color(char *line, t_color *color, int fd)
 {
-	char	*line;
-	int		read_result;
-	int		index;
-	bool	counter_floor;
-	bool	counter_ceiling;
-	int		fd;
+	char	**colors;
 
-	counter_floor = false;
-	counter_ceiling = false;
-	fd = open(map_filepath, O_RDONLY);
-	if (fd < 0)
-		ft_exit_error("Could not open file");
-	while (1)
+	if (too_many_commas(line))
 	{
-		read_result = get_line(fd, &line);
-		if (read_result <= 0)
-			break;
-		if (*line == '\0')
-		{
-			ft_cautious_free((void **)&line);
-			continue;
-		}
-		index = 0;
-		while (ft_isspace(line[index]))
-			index++;
-		if (ft_strnstr(line + index, F, ft_strlen(F)))
-		{
-			if (counter_floor)
-			{
-				ft_cautious_free((void **)&line);
-				ft_exit_error("Duplicate color Identifier");
-			}
-			ft_parse_color(line + index, &specifications->floor_color);
-			counter_floor = true;
-		}
-		else if (ft_strnstr(line + index, C, ft_strlen(C)))
-		{
-			if (counter_ceiling)
-			{
-				ft_cautious_free((void **)&line);
-				ft_exit_error("Duplicate color Identifier");
-			}
-			ft_parse_color(line + index, &specifications->ceiling_color);
-			counter_ceiling = true;
-		}
 		ft_cautious_free((void **)&line);
+		ft_exit_error("Too many comma's present", fd);
 	}
-	if (read_result < 0)
-		ft_exit_error("Could not read file");
-	if (specifications->floor_color.red == 256
-		|| specifications->ceiling_color.red == 256)
-		ft_exit_error("Missing floor or ceiling specifications");
-	close(fd);
-}
-
-void	init_specifications(t_specifications *specifications)
-{
-	ft_memset(specifications, 0, sizeof(t_specifications));
-	specifications->floor_color.red = 256;
-	specifications->ceiling_color.red = 256;
-	specifications->floor_color.green = 256;
-	specifications->ceiling_color.green = 256;
-	specifications->floor_color.blue = 256;
-	specifications->ceiling_color.blue = 256;
+	colors = ft_split(line + 2, ',');
+	check_color_values(colors, line, fd);
+	parse_color_values(colors, color, line, fd);
 }
