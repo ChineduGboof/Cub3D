@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/31 18:13:52 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/01 13:06:09 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_game
 	struct s_textures	s_textures;
 	t_specifications	specifications;
 	struct s_mlx		s_mlx;
-	int					**map; // temporary	
+	int					**map;
 } t_game;
 
 // interface to the main mlx loop

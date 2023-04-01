@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:43:28 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/31 22:16:21 by gboof            ###   ########.fr       */
+/*   Updated: 2023/04/01 12:51:15 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	get_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buffer = (char *) ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (-1);
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
@@ -69,7 +69,7 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 	void	*new_ptr;
 
 	if (!ptr)
-		return (malloc(new_size));
+		return (ft_calloc(1, new_size));
 	if (new_size == 0)
 	{
 		if (ptr)
@@ -78,7 +78,7 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 	}
 	if (new_size <= old_size)
 		return (ptr);
-	new_ptr = malloc(new_size);
+	new_ptr = ft_calloc(1, new_size);
 	if (!new_ptr)
 	{
 		free(ptr);

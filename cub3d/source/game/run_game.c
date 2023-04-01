@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 10:27:37 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 12:59:52 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,13 @@ t_vector	determine_plane(char **map)
 }
 
 
-int		**debug_create_map(char **map)
+int		**convert_map(char **map)
 {
 	int		**result;
 	int		i;
 	int		j;
 
-	result = ft_calloc(get_map_height(map), sizeof(int *));
+	result = ft_calloc(get_map_height(map) + 1, sizeof(int *));
 	i = 0;
 	while (map[i])
 	{
@@ -120,15 +120,8 @@ int		**debug_create_map(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == ' ')
-				result[i][j] = 0;
-			else if (map[i][j] == 'N')
-				result[i][j] = 0;
-			else if (map[i][j] == 'S')
-				result[i][j] = 0;
-			else if (map[i][j] == 'E')
-				result[i][j] = 0;
-			else if (map[i][j] == 'W')
+			if (map[i][j] == ' ' || map[i][j] == 'N' || map[i][j] == 'S'
+				|| map[i][j] == 'E' || map[i][j] == 'W')
 				result[i][j] = 0;
 			else
 				result[i][j] = map[i][j] - '0';
@@ -136,17 +129,19 @@ int		**debug_create_map(char **map)
 		}
 		i++;
 	}
+	result[i] = NULL;
 	return (result);
 }
 
 void	fill_game_struct(t_game *game, t_specifications specifications)
 {
-	game->map = debug_create_map(specifications.map);
+	game->map = convert_map(specifications.map);
 	game->player = (t_player){
 		.position = get_player_position(specifications.map),
 		.direction = get_player_direction(specifications.map),
 		.plane = determine_plane(specifications.map),
 	};
+	ft_free_2d_array((void ***)(&(specifications.map)), 0, true);
 }
 
 // mlx boilerplate code

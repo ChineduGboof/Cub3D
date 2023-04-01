@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:13 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/31 22:16:06 by gboof            ###   ########.fr       */
+/*   Updated: 2023/04/01 12:50:16 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*ft_strdup_replace_tabs_with_space(char *src)
 	char	*new;
 
 	len = ft_strlen(src);
-	new = malloc((len + count_tabs(src) * 3 + 1) * sizeof(char));
+	new = ft_calloc(sizeof(char), (len + count_tabs(src) * 3 + 1));
 	if (new == NULL)
 		return (NULL);
 	i = -1;

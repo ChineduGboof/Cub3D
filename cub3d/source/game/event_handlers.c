@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 17:57:36 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 10:30:59 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 12:46:02 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	rotate_player(t_game *game, int rotation_direction)
 
 	if (rotation_direction == RIGHT)
 		rotation_speed = -0.1;
-	else if (rotation_direction == LEFT)
+	else
 		rotation_speed = 0.1;
 	rotate_vector(&game->player.direction, rotation_speed);
 	rotate_vector(&game->player.plane, rotation_speed);
