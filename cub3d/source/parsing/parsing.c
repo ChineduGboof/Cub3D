@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:56:50 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/31 12:59:40 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/02 00:09:49 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ void	init_specifications(t_specifications *specifications)
 
 void	parsing(char *argv, t_specifications *specifications)
 {
-	
 	init_specifications(specifications);
 	parse_colors(argv, specifications);
 	parse_textures(argv, specifications);
 	parse_map(argv, specifications);
-	
 }
