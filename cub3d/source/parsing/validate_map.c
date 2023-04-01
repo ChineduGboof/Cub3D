@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 23:02:07 by gboof             #+#    #+#             */
-/*   Updated: 2023/04/01 23:54:35 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/02 00:04:59 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,30 @@ bool is_fenced(char **map)
 	return (true);
 }
 
+void	check_row(char **map, size_t *i, size_t *j, int *player_count)
+{
+	if(map[*i][*j] != '0' || map[*i][*j] != '1' || map[*i][*j] != ' '
+		|| map[*i][*j] == 'N' || map[*i][*j] == 'S' || map[*i][*j] == 'E'
+			|| map[*i][*j] == 'W')
+	{
+		if((map[*i][*j] == 'N' || map[*i][*j] == 'S' || map[*i][*j] == 'E'
+			|| map[*i][*j] == 'W'))
+		{
+			(*player_count)++;
+			if (*player_count > 1 || *i == 0 || *j == 0
+				|| j == ft_strlen(map[*i]) - 1 || map[(*i)+1] == NULL)
+					ft_exit_msg("Duplicate or muliple players in the map.");
+		}
+		if (map[*i][*j] == '0')
+		{
+			if(!is_walled(*i, *j, map))
+				ft_exit_msg("Map is not walled.");
+		}
+		(*j)++; 
+	}
+	else
+		ft_exit_msg("Map is not valid.");
+}
 
 void	check_map_errors(char **map)
 {
@@ -140,23 +164,7 @@ void	check_map_errors(char **map)
 		j = 0;
 		while(map[i][j] != '\0')
 		{
-			if(map[i][j] != '0' || map[i][j] != '1' || map[i][j] != ' ' || map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
-			{
-				if((map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W'))
-				{
-					player_count++;
-					if (player_count > 1 || i == 0 || j == 0 || j == ft_strlen(map[i]) - 1 || map[i+1] == NULL)
-							ft_exit_msg("Duplicate or muliple players in the map.");
-				}
-				if (map[i][j] == '0')
-				{
-					if(!is_walled(i, j, map))
-						ft_exit_msg("Map is not walled.");
-				}
-				j++; 
-			}
-			else
-				ft_exit_msg("Map is not valid.");
+			check_row(map, &i, &j, &player_count);
 		}
 	}
 	if(player_count == 0)
