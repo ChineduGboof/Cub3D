@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 23:02:07 by gboof             #+#    #+#             */
-/*   Updated: 2023/04/01 12:12:41 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 19:58:02 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,5 +144,4 @@ void check_map_errors(char **map)
 	}
 	if(player_count == 0)
 		ft_exit_msg("NO PLAYER.");
-	
 }

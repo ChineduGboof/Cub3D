@@ -13,7 +13,8 @@ source/game/image/paint.c source/game/safe_termination.c source/game/map_utiliti
 source/game/map_utilities/map_interpretation.c source/game/display.c source/parsing/error_checks.c \
 source/parsing/parsing_utils.c source/parsing/parse_colors.c source/parsing/parse_textures.c \
 source/parsing/parse_map.c source/parsing/validate_map.c source/parsing/parsing_utils2.c \
-source/parsing/parsing.c source/parsing/parse_colors2.c
+source/parsing/parsing.c source/parsing/parse_colors2.c source/parsing/validate_args.c \
+source/parsing/parse_textures2.c
 
 H_FILES = source/cub3d.h source/game/image/image.h source/game/game.h source/game/raycasting/raycasting_local.h
 

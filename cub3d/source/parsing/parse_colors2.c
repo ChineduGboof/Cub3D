@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:11:49 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/03/31 18:15:28 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:36:58 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	parse_colors(char *map_filepath, t_specifications *specifications)
 	ft_bzero(counter, 2 * sizeof(bool));
 	arr[2] = open(map_filepath, O_RDONLY);
 	if (arr[2] < 0)
-		ft_exit_error("Could not open map file", arr[2]);
+		ft_exit_msg("Could not open map file");
 	while (1)
 	{
 		arr[0] = get_line(arr[2], &line);

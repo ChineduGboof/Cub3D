@@ -3,7 +3,6 @@ Things Undone
 Norminette:
 
 1. parse_map.c
-2. parse_textures.c
 3. validate_map.c
 
 Make sure to:

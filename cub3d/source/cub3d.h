@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 17:51:34 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:50:25 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,12 @@ void	validate_argument(char *map_file_path);
 void	parse_colors(char *map_filepath, t_specifications *specifications);
 void	ft_parse_color(char *line, t_color *color, int fd);
 void	parse_textures(const char *map_file_path, t_specifications *specifications);
+void	parse_identifier_line(const char *line, t_specifications *specifications, int fd);
 void 	parse_map(const char *map_file_path, t_specifications *specifications);
 void	check_map_errors(char **map);
+bool	has_missing_specification(char *argument);
+bool	is_empty_file(char *argument);
+void	free_map(t_specifications *specifications, int status);
 
 /**************$ parsing utils $*******************/
 int		ft_isvalidint(const char *str);

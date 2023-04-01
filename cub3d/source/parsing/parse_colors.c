@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:28 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/01 11:34:56 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 19:51:42 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	check_color_values(char **colors, char *line, int fd)
 	while (colors[++i])
 	{
 		trimmed = ft_strtrim(colors[i], " ");
-		if (!trimmed || !trimmed[0] || !ft_isvalidint(trimmed) || (ft_strlen(trimmed) > 1
+		if (!trimmed || !trimmed[0] || !ft_isvalidint(trimmed)
+			|| (ft_strlen(trimmed) > 1
 				&& *trimmed == '0' && !ft_isspace(*(trimmed + 1)))
 			|| ft_strchr(trimmed, ' ') || ft_atoi(trimmed) > 255
 			|| ft_atoi(trimmed) < 0)

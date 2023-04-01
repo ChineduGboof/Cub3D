@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:51:46 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/01 10:25:57 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:41:40 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,73 +34,6 @@ bool	is_valid_identifier(const char *str)
 	return (false);
 }
 
-	// if identifier is valid, extract it and the path
-void	extract_identifier_and_path(const char *str, char **identifier,
-		char **path, int fd)
-{
-	char	*trimmed_str;
-	char 	*space_ptr;
-
-	trimmed_str = ft_strtrim(str, " ");
-	if (!trimmed_str)
-		ft_exit_error("could not allocate memory", fd);
-	space_ptr = ft_strchr(trimmed_str, ' ');
-	if (!space_ptr)
-	{
-		ft_cautious_free((void **)&trimmed_str);
-		ft_exit_error("invalid identifier line", fd);
-	}
-	*space_ptr = '\0';
-	*identifier = ft_strdup(trimmed_str);
-	*path = ft_strdup(space_ptr + 1);
-
-	if (!(*identifier) || !(*path))
-	{
-		ft_cautious_free((void **)&trimmed_str);
-		ft_cautious_free((void **)identifier);
-		ft_cautious_free((void **)path);
-		ft_exit_error("could not allocate memory", fd);
-	}
-	ft_cautious_free((void **)&trimmed_str);
-}
-
-
-void	parse_identifier_line(const char *line,
-		t_specifications *specifications, int fd)
-{
-	char	*identifier;
-	char	*path;
-
-	extract_identifier_and_path(line, &identifier, &path, fd);
-	if (ft_strncmp(identifier, NO, 2) == 0)
-	{
-		if (specifications->north_texture != NULL)
-			ft_exit_error("duplicate north texture specification", fd);
-		specifications->north_texture = path;
-	}
-	else if (ft_strncmp(identifier, SO, 2) == 0)
-	{
-		if (specifications->south_texture != NULL)
-			ft_exit_error("duplicate south texture specification", fd);
-		specifications->south_texture = path;
-	}
-	else if (ft_strncmp(identifier, WE, 2) == 0)
-	{
-		if (specifications->west_texture != NULL)
-			ft_exit_error("duplicate west texture specification", fd);
-		specifications->west_texture = path;
-	}
-	else if (ft_strncmp(identifier, EA, 2) == 0)
-	{
-		if (specifications->east_texture != NULL)
-			ft_exit_error("duplicate east texture specification", fd);
-		specifications->east_texture = path;
-	}
-	else
-		ft_exit_error("invalid identifier", fd);
-	ft_cautious_free((void **)&identifier);
-}
-
 void	print_specifications(const t_specifications *specifications)
 {
 	if (specifications->north_texture == NULL)
@@ -117,6 +50,18 @@ void	print_specifications(const t_specifications *specifications)
 	printf("East texture: %s\n", specifications->east_texture);
 }
 
+int	open_filepath(char *argument)
+{
+	int	fd;
+
+	fd = open(argument, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_exit_msg("Could not open map file");
+	}
+	return (fd);
+}
+
 void	parse_textures(const char *map_file_path,
 		t_specifications *specifications)
 {
@@ -125,9 +70,7 @@ void	parse_textures(const char *map_file_path,
 	int		index;
 	char	*line;
 
-	fd = open(map_file_path, O_RDONLY);
-	if (fd == -1)
-		ft_exit_error("Could not open file", fd);
+	fd = open_filepath(map_file_path);
 	while (1)
 	{
 		read_result = get_line(fd, &line);
@@ -147,8 +90,4 @@ void	parse_textures(const char *map_file_path,
 	}
 	close(fd);
 	print_specifications(specifications);
-	// ft_cautious_free((void **)&specifications->north_texture);
-	// ft_cautious_free((void **)&specifications->south_texture);
-	// ft_cautious_free((void **)&specifications->west_texture);
-	// ft_cautious_free((void **)&specifications->east_texture);
 }
