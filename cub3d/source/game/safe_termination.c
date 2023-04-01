@@ -6,17 +6,26 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:16:10 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 23:09:16 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/02 01:20:29 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../cub3d.h"
 
+void	free_textures(t_specifications *specifications)
+{
+	ft_cautious_free((void **)&specifications->north_texture);
+	ft_cautious_free((void **)&specifications->south_texture);
+	ft_cautious_free((void **)&specifications->west_texture);
+	ft_cautious_free((void **)&specifications->east_texture);
+}
+
 // We should make sure that we free all the memory
 // we allocated before exiting the program.
 void	safely_terminate(t_game *game, int error_code)
 {
+	(void)(game);
 	mlx_destroy_image(game->s_mlx.mlx, game->s_mlx.image->image);
 	mlx_destroy_image(game->s_mlx.mlx, game->s_textures.north_wall->image);
 	mlx_destroy_image(game->s_mlx.mlx, game->s_textures.south_wall->image);
@@ -31,6 +40,7 @@ void	safely_terminate(t_game *game, int error_code)
 	free(game->s_mlx.mlx);
 	ft_free_2d_array((void ***)&(game->map), 0, true);
 	ft_free_2d_array((void ***)(&(game->specifications.map)), 0, true);
+	free_textures(&(game->specifications));
 	exit(error_code);
 }
 

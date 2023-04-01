@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:57:57 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/01 23:05:50 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/02 01:10:51 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,21 @@ void	free_map(t_specifications *specifications, int status)
 	exit(status);
 }
 
+void	free_map_assured(char **map, char *message, int status)
+{
+	ft_free_2d_array((void ***)&map, -1, true);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
+	exit(status);
+}
+
 void	expand_map(char *line, t_specifications *specifications,
 		int map_index, int *map_size)
 {
 	char	*new_line;
 
 	new_line = ft_strdup_replace_tabs_with_space(line);
+	ft_cautious_free((void **)&line);
 	if (new_line == NULL)
 		free_map(specifications, EXIT_FAILURE);
 	if (map_index >= *map_size)

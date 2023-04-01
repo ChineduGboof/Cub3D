@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:58:09 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/01 22:58:17 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/02 00:44:32 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,4 @@ void	parse_identifier_line(const char *line,
 	else
 		ft_exit_error("invalid identifier", fd);
 	ft_cautious_free((void **)&identifier);
-}
-
-void	free_textures(t_specifications *specifications)
-{
-	ft_cautious_free((void **)&specifications->north_texture);
-	ft_cautious_free((void **)&specifications->south_texture);
-	ft_cautious_free((void **)&specifications->west_texture);
-	ft_cautious_free((void **)&specifications->east_texture);
-	free_map(specifications, EXIT_SUCCESS);
 }

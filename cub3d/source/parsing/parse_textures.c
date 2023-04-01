@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:51:46 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/02 00:31:52 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/02 00:40:30 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,6 @@ void	print_specifications(const t_specifications *specifications)
 		ft_exit_msg("missing west texture specification");
 	if (specifications->east_texture == NULL)
 		ft_exit_msg("missing east texture specification");
-	printf("North texture: %s\n", specifications->north_texture);
-	printf("South texture: %s\n", specifications->south_texture);
-	printf("West texture: %s\n", specifications->west_texture);
-	printf("East texture: %s\n", specifications->east_texture);
 }
 
 int	open_filepath(char *argument)
