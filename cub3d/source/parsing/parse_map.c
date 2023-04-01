@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:52 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/01 23:03:09 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/02 00:31:10 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	find_identifier(char *line, int index)
 	return (false);
 }
 
-int	init_map(int *map_size, int *map_index, const char *map_file_path,
+int	init_map(int *map_size, int *map_index, char *map_file_path,
 			t_specifications *specifications)
 {
 	int	fd;
@@ -69,7 +69,7 @@ void	parse_line(char *line, t_specifications *specifications, int arr[])
 	arr[map_index]++;
 }
 
-void	parse_map(const char *map_file_path, t_specifications *specifications)
+void	parse_map(char *map_file_path, t_specifications *specifications)
 {
 	int		arr[5];
 	char	*line;

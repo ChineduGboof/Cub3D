@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:51:46 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/01 20:41:40 by gboof            ###   ########.fr       */
+/*   Updated: 2023/04/02 00:31:52 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	open_filepath(char *argument)
 	return (fd);
 }
 
-void	parse_textures(const char *map_file_path,
+void	parse_textures(char *map_file_path,
 		t_specifications *specifications)
 {
 	int		fd;
