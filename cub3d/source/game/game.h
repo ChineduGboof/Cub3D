@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:34:31 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 09:13:50 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 18:03:58 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <math.h>
 # include "../cub3d.h"
 # include "image/image.h"
+# include "map_utilities/map_utilities.h"
  
 # define RED (t_color) {255, 0, 0, 0}
 # define GREEN (t_color) {0, 255, 0, 0}
@@ -74,4 +75,9 @@ void	rotate_vector(t_vector *vector, double angle);
 bool	load_textures(void *mlx, struct s_textures *s_textures, t_specifications specifications);
 /**************$ end of: textures $*******************/
 
-# endif
+void	refresh_display(t_game *game);
+
+void	safely_terminate(t_game *game, int error_code);
+void	terminate_with_message(t_game *game, char *message, int error_code);
+
+#endif

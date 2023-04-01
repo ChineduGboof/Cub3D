@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 17:57:36 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 12:46:02 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 17:50:44 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ void	move_player(t_game *game, int movement_direction)
 		game->player.position.x -= game->player.direction.y * 0.1;
 		game->player.position.y += game->player.direction.x * 0.1;
 	}
-	paint_image(game->s_mlx.image, game->specifications.ceiling_color, 0, WINDOW_HEIGHT / 2);
-	paint_image(game->s_mlx.image, game->specifications.floor_color, WINDOW_HEIGHT / 2, WINDOW_HEIGHT);
-	fill_image(game->s_mlx.image, *game);
-	mlx_put_image_to_window(game->s_mlx.mlx, game->s_mlx.window, game->s_mlx.image->image, 0, 0);
+	refresh_display(game);
 }
 
 void	rotate_player(t_game *game, int rotation_direction)
@@ -52,16 +49,14 @@ void	rotate_player(t_game *game, int rotation_direction)
 	rotate_vector(&game->player.direction, rotation_speed);
 	rotate_vector(&game->player.plane, rotation_speed);
 	paint_image(game->s_mlx.image, game->specifications.ceiling_color, 0, WINDOW_HEIGHT / 2);
-	paint_image(game->s_mlx.image, game->specifications.floor_color, WINDOW_HEIGHT / 2, WINDOW_HEIGHT);
-	fill_image(game->s_mlx.image, *game);
-	mlx_put_image_to_window(game->s_mlx.mlx, game->s_mlx.window, game->s_mlx.image->image, 0, 0);
+	refresh_display(game);
 }
 
 
 int on_keydown(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESCAPE)
-		safely_terminate(game);
+		safely_terminate(game, 0);
 	else if (keycode == KEY_W)
 		move_player(game, NORTH);
 	else if (keycode == KEY_S)
@@ -79,6 +74,6 @@ int on_keydown(int keycode, t_game *game)
 
 int on_destroy(t_game *game)
 {
-	safely_terminate(game);
+	safely_terminate(game, 0);
 	return (0);
 }

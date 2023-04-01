@@ -6,16 +6,16 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:16:10 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 13:03:07 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 18:07:30 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "cub3d.h"
+#include "../cub3d.h"
 
 // We should make sure that we free all the memory
 // we allocated before exiting the program.
-void	safely_terminate(t_game *game)
+void	safely_terminate(t_game *game, int error_code)
 {
 	mlx_destroy_image(game->s_mlx.mlx, game->s_mlx.image->image);
 	mlx_destroy_image(game->s_mlx.mlx, game->s_textures.north_wall->image);
@@ -29,12 +29,13 @@ void	safely_terminate(t_game *game)
 	free(game->s_textures.west_wall);
 	free(game->s_textures.east_wall);
 	free(game->s_mlx.mlx);
-
-	// type-agnostic cautious ultimate mega fancy free_2d_array
-	// function from my libft :)
-	// needs indication of map size or null-termination to
-	// actually do something
-	// ft_free_2d_array((void ***)&(game->specifications.map), 0, false);
 	ft_free_2d_array((void ***)&(game->map), 0, true);
-	exit(0);
+	exit(error_code);
+}
+
+void	terminate_with_message(t_game *game, char *message, int error_code)
+{
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
+	safely_terminate(game, error_code);
 }

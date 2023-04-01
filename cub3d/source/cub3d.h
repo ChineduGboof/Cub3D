@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 13:06:09 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 17:51:34 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ typedef struct s_game
 
 // interface to the main mlx loop
 void	run_game(t_specifications specifications);
-void	safely_terminate(t_game *game);
 
 /**************$ error_checks $*******************/
 void	parsing(char *argv, t_specifications *specifications);
