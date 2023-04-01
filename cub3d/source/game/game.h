@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:34:31 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 21:53:48 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 23:21:57 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,6 @@
 # include "../cub3d.h"
 # include "image/image.h"
 # include "map_utilities/map_utilities.h"
- 
-# define RED (t_color) {255, 0, 0, 0}
-# define GREEN (t_color) {0, 255, 0, 0}
-# define BLUE (t_color) {0, 0, 255, 0}
-# define WHITE (t_color) {255, 255, 255, 0}
-# define BLACK (t_color) {0, 0, 0, 0}
-# define GRAY (t_color) {128, 128, 128, 0}
-# define YELLOW (t_color) {255, 255, 0, 0}
-# define PURPLE (t_color) {255, 0, 255, 0}
-# define CYAN (t_color) {0, 255, 255, 0}
-# define ORANGE (t_color) {255, 165, 0, 0}
 
 // events for mlx hooks
 enum {
@@ -38,15 +27,15 @@ enum {
 // keycodes
 enum {
 	KEY_A = 0,
-    KEY_S = 1,
-    KEY_D = 2,
+	KEY_S = 1,
+	KEY_D = 2,
 	KEY_W = 13,
 	KEY_ESCAPE = 53,
-    KEY_LEFT = 123,
-    KEY_RIGHT = 124,
+	KEY_LEFT = 123,
+	KEY_RIGHT = 124,
 };
 
-enum  {
+enum {
 	NORTH = 10,
 	SOUTH = 11,
 	EAST = 12,
@@ -67,19 +56,20 @@ void	fill_image(t_image *image, t_game game);
 int		on_keydown(int keycode, t_game *game);
 int		on_destroy(t_game *game);
 
-
 // vector manipulation
 void	rotate_vector(t_vector *vector, double angle);
 
-
 // textures
 bool	load_textures(void *mlx, struct s_textures *s_textures,
-	t_specifications specifications);
-
+			t_specifications specifications);
 
 void	refresh_display(t_game *game);
 
 void	safely_terminate(t_game *game, int error_code);
 void	terminate_with_message(t_game *game, char *message, int error_code);
+
+// player actions
+void	move_player(t_game *game, int movement_direction);
+void	rotate_player(t_game *game, int rotation_direction);
 
 #endif

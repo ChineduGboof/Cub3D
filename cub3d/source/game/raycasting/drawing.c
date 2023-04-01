@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 13:50:44 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 21:54:56 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:22:15 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,34 @@ void	determine_texture_point_x(int *texture_point_x,
 		*texture_point_x = current_texture_width - *texture_point_x - 1;
 }
 
+void	initialize_y_related_values(double *y_addend, double *y_double,
+			t_drawing_info drawing_info)
+{
+	*y_addend = 1.0 * drawing_info.current_texture->height
+		/ drawing_info.line_height;
+	*y_double = (drawing_info.drawing_range.start
+			- WINDOW_HEIGHT / 2 + drawing_info.line_height / 2)
+		* (*y_addend);
+}
+
 void	draw_vertical_line(t_drawing_info drawing_info, t_ray_info ray_info,
 			t_image *image, int x_index)
 {
-	double	texture_point_y_addend;
-	double	texture_point_y_double;
+	double	y_addend;
+	double	y_double;
 	int		y_index;
 	t_point	texture_point;
 	t_pixel	pixel;
 
 	determine_texture_point_x(&texture_point.x, ray_info,
 		drawing_info.current_texture->width);
-	texture_point_y_addend = 1.0 * drawing_info.current_texture->height
-		/ drawing_info.line_height;
-	texture_point_y_double = (drawing_info.drawing_range.start
-			- WINDOW_HEIGHT / 2 + drawing_info.line_height / 2)
-		* texture_point_y_addend;
+	initialize_y_related_values(&y_addend, &y_double, drawing_info);
 	y_index = drawing_info.drawing_range.start;
 	while (y_index < drawing_info.drawing_range.end)
 	{
-		texture_point.y = ((int)texture_point_y_double)
+		texture_point.y = ((int)y_double)
 			& (drawing_info.current_texture->height - 1);
-		texture_point_y_double += texture_point_y_addend;
+		y_double += y_addend;
 		pixel.x = x_index;
 		pixel.y = y_index;
 		pixel.color = unsigned_int_to_color(*((unsigned int *)&(

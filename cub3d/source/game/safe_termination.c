@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:16:10 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 18:07:30 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 23:09:16 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	safely_terminate(t_game *game, int error_code)
 	free(game->s_textures.east_wall);
 	free(game->s_mlx.mlx);
 	ft_free_2d_array((void ***)&(game->map), 0, true);
+	ft_free_2d_array((void ***)(&(game->specifications.map)), 0, true);
 	exit(error_code);
 }
 

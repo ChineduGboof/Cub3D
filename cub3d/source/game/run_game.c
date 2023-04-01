@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 21:56:42 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 23:08:34 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	fill_game_struct(t_game *game, t_specifications specifications)
 		.direction = get_player_direction(specifications.map),
 		.plane = determine_plane(specifications.map),
 	};
-	ft_free_2d_array((void ***)(&(specifications.map)), 0, true);
 }
 
 // mlx boilerplate code

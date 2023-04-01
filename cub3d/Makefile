@@ -10,7 +10,8 @@ source/game/raycasting/ray_direction_calculations.c source/game/raycasting/textu
 source/game/raycasting/wall_detection.c source/game/raycasting/vector_manipulation.c \
 source/game/event_handlers.c source/game/textures.c source/game/image/color.c \
 source/game/image/paint.c source/game/safe_termination.c source/game/map_utilities/convert_map.c \
-source/game/map_utilities/map_interpretation.c source/game/display.c source/parsing/error_checks.c \
+source/game/map_utilities/map_interpretation.c source/game/map_utilities/int_map_utilities.c \
+source/game/display.c source/game/player_actions.c source/parsing/error_checks.c \
 source/parsing/parsing_utils.c source/parsing/parse_colors.c source/parsing/parse_textures.c \
 source/parsing/parse_map.c source/parsing/validate_map.c source/parsing/parsing_utils2.c \
 source/parsing/parsing.c source/parsing/parse_colors2.c source/parsing/validate_args.c \
