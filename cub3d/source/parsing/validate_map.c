@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 23:02:07 by gboof             #+#    #+#             */
-/*   Updated: 2023/04/02 00:08:40 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/02 00:12:16 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,24 +126,24 @@ bool	is_fenced(char **map)
 
 void	check_row(char **map, size_t *i, size_t *j, int *player_count)
 {
-	if(map[*i][*j] != '0' || map[*i][*j] != '1' || map[*i][*j] != ' '
+	if (map[*i][*j] != '0' || map[*i][*j] != '1' || map[*i][*j] != ' '
 		|| map[*i][*j] == 'N' || map[*i][*j] == 'S' || map[*i][*j] == 'E'
 			|| map[*i][*j] == 'W')
 	{
-		if((map[*i][*j] == 'N' || map[*i][*j] == 'S' || map[*i][*j] == 'E'
+		if ((map[*i][*j] == 'N' || map[*i][*j] == 'S' || map[*i][*j] == 'E'
 			|| map[*i][*j] == 'W'))
 		{
 			(*player_count)++;
 			if (*player_count > 1 || *i == 0 || *j == 0
-				|| j == ft_strlen(map[*i]) - 1 || map[(*i)+1] == NULL)
-					ft_exit_msg("Duplicate or muliple players in the map.");
+				|| j == ft_strlen(map[*i]) - 1 || map[(*i) + 1] == NULL)
+				ft_exit_msg("Duplicate or muliple players in the map.");
 		}
 		if (map[*i][*j] == '0')
 		{
-			if(!is_walled(*i, *j, map))
+			if (!is_walled(*i, *j, map))
 				ft_exit_msg("Map is not walled.");
 		}
-		(*j)++; 
+		(*j)++;
 	}
 	else
 		ft_exit_msg("Map is not valid.");
@@ -155,19 +155,19 @@ void	check_map_errors(char **map)
 	size_t	i;
 	size_t	j;
 
-	player_count  = 0;
+	player_count = 0;
 	i = -1;
 	j = 0;
 	if (!is_fenced(map))
 		ft_exit_msg("Map is not fenced.");
-	while(map[++i])
+	while (map[++i])
 	{
 		j = 0;
-		while(map[i][j] != '\0')
+		while (map[i][j] != '\0')
 		{
 			check_row(map, &i, &j, &player_count);
 		}
 	}
-	if(player_count == 0)
+	if (player_count == 0)
 		ft_exit_msg("NO PLAYER.");
 }
