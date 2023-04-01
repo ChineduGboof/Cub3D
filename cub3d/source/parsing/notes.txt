@@ -6,10 +6,8 @@ Norminette:
 2. parse_textures.c
 3. validate_map.c
 
-2. Check the free of the parse_map && validate map
-3. Check if the fd's are closed when exit is called
+Make sure to:
+1. Check the free of the parse_map && validate map
+2. Check if the fd's are closed when exit is called
 
-Unresolved Issues:
-
-1. the get_line function seg faults when an empty map is passed
 

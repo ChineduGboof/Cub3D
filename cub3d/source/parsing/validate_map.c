@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 23:02:07 by gboof             #+#    #+#             */
-/*   Updated: 2023/03/31 13:21:53 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/01 12:12:41 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ bool is_walled(int i, int j, char **map)
 bool is_fenced(char **map) {
 	// Check the first row
 	char *first_row = map[0];
+	if (!first_row) {
+		return false;
+	}
 	int i = 0;
 	while (first_row[i] != '\0') {
 		if (first_row[i] != '1' && first_row[i] != ' ') {
