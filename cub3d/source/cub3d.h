@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/02 00:32:06 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/02 00:36:53 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # define F "F "
 # define C "C "
 
-
 // The struct that the parser should return
 typedef struct s_specifications
 {
@@ -49,22 +48,22 @@ typedef struct s_specifications
 /**************$ only for the raycaster $*******************/
 typedef struct s_vector
 {
-	double x;
-	double y;
-} t_vector;
+	double	x;
+	double	y;
+}	t_vector;
 
 typedef struct s_ray
 {
 	t_vector	position;
 	t_vector	direction;
-} t_ray;
+}	t_ray;
 
 typedef struct s_player
 {
-	t_vector position;
-	t_vector direction;
-	t_vector plane; // the 2d raycaster version of camera plane
-} t_player;
+	t_vector	position;
+	t_vector	direction;
+	t_vector	plane;
+}	t_player;
 
 // I didn't typedef these because I want it to
 // be obvious that it's a struct
@@ -93,7 +92,7 @@ typedef struct s_game
 	t_specifications	specifications;
 	struct s_mlx		s_mlx;
 	int					**map;
-} t_game;
+}	t_game;
 
 // interface to the main mlx loop
 void	run_game(t_specifications specifications);
@@ -105,9 +104,11 @@ void	validate_argument(char *map_file_path);
 void	parse_colors(char *map_filepath, t_specifications *specifications);
 void	ft_parse_color(char *line, t_color *color, int fd);
 void	parse_textures(char *map_file_path, t_specifications *specifications);
-void	parse_identifier_line(const char *line, t_specifications *specifications, int fd);
-void 	parse_map(char *map_file_path, t_specifications *specifications);
-void	expand_map(char *line, t_specifications *specifications, int map_index, int *map_size);
+void	parse_identifier_line(const char *line,
+			t_specifications *specifications, int fd);
+void	parse_map(char *map_file_path, t_specifications *specifications);
+void	expand_map(char *line, t_specifications *specifications,
+			int map_index, int *map_size);
 void	check_map_errors(char **map);
 bool	has_missing_specification(char *argument);
 bool	is_empty_file(char *argument);
@@ -123,5 +124,6 @@ char	*ft_strdup_replace_tabs_with_space(char *src);
 void	ft_exit_error(char *message, int fd);
 void	ft_exit_msg(char *message);
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
-size_t 	ft_arrlen(char **arr);
+size_t	ft_arrlen(char **arr);
+
 #endif
