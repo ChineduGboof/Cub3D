@@ -11,9 +11,5 @@ Norminette:
 
 Unresolved Issues:
 
-1. it Allocates zero when a space is passed as a color value instead of quiting
-arg: F 120, ,90 
-output: R: 120, G: 0, B: 90
-
-2. the get_line function seg faults when an empty map is passed
+1. the get_line function seg faults when an empty map is passed
 
