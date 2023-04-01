@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:55:40 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 18:08:30 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:00:31 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ int	**convert_map(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == ' ' || map[i][j] == 'N' || map[i][j] == 'S'
+			if (map[i][j] == 'N' || map[i][j] == 'S'
 				|| map[i][j] == 'E' || map[i][j] == 'W')
 				result[i][j] = 0;
+			else if (ft_isspace(map[i][j]))
+				result[i][j] = '1';
 			else
 				result[i][j] = map[i][j] - '0';
 			j++;

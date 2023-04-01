@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 13:49:49 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/03/30 17:44:40 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:29:17 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,28 @@ void	determine_wall_hit_location(t_ray_info *ray_info,
 	ray_info->wall_hit_location -= floor(ray_info->wall_hit_location);
 }
 
+void	take_horizontal_step(t_ray_info *ray_info, int *wall_hit_direction)
+{
+	ray_info->nearest_boundary_distances.x
+		+= ray_info->grid_spacings.x;
+	ray_info->ray.position.x += ray_info->step.x;
+	if (ray_info->step.x < 0)
+		*wall_hit_direction = EAST;
+	else
+		*wall_hit_direction = WEST;
+}
+
+void	take_vertical_step(t_ray_info *ray_info, int *wall_hit_direction)
+{
+	ray_info->nearest_boundary_distances.y
+		+= ray_info->grid_spacings.y;
+	ray_info->ray.position.y += ray_info->step.y;
+	if (ray_info->step.y < 0)
+		*wall_hit_direction = SOUTH;
+	else
+		*wall_hit_direction = NORTH;
+}
+
 int	send_ray(t_ray_info *ray_info, int **map)
 {
 	bool	wall_hit;
@@ -50,27 +72,17 @@ int	send_ray(t_ray_info *ray_info, int **map)
 		if (ray_info->nearest_boundary_distances.x
 			< ray_info->nearest_boundary_distances.y)
 		{
-			ray_info->nearest_boundary_distances.x
-				+= ray_info->grid_spacings.x;
-			ray_info->ray.position.x += ray_info->step.x;
-			if (ray_info->step.x < 0)
-				wall_hit_direction = EAST;
-			else
-				wall_hit_direction = WEST;
+			take_horizontal_step(ray_info, &wall_hit_direction);
 		}
 		else
 		{
-			ray_info->nearest_boundary_distances.y
-				+= ray_info->grid_spacings.y;
-			ray_info->ray.position.y += ray_info->step.y;
-			if (ray_info->step.y < 0)
-				wall_hit_direction = SOUTH;
-			else
-				wall_hit_direction = NORTH;
+			take_vertical_step(ray_info, &wall_hit_direction);
 		}
 		if (map[(int)ray_info->ray.position.y][(int)ray_info->ray.position.x]
 			> 0)
+		{
 			wall_hit = true;
+		}
 	}
 	return (wall_hit_direction);
 }
