@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/02 06:26:59 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/02 21:35:40 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ bool	is_map_line(char *line)
 {
 	size_t index;
 	bool	result;
+
 	index = 0;
 	result = false;
+	if (!line || line[0] == '\0')
+		return (false);
 	while (line[index])
 	{
 		if (!(line[index] == '0' || line[index] == '1' || line[index] =='E'  || line[index] == 'N' || line[index] == 'S' || line[index] == 'W' || ft_isspace(line[index])))
 			return (false);
-		if (line[index] == '0' || line[index] == '1' || line[index] == 'E'  || line[index] == 'N' || line[index] == 'S' || line[index] == 'W' || ft_isspace(line[index]))
+		if (line[index] == '0' || line[index] == '1' || line[index] == 'E'  || line[index] == 'N' || line[index] == 'S' || line[index] == 'W')
 			result = true;
 		index++;
 	}
