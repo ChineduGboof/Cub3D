@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:57:58 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 18:08:33 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/02 03:40:18 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ t_vector	get_player_direction(char **map)
 			else if (map[i][j] == 'S')
 				return ((t_vector){0, 1});
 			else if (map[i][j] == 'E')
-				return ((t_vector){-1, 0});
-			else if (map[i][j] == 'W')
 				return ((t_vector){1, 0});
+			else if (map[i][j] == 'W')
+				return ((t_vector){-1, 0});
 			j++;
 		}
 		i++;
@@ -75,9 +75,9 @@ t_vector	determine_plane(char **map)
 			else if (map[i][j] == 'S')
 				return ((t_vector){0.66, 0});
 			else if (map[i][j] == 'E')
-				return ((t_vector){0, 0.66});
-			else if (map[i][j] == 'W')
 				return ((t_vector){0, -0.66});
+			else if (map[i][j] == 'W')
+				return ((t_vector){0, 0.66});
 			j++;
 		}
 		i++;
