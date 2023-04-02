@@ -1,6 +1,6 @@
 CC = gcc -g
 FLAGS = -Wall -Wextra -Werror
-NAME = cub3d
+NAME = cub3D
 
 C_FILES = source/main.c source/game/run_game.c source/game/image/image_factory.c \
 source/game/image/put_pixel_into_image.c source/game/raycasting/orchestra_conductor.c \
