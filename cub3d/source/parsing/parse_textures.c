@@ -3,36 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:51:46 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/02 00:40:30 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/02 04:46:29 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-bool	is_valid_identifier(const char *str)
-{
-	size_t		len;
-	size_t		path_len;
-	const char	*path;
+// bool	is_valid_identifier(const char *str)
+// {
+// 	size_t		len;
+// 	size_t		path_len;
+// 	const char	*path;
 
-	len = ft_strlen(str);
-	if (len < 8)
+// 	len = ft_strlen(str);
+// 	if (len < 8)
+// 		return (false);
+// 	if (ft_strnstr(str, NO, ft_strlen(NO)) || ft_strnstr(str, SO, ft_strlen(SO))
+// 		|| ft_strnstr(str, WE, ft_strlen(WE))
+// 		|| ft_strnstr(str, EA, ft_strlen(EA)))
+// 	{
+// 		path = str + 3;
+// 		path_len = ft_strlen(path);
+// 		if (ft_strncmp(path + path_len - 4, ".xpm", 4) != 0)
+// 			return (false);
+// 		return (true);
+// 	}
+// 	return (false);
+// }
+
+bool	is_valid_identifier(char *str)
+{
+	char **array;
+	size_t array_index;
+
+	array = ft_split_charset(str, " \t");
+	if (!array)
 		return (false);
-	if (ft_strnstr(str, NO, ft_strlen(NO)) || ft_strnstr(str, SO, ft_strlen(SO))
-		|| ft_strnstr(str, WE, ft_strlen(WE))
-		|| ft_strnstr(str, EA, ft_strlen(EA)))
-	{
-		path = str + 3;
-		path_len = ft_strlen(path);
-		if (ft_strncmp(path + path_len - 4, ".xpm", 4) != 0)
-			return (false);
-		return (true);
-	}
-	return (false);
+	if (ft_arrlen(array) != 2)
+		return (false);
+	array_index = ft_strlen(array[1]) - 4;
+	if (ft_strncmp(array[1] + array_index, ".xpm", 4) != 0)
+		return (false);
+	if (!array[0][0] || !array[1][0])
+		return (false);
+	return (true);
 }
+
 
 void	print_specifications(const t_specifications *specifications)
 {

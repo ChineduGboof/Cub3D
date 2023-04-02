@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:52 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/02 00:31:10 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/02 04:51:59 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	open_map(char *argument)
 
 bool	find_identifier(char *line, int index)
 {
-	if (ft_strnstr(line + index, NO, 3) || ft_strnstr(line + index, SO, 3)
-		|| ft_strnstr(line + index, WE, 3) || ft_strnstr(line + index, EA, 3)
-		|| ft_strnstr(line + index, F, 2) || ft_strnstr(line + index, C, 2))
+	if (ft_strnstr(line + index, NO, 2) || ft_strnstr(line + index, SO, 2)
+		|| ft_strnstr(line + index, WE, 2) || ft_strnstr(line + index, EA, 2)
+		|| ft_strnstr(line + index, F, 1) || ft_strnstr(line + index, C, 1))
 		return (true);
 	return (false);
 }

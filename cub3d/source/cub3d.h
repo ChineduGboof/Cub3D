@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:40:24 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/02 01:14:38 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/02 04:50:35 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 # define WINDOW_WIDTH 1366
 # define WINDOW_HEIGHT 768
 
-# define NO "NO "
-# define SO "SO "
-# define WE "WE "
-# define EA "EA "
-# define F "F "
-# define C "C "
+# define NO "NO"
+# define SO "SO"
+# define WE "WE"
+# define EA "EA"
+# define F "F"
+# define C "C"
 
 // The struct that the parser should return
 typedef struct s_specifications
@@ -102,7 +102,7 @@ void	validate_argument(char *map_file_path);
 void	parse_colors(char *map_filepath, t_specifications *specifications);
 void	ft_parse_color(char *line, t_color *color, int fd);
 void	parse_textures(char *map_file_path, t_specifications *specifications);
-void	parse_identifier_line(const char *line,
+void	parse_identifier_line(char *line,
 			t_specifications *specifications, int fd);
 void	parse_map(char *map_file_path, t_specifications *specifications);
 void	expand_map(char *line, t_specifications *specifications,
@@ -124,5 +124,6 @@ void	ft_exit_error(char *message, int fd);
 void	ft_exit_msg(char *message);
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 size_t	ft_arrlen(char **arr);
+char	*ft_strdup_and_trim(char *src);
 
 #endif
