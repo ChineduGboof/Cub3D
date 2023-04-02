@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:20:46 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 23:22:45 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/02 03:53:48 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ bool	is_valid_position(t_game *game, double x, double y)
 
 	new_x = (int)x;
 	new_y = (int)y;
-	if (new_y < 0 || new_y >= (int)get_int_map_height(game->map))
+	if (new_y <= 0 || new_y >= (int)get_int_map_height(game->map))
 		return (false);
-	else if (new_x < 0
+	else if (new_x <= 0
 		|| new_x >= (int)get_map_row_width(game->specifications.map[new_y]))
 		return (false);
 	return (game->map[new_y][new_x] == 0);
