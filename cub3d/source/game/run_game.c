@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:21:08 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/01 23:08:34 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/02 04:16:49 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ void	run_game(t_specifications specifications)
 	game.s_mlx.window = mlx_new_window(
 			game.s_mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
 	if (!game.s_mlx.image || !game.s_mlx.window)
-		terminate_with_message(&game, "Error: failed to create window\n", 10);
+		terminate_with_message(&game, "failed to create window\n", 10);
 	fill_game_struct(&game, specifications);
 	status = load_textures(game.s_mlx.mlx, &(game.s_textures),
 			game.specifications);
 	if (status == false)
-		terminate_with_message(&game, "Error: failed to load textures\n", 11);
+		terminate_with_message(&game, "failed to load textures\n", 11);
 	refresh_display(&game);
 	mlx_hook(game.s_mlx.window, ON_KEYDOWN, 0, on_keydown, &game);
 	mlx_hook(game.s_mlx.window, ON_DESTROY, 0, on_destroy, &game);

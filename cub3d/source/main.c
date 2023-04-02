@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/02 05:05:55 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/02 05:16:21 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	validate_argument(argv[1]);
 	if (is_empty_file(argv[1]) || wrong_placement(argv[1]))
 	{
-		ft_putstr_fd("Error: map has missing specification(s)\n", STDERR_FILENO);
+		ft_putstr_fd("Error: map is empty\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
 	parsing(argv[1], &specifications);
