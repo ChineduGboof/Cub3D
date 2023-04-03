@@ -3,33 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gboof <gboof@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:58:22 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/03 19:09:25 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:02:57 by gboof            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include "../game/image/image.h"
 
-// void	parse_floor_color(char *line, int arr[], int counter_floor,
-// 			t_specifications *specifications)
-// {
-// 	char	**array;
-// 	size_t	array_index;
-
-// 	array = ft_split_charset(line, " \t");
-// 	if (!array)
-// 		return (false);
-// 	if (ft_arrlen(array) != 2)
-// 		return (false);
-// }
-
 void	parse_floor_color(char *line, int arr[], int *counter_floor,
 			t_specifications *specifications)
 {
-	if (ft_strnstr(line + arr[1], F, ft_strlen(F)) && (line + arr[1] + 1) && (*(line + arr[1] + 1) == ' '))
+	if (ft_strnstr(line + arr[1], F, ft_strlen(F)) && (line + arr[1] + 1)
+		&& (*(line + arr[1] + 1) == ' '))
 	{
 		if (*counter_floor)
 		{
@@ -44,7 +32,8 @@ void	parse_floor_color(char *line, int arr[], int *counter_floor,
 void	parse_ceiling_color(char *line, int arr[], int *counter_ceiling,
 			t_specifications *specifications)
 {
-	if (ft_strnstr(line + arr[1], C, ft_strlen(C)) && (line + arr[1] + 1) && (*(line + arr[1] + 1) == ' '))
+	if (ft_strnstr(line + arr[1], C, ft_strlen(C)) && (line + arr[1] + 1)
+		&& (*(line + arr[1] + 1) == ' '))
 	{
 		if (*counter_ceiling)
 		{
