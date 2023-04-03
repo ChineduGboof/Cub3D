@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_detection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 13:49:49 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/03 13:43:02 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:42:58 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
