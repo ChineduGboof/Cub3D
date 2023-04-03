@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:52 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/02 05:42:51 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:05:32 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ void	parse_map(char *map_file_path, t_specifications *specifications)
 	while (1)
 	{
 		line = get_next_line(arr[fd]);
-		// if (arr[res] <= 0)
-		// 	break ;
 		if (!line)
 			break ;
 		if (*line == '\0' || *line == '\n')

@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/03 13:32:56 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:04:45 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	is_map_line(char *line)
 {
-	size_t index;
+	size_t	index;
 	bool	result;
 
 	index = 0;
@@ -23,25 +23,32 @@ bool	is_map_line(char *line)
 		return (false);
 	while (line[index] && line[index] != '\n')
 	{
-		if (!(line[index] == '0' || line[index] == '1' || line[index] == 'E'  || line[index] == 'N' || line[index] == 'S' || line[index] == 'W' || line[index] == 'N' || line[index] == ' ' || line[index] == '\t'))
+		if (!(line[index] == '0' || line[index] == '1' || line[index] == 'E'
+				|| line[index] == 'N' || line[index] == 'S'
+				|| line[index] == 'W' || line[index] == 'N'
+				|| line[index] == ' ' || line[index] == '\t'))
 			return (false);
-		if (line[index] == '0' || line[index] == '1' || line[index] == 'E'  || line[index] == 'N' || line[index] == 'S' || line[index] == 'W')
+		if (line[index] == '0' || line[index] == '1' || line[index] == 'E'
+			|| line[index] == 'N' || line[index] == 'S' || line[index] == 'W')
 			result = true;
 		index++;
 	}
 	return (result);
 }
 
-bool wrong_placement(char *filename)
+bool	wrong_placement(char *filename)
 {
-	char *line;
-	bool map_started = false;
-	int fd;
+	char	*line;
+	bool	map_started;
+	int		fd;
 
+	map_started = false;
 	fd = open(filename, O_RDONLY);
-
-	while ((line = get_next_line(fd)) != NULL)
+	while (1)
 	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
 		if (is_map_line(line))
 			map_started = true;
 		if (map_started && !is_map_line(line))
@@ -51,11 +58,10 @@ bool wrong_placement(char *filename)
 		}
 		free(line);
 	}
-
-	// Check if any of the required elements are missing
 	close(fd);
-	return false;
+	return (false);
 }
+
 int	main(int argc, char **argv)
 {
 	t_specifications	specifications;

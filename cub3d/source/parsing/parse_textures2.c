@@ -6,54 +6,23 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:58:09 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/02 04:35:43 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:07:20 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-	// if identifier is valid, extract it and the path
-// void	extract_identifier_and_path(const char *str, char **identifier,
-// 		char **path, int fd)
-// {
-// 	char	*trimmed_str;
-// 	char	*space_ptr;
-
-// 	trimmed_str = ft_strtrim(str, " ");
-// 	if (!trimmed_str)
-// 		ft_exit_error("could not allocate memory", fd);
-// 	space_ptr = ft_strchr(trimmed_str, ' ');
-// 	if (!space_ptr)
-// 	{
-// 		ft_cautious_free((void **)&trimmed_str);
-// 		ft_exit_error("invalid identifier line", fd);
-// 	}
-// 	*space_ptr = '\0';
-// 	*identifier = ft_strdup(trimmed_str);
-// 	*path = ft_strdup_and_trim(space_ptr + 1);
-// 	if (!(*identifier) || !(*path))
-// 	{
-// 		ft_cautious_free((void **)&trimmed_str);
-// 		ft_cautious_free((void **)identifier);
-// 		ft_cautious_free((void **)path);
-// 		ft_exit_error("could not allocate memory", fd);
-// 	}
-// 	ft_cautious_free((void **)&trimmed_str);
-// }
-
 void	extract_identifier_and_path(char *str, char **identifier,
 		char **path, int fd)
 {
-	char **array;
+	char	**array;
 
 	array = ft_split_charset(str, " \t");
 	if (!array)
 		ft_exit_error("could not allocate memory", fd);
 	*identifier = array[0];
 	*path = array[1];
-	// ft_cautious_free_double_ptr((void ***)array);
 }
-
 
 void	set_texture_path(char **texture, char *path, char *identifier, int fd)
 {

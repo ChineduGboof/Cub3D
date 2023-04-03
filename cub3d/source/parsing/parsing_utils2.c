@@ -6,7 +6,7 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:43:28 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/02 04:20:18 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:10:07 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,47 +104,4 @@ void	ft_exit_msg(char *message)
 	ft_putstr_fd(message, STDERR_FILENO);
 	ft_putchar_fd('\n', STDERR_FILENO);
 	exit(EXIT_FAILURE);
-}
-
-// static char	*ft_strcpy(char *dest, char *src)
-// {
-// 	size_t	index;
-
-// 	index = 0;
-// 	while (src[index] != '\0')
-// 	{
-// 		dest[index] = src[index];
-// 		index++;
-// 	}
-// 	dest[index] = '\0';
-// 	return (dest);
-// }
-
-char	*ft_strdup_and_trim(char *src)
-{
-	char	*new;
-	size_t	index;
-	size_t	new_index;
-
-	if (src == NULL)
-		return (NULL);
-	new = malloc((ft_strlen(src) + 1) * sizeof(char));
-	if (new == NULL)
-	{
-		errno = ENOMEM;
-		return (NULL);
-	}
-	index = 0;
-	new_index = 0;
-	while (src[index] != '\0')
-	{
-		if (src[index] != ' ' && src[index] != '\t')
-		{
-			new[new_index] = src[index];
-			new_index++;
-		}
-		index++;
-	}
-	new[new_index] = '\0';
-	return (new);
 }
