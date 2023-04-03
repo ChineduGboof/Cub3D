@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:20:46 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/02 03:53:48 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:50:09 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,23 @@ t_vector	calculate_new_position(t_game *game, int movement_direction)
 
 	if (movement_direction == NORTH)
 	{
-		new_pos.x = game->player.position.x + game->player.direction.x * 0.1;
+		new_pos.x = game->player.position.x + (-game->player.direction.x) * 0.1;
 		new_pos.y = game->player.position.y + game->player.direction.y * 0.1;
 	}
 	else if (movement_direction == SOUTH)
 	{
-		new_pos.x = game->player.position.x - game->player.direction.x * 0.1;
+		new_pos.x = game->player.position.x - (-game->player.direction.x) * 0.1;
 		new_pos.y = game->player.position.y - game->player.direction.y * 0.1;
 	}
-	else if (movement_direction == EAST)
+	else if (movement_direction == WEST)
 	{
 		new_pos.x = game->player.position.x + game->player.direction.y * 0.1;
-		new_pos.y = game->player.position.y - game->player.direction.x * 0.1;
+		new_pos.y = game->player.position.y - (-game->player.direction.x) * 0.1;
 	}
 	else
 	{
 		new_pos.x = game->player.position.x - game->player.direction.y * 0.1;
-		new_pos.y = game->player.position.y + game->player.direction.x * 0.1;
+		new_pos.y = game->player.position.y + (-game->player.direction.x) * 0.1;
 	}
 	return (new_pos);
 }
