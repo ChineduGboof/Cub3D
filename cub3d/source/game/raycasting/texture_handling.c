@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_handling.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 13:47:40 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/02 03:36:26 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/03 13:43:41 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

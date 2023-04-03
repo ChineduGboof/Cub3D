@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:15:33 by oaydemir          #+#    #+#             */
-/*   Updated: 2023/04/02 21:35:40 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/03 13:32:56 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ bool	is_map_line(char *line)
 
 	index = 0;
 	result = false;
-	if (!line || line[0] == '\0')
+	if (!line || line[0] == '\0' || line[0] == '\n')
 		return (false);
-	while (line[index])
+	while (line[index] && line[index] != '\n')
 	{
-		if (!(line[index] == '0' || line[index] == '1' || line[index] =='E'  || line[index] == 'N' || line[index] == 'S' || line[index] == 'W' || ft_isspace(line[index])))
+		if (!(line[index] == '0' || line[index] == '1' || line[index] == 'E'  || line[index] == 'N' || line[index] == 'S' || line[index] == 'W' || line[index] == 'N' || line[index] == ' ' || line[index] == '\t'))
 			return (false);
 		if (line[index] == '0' || line[index] == '1' || line[index] == 'E'  || line[index] == 'N' || line[index] == 'S' || line[index] == 'W')
 			result = true;
@@ -44,15 +44,10 @@ bool wrong_placement(char *filename)
 	{
 		if (is_map_line(line))
 			map_started = true;
-		size_t index = 0;
-		while (line[index])
+		if (map_started && !is_map_line(line))
 		{
-			if (map_started && !(line[index] == '0' || line[index] == '1' || line[index] == 'E'  || line[index] == 'N' || line[index] == 'S' || line[index] == 'W' || ft_isspace(line[index]) ))
-			{
-				close(fd);
-				return (true);
-			}
-			index++;
+			close(fd);
+			return (true);
 		}
 		free(line);
 	}
