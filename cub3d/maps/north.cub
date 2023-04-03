@@ -2,8 +2,10 @@ NO ./textures/xpm/BookshelfD.xpm
 SO ./textures/xpm/RedwallL.xpm
 WE ./textures/xpm/SteelwallD.xpm
 EA ./textures/xpm/WoodbrickD.xpm
+
 F 255,0,0
 C 120,60,90
+
 		1111111111111111111111111
 		1000000000110000000000001
 		1011000001110000000000001

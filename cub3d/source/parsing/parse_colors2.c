@@ -6,48 +6,65 @@
 /*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:58:22 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/02 03:48:39 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:09:25 by cegbulef         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include "../game/image/image.h"
 
-void	parse_floor_color(char *line, int arr[], int counter_floor,
+// void	parse_floor_color(char *line, int arr[], int counter_floor,
+// 			t_specifications *specifications)
+// {
+// 	char	**array;
+// 	size_t	array_index;
+
+// 	array = ft_split_charset(line, " \t");
+// 	if (!array)
+// 		return (false);
+// 	if (ft_arrlen(array) != 2)
+// 		return (false);
+// }
+
+void	parse_floor_color(char *line, int arr[], int *counter_floor,
 			t_specifications *specifications)
 {
-	if (ft_strnstr(line + arr[1], F, ft_strlen(F)))
+	if (ft_strnstr(line + arr[1], F, ft_strlen(F)) && (line + arr[1] + 1) && (*(line + arr[1] + 1) == ' '))
 	{
-		if (counter_floor)
+		if (*counter_floor)
 		{
 			ft_cautious_free((void **)&line);
 			ft_exit_error("Duplicate color Identifier", arr[2]);
 		}
 		ft_parse_color(line + arr[1], &specifications->floor_color, arr[2]);
-		counter_floor = true;
+		(*counter_floor)++;
 	}
 }
 
-void	parse_ceiling_color(char *line, int arr[], int counter_ceiling,
+void	parse_ceiling_color(char *line, int arr[], int *counter_ceiling,
 			t_specifications *specifications)
 {
-	if (ft_strnstr(line + arr[1], C, ft_strlen(C)))
+	if (ft_strnstr(line + arr[1], C, ft_strlen(C)) && (line + arr[1] + 1) && (*(line + arr[1] + 1) == ' '))
 	{
-		if (counter_ceiling)
+		if (*counter_ceiling)
 		{
 			ft_cautious_free((void **)&line);
 			ft_exit_error("Duplicate color Identifier", arr[2]);
 		}
 		ft_parse_color(line + arr[1], &specifications->ceiling_color, arr[2]);
-		counter_ceiling = true;
+		(*counter_ceiling)++;
 	}
 }
 
 /*	Checks if get_line succesfully read a file */
-void	check_file_read(int arr[])
+void	check_parse_color_success(int arr[], int counters[2])
 {
 	if (arr[0] < 0)
 		ft_exit_error("Could not read file", arr[2]);
+	else if (counters[0] == 0 || counters[1] == 0)
+		ft_exit_error("Missing color value", arr[2]);
+	else if (counters[0] > 1 || counters[1] > 1)
+		ft_exit_error("Too many color values", arr[2]);
 	close(arr[2]);
 }
 
@@ -72,10 +89,10 @@ void	parse_colors(char *map_filepath, t_specifications *specifications)
 {
 	char	*line;
 	int		arr[3];
-	bool	counter[2];
+	int		counter[2];
 
 	ft_bzero(arr, 3 * sizeof(int));
-	ft_bzero(counter, 2 * sizeof(bool));
+	ft_bzero(counter, 2 * sizeof(int));
 	arr[2] = open(map_filepath, O_RDONLY);
 	if (arr[2] < 0)
 		ft_exit_msg("Could not open map file");
@@ -90,9 +107,9 @@ void	parse_colors(char *map_filepath, t_specifications *specifications)
 			continue ;
 		}
 		arr[1] = skip_whitespace(line);
-		parse_floor_color(line, arr, counter[0], specifications);
-		parse_ceiling_color(line, arr, counter[1], specifications);
+		parse_floor_color(line, arr, &(counter[0]), specifications);
+		parse_ceiling_color(line, arr, &(counter[1]), specifications);
 		ft_cautious_free((void **)&line);
 	}
-	check_file_read(arr);
+	check_parse_color_success(arr, counter);
 }
