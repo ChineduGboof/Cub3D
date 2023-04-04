@@ -4,7 +4,7 @@ WE ./textures/xpm/SteelwallD.xpm
 EA ./textures/xpm/WoodbrickD.xpm
 
 F 255,0,0
-C 120,60,90
+C 120,160,90
 
 		1111111111111111111111111
 		1000000000110000000000001
