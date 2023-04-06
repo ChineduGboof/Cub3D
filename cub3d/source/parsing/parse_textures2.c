@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:58:09 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/03 15:07:20 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/06 12:17:53 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ void	extract_identifier_and_path(char *str, char **identifier,
 
 	array = ft_split_charset(str, " \t");
 	if (!array)
+	{
+		ft_cautious_free((void **)&str);
 		ft_exit_error("could not allocate memory", fd);
+	}
 	*identifier = array[0];
 	*path = array[1];
+	ft_cautious_free_double_ptr((void ***)&array);
 }
 
 void	set_texture_path(char **texture, char *path, char *identifier, int fd)
@@ -57,6 +61,11 @@ void	parse_identifier_line(char *line,
 		set_texture_path(&specifications->east_texture, path,
 			"east texture specification", fd);
 	else
+	{
+		ft_cautious_free((void **)&identifier);
+		ft_cautious_free((void **)&path);
+		ft_cautious_free((void **)&line);
 		ft_exit_error("invalid identifier", fd);
+	}
 	ft_cautious_free((void **)&identifier);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cegbulef <cegbulef@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:51:46 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/03 15:06:18 by cegbulef         ###   ########.fr       */
+/*   Updated: 2023/04/06 12:11:45 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,23 @@ bool	is_valid_identifier(char *str)
 {
 	char	**array;
 	size_t	array_index;
+	bool	is_valid;
 
+	is_valid = (true);
 	array = ft_split_charset(str, " \t");
 	if (!array)
-		return (false);
-	if (ft_arrlen(array) != 2)
-		return (false);
-	array_index = ft_strlen(array[1]) - 4;
-	if (ft_strncmp(array[1] + array_index, ".xpm", 4) != 0)
-		return (false);
-	if (!array[0][0] || !array[1][0])
-		return (false);
-	return (true);
+		is_valid = false;
+	else if (ft_arrlen(array) != 2)
+		is_valid = false;
+	else if (ft_strncmp(array[1] + (ft_strlen(array[1]) - 4), ".xpm", 4) != 0)
+		is_valid = false;
+	else if (ft_strncmp(array[0], "NO", 3) != 0
+		&& ft_strncmp(array[0], "SO", 3) != 0
+		&& ft_strncmp(array[0], "WE", 3) != 0
+		&& ft_strncmp(array[0], "EA", 3) != 0)
+		is_valid = false;
+	ft_free_2d_array((void ***)&array, -1, true);
+	return (is_valid);
 }
 
 void	print_specifications(const t_specifications *specifications)

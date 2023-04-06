@@ -6,7 +6,7 @@
 /*   By: oaydemir <oaydemir@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:52:28 by cegbulef          #+#    #+#             */
-/*   Updated: 2023/04/02 03:47:27 by oaydemir         ###   ########.fr       */
+/*   Updated: 2023/04/06 12:07:03 by oaydemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	check_color_values(char **colors, char *line, int fd)
 			|| ft_atoi(trimmed) < 0 || ft_strlen(trimmed) > 3)
 		{
 			ft_cautious_free((void **)&line);
+			ft_free_2d_array((void ***)&colors, -1, true);
 			ft_exit_error("Invalid color value", fd);
 		}
 		ft_cautious_free((void **)&trimmed);
@@ -59,13 +60,14 @@ void	parse_color_values(char **colors, t_color *color, char *line, int fd)
 {
 	if (!colors || ft_arrlen(colors) != 3)
 	{
+		ft_free_2d_array((void ***)&colors, -1, true);
 		ft_cautious_free((void **)&line);
 		ft_exit_error("Wrong number of color values", fd);
 	}
 	color->red = ft_atoi(colors[0]);
 	color->green = ft_atoi(colors[1]);
 	color->blue = ft_atoi(colors[2]);
-	ft_free_2d_array((void ***)&colors, ft_arrlen(colors), 0);
+	ft_free_2d_array((void ***)&colors, -1, true);
 }
 
 /*	We need to split the color string and get the individual values */
