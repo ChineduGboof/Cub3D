@@ -15,11 +15,11 @@ This project aims to code a 3D game using the raycasting technique, like Wolfest
 
 ## Break Down of All the Project's Codes and their Usage
 
-- [X] Parsing - guide [guide 14](https://github.com/ChineduGboof/CUB3D/blob/main/Readme/Parsing.md "Map Validation and Error Checking")
-- [X] Ray-Casting - guide [guide 15](https://github.com/ChineduGboof/CUB3D/blob/main/Readme/Raycasting.md "Raycasting Engine Functions")
-- [X] Raycasting Game - guide [guide 16](https://github.com/ChineduGboof/CUB3D/blob/main/Readme/Game.md "Raycasting Game")
-- [X] Image Manipulation  - guide [guide 17](https://github.com/ChineduGboof/CUB3D/blob/main/Readme/Image.md "Image Manipulation")
-- [X] Map Conversion and Player Information Extraction  - guide [guide 17](https://github.com/ChineduGboof/CUB3D/blob/main/Readme/Map.md "Map Conversion and Player Information Extraction")
+- [X] Parsing - guide [guide 1](https://github.com/ChineduGboof/CUB3D/blob/main/Readme/Parsing.md "Map Validation and Error Checking")
+- [X] Ray-Casting - guide [guide 2](https://github.com/ChineduGboof/CUB3D/blob/main/Readme/Raycasting.md "Raycasting Engine Functions")
+- [X] Raycasting Game - guide [guide 3](https://github.com/ChineduGboof/CUB3D/blob/main/Readme/Game.md "Raycasting Game")
+- [X] Image Manipulation  - guide [guide 4](https://github.com/ChineduGboof/CUB3D/blob/main/Readme/Image.md "Image Manipulation")
+- [X] Map Conversion and Player Information Extraction  - guide [guide 5](https://github.com/ChineduGboof/CUB3D/blob/main/Readme/Map.md "Map Conversion and Player Information Extraction")
 
 
 ## Helpful Materials
